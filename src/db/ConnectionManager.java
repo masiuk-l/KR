@@ -22,7 +22,7 @@ public class ConnectionManager {
         try {
             Class.forName(driver).newInstance();
         } catch (ClassNotFoundException e) {
-            throw new SQLException("Драйвер не загружен!");
+            throw new DBException("Драйвер не загружен!");
         } catch (InstantiationException | IllegalAccessException e) {
             LOG.error(e);
         }
