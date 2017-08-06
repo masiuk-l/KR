@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Dell on 06.08.2017.
+ * Project KR. Created by masiuk-l on 06.08.2017.
  */
 
 
@@ -128,7 +128,7 @@ public class ReaderDAOImpl implements ReaderDAO {
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
-        while (rs.next()) {
+        if (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
             reader.setName(rs.getString(2));

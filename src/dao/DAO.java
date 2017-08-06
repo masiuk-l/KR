@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 
 /**
- * Created by Dell on 06.08.2017.
+ * Project KR. Created by masiuk-l on 06.08.2017.
  */
 public interface DAO<T> {
 

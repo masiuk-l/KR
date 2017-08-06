@@ -8,7 +8,7 @@ import java.sql.Date;
 
 
 /**
- * Created by Dell on 06.08.2017.
+ * Project KR. Created by masiuk-l on 06.08.2017.
  */
 @Data
 @AllArgsConstructor
