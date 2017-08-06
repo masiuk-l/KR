@@ -20,12 +20,12 @@ import java.util.List;
 
 public class ReaderDAOImpl implements ReaderDAO {
     private static final Logger LOG = Logger.getLogger(ReaderDAOImpl.class);
-    private static final String saveReaderQuery = "INSERT INTO READER (NAME, SURNAME, SECOND_NAME, BIRTHDAY) VALUES (?, ?, ?, ?)";
-    private static final String updateReaderQuery = "UPDATE READER SET NAME=?, SURNAME=?, SECOND_NAME=?, BIRTHDAY=? WHERE READER_ID=?";
-    private static final String getReaderQuery = "SELECT * FROM READER WHERE Reader_ID=?";
-    private static final String getAllReaderQuery = "SELECT * FROM READER";
-    private static final String getReaderBySurnameQuery = "SELECT * FROM READER WHERE SURNAME=?";
-    private static final String deleteReaderQuery = "DELETE FROM READER WHERE READER_ID=?";
+    private static final String saveReaderQuery = "INSERT INTO READERS (NAME, SURNAME, SECOND_NAME, BIRTHDAY) VALUES (?, ?, ?, ?)";
+    private static final String updateReaderQuery = "UPDATE READERS SET NAME=?, SURNAME=?, SECOND_NAME=?, BIRTHDAY=? WHERE READER_ID=?";
+    private static final String getReaderQuery = "SELECT * FROM READERS WHERE Reader_ID=?";
+    private static final String getAllReaderQuery = "SELECT * FROM READERS";
+    private static final String getReaderBySurnameQuery = "SELECT * FROM READERS WHERE SURNAME=?";
+    private static final String deleteReaderQuery = "DELETE FROM READERS WHERE READER_ID=?";
     private static volatile ReaderDAO INSTANCE = null;
     private PreparedStatement psSave;
     private PreparedStatement psUpdate;
@@ -36,12 +36,12 @@ public class ReaderDAOImpl implements ReaderDAO {
 
     {
         try {
-            psSave = ConnectionManager.getConnection().prepareStatement(saveReaderQuery, Statement.RETURN_GENERATED_KEYS);
-            psUpdate = ConnectionManager.getConnection().prepareStatement(updateReaderQuery);
-            psGet = ConnectionManager.getConnection().prepareStatement(getReaderQuery);
-            psGetBySurname = ConnectionManager.getConnection().prepareStatement(getReaderBySurnameQuery);
-            psGetAll = ConnectionManager.getConnection().prepareStatement(getAllReaderQuery);
-            psDelete = ConnectionManager.getConnection().prepareStatement(deleteReaderQuery);
+            psSave = ConnectionManager.getInstance().getConnection().prepareStatement(saveReaderQuery, Statement.RETURN_GENERATED_KEYS);
+            psUpdate = ConnectionManager.getInstance().getConnection().prepareStatement(updateReaderQuery);
+            psGet = ConnectionManager.getInstance().getConnection().prepareStatement(getReaderQuery);
+            psGetBySurname = ConnectionManager.getInstance().getConnection().prepareStatement(getReaderBySurnameQuery);
+            psGetAll = ConnectionManager.getInstance().getConnection().prepareStatement(getAllReaderQuery);
+            psDelete = ConnectionManager.getInstance().getConnection().prepareStatement(deleteReaderQuery);
         } catch (SQLException e) {
             LOG.error(e);
         }
