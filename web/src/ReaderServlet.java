@@ -1,5 +1,3 @@
-package web;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,50 +5,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 
-import dao.AuthorDAO;
-import dao.impl.AuthorDAOImpl;
-import entity.Author;
 
-@WebServlet(name = "HelloServlet", urlPatterns = {"/books"})
-public class BookServlet extends HttpServlet {
+import entity.Reader;
+import service.ReaderService;
+import service.impl.ReaderServiceImpl;
+
+@WebServlet(name = "ReaderServlet", urlPatterns = {"/readers"})
+public class ReaderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
-        List<Author> authors = null;
-        try {
-            authors = authorDAO.getAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ReaderService readerService = new ReaderServiceImpl();
+
+        List<Reader> readers = readerService.getAll();
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Books</title>");
+            out.println("<title>Readers</title>");
             out.println("</head>");
             out.println("<body>");
-            for (Author author : authors) {
-                out.println("<p>");
+            out.println("<p><table border = \"1\">");
+            for (Reader reader : readers) {
+
                 out.println("<tr>");
                 out.println("<td>");
-                out.println(author);
+                out.println(reader.getReaderID());
+                out.println("</td>");
                 out.println("<td>");
+                out.println(reader.getName());
+                out.println("</td>");
                 out.println("<td>");
+                out.println(reader.getSurname());
+                out.println("</td>");
                 out.println("<td>");
-
+                out.println(reader.getSecondName());
+                out.println("</td>");
+                out.println("<td>");
+                out.println(reader.getBirthday());
                 out.println("</td>");
                 out.println("</tr>");
 
-                out.println("</p>");
-            }
 
+            }
+            out.println("</table></p>");
 
             out.println("</body>");
             out.println("</html>");
