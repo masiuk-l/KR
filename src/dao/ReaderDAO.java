@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ReaderDAO extends DAO<Reader> {
 
-    Reader getReaderBySurname(String surname) throws SQLException;
+    List<Reader> getBySurname(String surname) throws SQLException;
 
     List<Reader> getAll() throws SQLException;
 

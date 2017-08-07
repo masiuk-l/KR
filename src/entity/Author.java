@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
  */
@@ -15,6 +17,6 @@ public class Author {
     String name;
     String surname;
     String secondName;
-    int year;
+    Date birthday;
     String country;
 }

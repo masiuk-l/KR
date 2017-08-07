@@ -124,7 +124,8 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public Reader getReaderBySurname(String surname) throws SQLException {
+    public List<Reader> getBySurname(String surname) throws SQLException {
+        List<Reader> list = new ArrayList<>();
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
@@ -135,11 +136,11 @@ public class ReaderDAOImpl implements ReaderDAO {
             reader.setSurname(rs.getString(3));
             reader.setSecondName(rs.getString(4));
             reader.setBirthday(rs.getDate(5));
-            return reader;
+            list.add(reader);
         }
         close(rs);
 
-        return null;
+        return list;
     }
 
     @Override

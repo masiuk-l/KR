@@ -24,7 +24,7 @@ public class ReaderDAOImplTest {
         calendar.set(1976, 11, 27);
         reader.setBirthday(new Date(calendar.getTimeInMillis()));
         readerDAO.save(reader);
-        Reader newReader = readerDAO.getReaderBySurname("Иванов");
+        Reader newReader = readerDAO.getBySurname("Иванов").get(0);
         Assert.assertEquals(reader.getName(), newReader.getName());
         readerDAO.delete(newReader.getReaderID());
     }
@@ -35,7 +35,7 @@ public class ReaderDAOImplTest {
         ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
         String oldSurname = "Хадькова";
         String newSurname = "Иванова";
-        Reader reader = readerDAO.getReaderBySurname(oldSurname);
+        Reader reader = readerDAO.getBySurname(oldSurname).get(0);
         reader.setSurname(newSurname);
         readerDAO.update(reader);
         Reader newReader = readerDAO.get(reader.getReaderID());
