@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="junit-4.12">
+  <library name="servlet-api">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../junit-4.12.jar!/" />
+      <root url="jar://D:/Tomcat/apache-tomcat-8.5.16/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
