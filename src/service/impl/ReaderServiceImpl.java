@@ -19,10 +19,11 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     @Override
     public Reader save(Reader reader) {
         try {
-            //validation Reader
-            startTransaction();
-            reader = readerDAO.save(reader);
-            commit();
+            if (reader.getName() != null && reader.getSurname() != null && reader.getSecondName() != null) {
+                startTransaction();
+                reader = readerDAO.save(reader);
+                commit();
+            }
         } catch (SQLException e) {
             throw new ServiceException("Error creating Reader");
         }
