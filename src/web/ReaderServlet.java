@@ -1,3 +1,9 @@
+package web;
+
+import entity.Reader;
+import service.ReaderService;
+import service.impl.ReaderServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,20 +13,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-
-import entity.Reader;
-import service.ReaderService;
-import service.impl.ReaderServiceImpl;
-
 @WebServlet(name = "ReaderServlet", urlPatterns = {"/readers"})
 public class ReaderServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private ReaderService readerService = new ReaderServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ReaderService readerService = new ReaderServiceImpl();
+
 
         List<Reader> readers = readerService.getAll();
         try (PrintWriter out = response.getWriter()) {
@@ -35,7 +38,7 @@ public class ReaderServlet extends HttpServlet {
 
                 out.println("<tr>");
                 out.println("<td>");
-                out.println(reader.getReaderID());
+                out.println(readers.size());
                 out.println("</td>");
                 out.println("<td>");
                 out.println(reader.getName());

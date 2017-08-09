@@ -52,6 +52,11 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
 
     @Override
     public List<Reader> getAll() {
+        try {
+            return readerDAO.getAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
