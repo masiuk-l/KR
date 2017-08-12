@@ -1,8 +1,8 @@
 package dao;
 
-import entity.Author;
-import entity.Book;
-import entity.BookAuthor;
+import entities.Author;
+import entities.Book;
+import entities.BookAuthor;
 
 import java.sql.SQLException;
 import java.util.List;

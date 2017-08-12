@@ -1,9 +1,9 @@
 package dao;
 
-import entity.Book;
-import entity.Form;
-import entity.Librarian;
-import entity.Reader;
+import entities.Book;
+import entities.Form;
+import entities.Librarian;
+import entities.Reader;
 
 import java.sql.SQLException;
 import java.util.List;

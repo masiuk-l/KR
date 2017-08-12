@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="KR@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="kr">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="alisadatabase"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="l19t1"/>
+    <schema id="6" parent="1" name="l20t1"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="project_web_bank"/>
+    <schema id="10" parent="1" name="remedio"/>
+    <schema id="11" parent="1" name="sys"/>
+    <table id="12" parent="2" name="authors"/>
+    <table id="13" parent="2" name="books"/>
+    <column id="14" parent="12" name="AUTHOR_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="15" parent="12" name="SURNAME">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="12" name="NAME">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="12" name="SECOND_NAME">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="18" parent="12" name="BIRTHDAY">
+      <Position>5</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="12" name="COUNTRY">
+      <Position>6</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="20" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>AUTHOR_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="21" parent="13" name="BOOK_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="13" name="NAME">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="13" name="ISBN">
+      <Position>3</Position>
+      <DataType>varchar(12)|0</DataType>
+    </column>
+    <column id="24" parent="13" name="GENRE">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="13" name="YEAR">
+      <Position>5</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="13" name="QUANTITY">
+      <Position>6</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="27" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BOOK_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

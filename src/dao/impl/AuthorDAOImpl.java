@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.AuthorDAO;
 import db.ConnectionManager;
-import entity.Author;
+import entities.Author;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -35,12 +35,12 @@ public class AuthorDAOImpl implements AuthorDAO {
 
     {
         try {
-            psSave = ConnectionManager.getInstance().getConnection().prepareStatement(saveAuthorQuery, Statement.RETURN_GENERATED_KEYS);
-            psUpdate = ConnectionManager.getInstance().getConnection().prepareStatement(updateAuthorQuery);
-            psGet = ConnectionManager.getInstance().getConnection().prepareStatement(getAuthorQuery);
-            psGetBySurname = ConnectionManager.getInstance().getConnection().prepareStatement(getAuthorBySurnameQuery);
-            psGetAll = ConnectionManager.getInstance().getConnection().prepareStatement(getAllAuthorQuery);
-            psDelete = ConnectionManager.getInstance().getConnection().prepareStatement(deleteAuthorQuery);
+            psSave = ConnectionManager.getConnection().prepareStatement(saveAuthorQuery, Statement.RETURN_GENERATED_KEYS);
+            psUpdate = ConnectionManager.getConnection().prepareStatement(updateAuthorQuery);
+            psGet = ConnectionManager.getConnection().prepareStatement(getAuthorQuery);
+            psGetBySurname = ConnectionManager.getConnection().prepareStatement(getAuthorBySurnameQuery);
+            psGetAll = ConnectionManager.getConnection().prepareStatement(getAllAuthorQuery);
+            psDelete = ConnectionManager.getConnection().prepareStatement(deleteAuthorQuery);
         } catch (SQLException e) {
             LOG.error(e);
         }

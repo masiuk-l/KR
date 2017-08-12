@@ -1,9 +1,9 @@
 package dao.impl;
 
 import dao.BookAuthorDAO;
-import entity.Author;
-import entity.Book;
-import entity.BookAuthor;
+import entities.Author;
+import entities.Book;
+import entities.BookAuthor;
 
 import java.io.Serializable;
 import java.sql.SQLException;

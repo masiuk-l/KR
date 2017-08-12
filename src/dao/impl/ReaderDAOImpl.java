@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.ReaderDAO;
 import db.ConnectionManager;
-import entity.Reader;
+import entities.Reader;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -36,12 +36,12 @@ public class ReaderDAOImpl implements ReaderDAO {
 
     {
         try {
-            psSave = ConnectionManager.getInstance().getConnection().prepareStatement(saveReaderQuery, Statement.RETURN_GENERATED_KEYS);
-            psUpdate = ConnectionManager.getInstance().getConnection().prepareStatement(updateReaderQuery);
-            psGet = ConnectionManager.getInstance().getConnection().prepareStatement(getReaderQuery);
-            psGetBySurname = ConnectionManager.getInstance().getConnection().prepareStatement(getReaderBySurnameQuery);
-            psGetAll = ConnectionManager.getInstance().getConnection().prepareStatement(getAllReaderQuery);
-            psDelete = ConnectionManager.getInstance().getConnection().prepareStatement(deleteReaderQuery);
+            psSave = ConnectionManager.getConnection().prepareStatement(saveReaderQuery, Statement.RETURN_GENERATED_KEYS);
+            psUpdate = ConnectionManager.getConnection().prepareStatement(updateReaderQuery);
+            psGet = ConnectionManager.getConnection().prepareStatement(getReaderQuery);
+            psGetBySurname = ConnectionManager.getConnection().prepareStatement(getReaderBySurnameQuery);
+            psGetAll = ConnectionManager.getConnection().prepareStatement(getAllReaderQuery);
+            psDelete = ConnectionManager.getConnection().prepareStatement(deleteReaderQuery);
         } catch (SQLException e) {
             LOG.error(e);
         }

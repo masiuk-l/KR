@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.BookDAO;
-import entity.Book;
+import entities.Book;
 
 import java.io.Serializable;
 import java.sql.SQLException;
