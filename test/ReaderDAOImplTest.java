@@ -1,10 +1,11 @@
 import dao.ReaderDAO;
 import dao.impl.ReaderDAOImpl;
-import entity.Reader;
+import entities.Reader;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ReaderDAOImplTest {
         reader.setSecondName("Иванович");
         reader.setSurname("Иванов");
         GregorianCalendar calendar = new GregorianCalendar();
-        calendar.set(1976, 11, 27);
+        calendar.set(1976, Calendar.NOVEMBER, 27);
         reader.setBirthday(new Date(calendar.getTimeInMillis()));
         readerDAO.save(reader);
         Reader newReader = readerDAO.getBySurname("Иванов").get(0);
@@ -52,7 +53,7 @@ public class ReaderDAOImplTest {
         reader.setSecondName("Иванович");
         reader.setSurname("Иванов");
         GregorianCalendar calendar = new GregorianCalendar();
-        calendar.set(1976, 11, 27);
+        calendar.set(1976, Calendar.NOVEMBER, 27);
         reader.setBirthday(new Date(calendar.getTimeInMillis()));
         readerDAO.save(reader);
         List<Reader> readers = readerDAO.getAll();

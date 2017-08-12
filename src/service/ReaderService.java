@@ -1,6 +1,6 @@
 package service;
 
-import entity.Reader;
+import entities.Reader;
 
 import java.io.Serializable;
 import java.util.List;

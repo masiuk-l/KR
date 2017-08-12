@@ -1,6 +1,6 @@
 package web;
 
-import entity.Reader;
+import entities.Reader;
 import service.ReaderService;
 import service.impl.ReaderServiceImpl;
 

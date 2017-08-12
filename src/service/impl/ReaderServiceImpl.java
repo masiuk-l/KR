@@ -2,7 +2,7 @@ package service.impl;
 
 import dao.ReaderDAO;
 import dao.impl.ReaderDAOImpl;
-import entity.Reader;
+import entities.Reader;
 import service.ReaderService;
 import service.ServiceException;
 
