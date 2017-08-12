@@ -19,15 +19,15 @@ public class AuthorDAOImplTest {
         Author author = new Author();
         author.setName("Иван");
         author.setSecondName("Иванович");
-        author.setSurname("Иванов");
+        author.setSurname("Козлов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
         author.setBirthday(new Date(calendar.getTimeInMillis()));
         author.setCountry("Россия");
-        authorDAO.save(author);
-        Author newAuthor = authorDAO.getBySurname("Иванов").get(0);
-        Assert.assertEquals(author.getName(), newAuthor.getName());
-        authorDAO.delete(newAuthor.getAuthorID());
+        author = authorDAO.save(author);
+        Author newAuthor = authorDAO.getBySurname("Козлов").get(0);
+        Assert.assertEquals(author.toString(), newAuthor.toString());
+        authorDAO.delete(author.getAuthorID());
     }
 
 
@@ -40,7 +40,7 @@ public class AuthorDAOImplTest {
         author.setSurname(newSurname);
         authorDAO.update(author);
         Author newAuthor = authorDAO.get(author.getAuthorID());
-        Assert.assertEquals(newAuthor.getSurname(), newSurname);
+        Assert.assertTrue(author.equals(newAuthor));
         newAuthor.setSurname(oldSurname);
         authorDAO.update(newAuthor);
     }

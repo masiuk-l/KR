@@ -20,17 +20,19 @@ import java.util.List;
 
 public class ReaderDAOImpl implements ReaderDAO {
     private static final Logger LOG = Logger.getLogger(ReaderDAOImpl.class);
-    private static final String saveReaderQuery = "INSERT INTO READERS (NAME, SURNAME, SECOND_NAME, BIRTHDAY) VALUES (?, ?, ?, ?)";
-    private static final String updateReaderQuery = "UPDATE READERS SET NAME=?, SURNAME=?, SECOND_NAME=?, BIRTHDAY=? WHERE READER_ID=?";
-    private static final String getReaderQuery = "SELECT * FROM READERS WHERE Reader_ID=?";
+    private static final String saveReaderQuery = "INSERT INTO READERS (SURNAME, NAME, SECOND_NAME, PASSWORD, EMAIL, BIRTHDAY, GENDER, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String updateReaderQuery = "UPDATE READERS SET SURNAME=?, NAME=?, SECOND_NAME=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, GENDER=?, STATUS=? WHERE READER_ID=?";
+    private static final String getReaderQuery = "SELECT * FROM READERS WHERE READER_ID=?";
     private static final String getAllReaderQuery = "SELECT * FROM READERS";
     private static final String getReaderBySurnameQuery = "SELECT * FROM READERS WHERE SURNAME=?";
+    private static final String getReaderByStatusQuery = "SELECT * FROM READERS WHERE STATUS=?";
     private static final String deleteReaderQuery = "DELETE FROM READERS WHERE READER_ID=?";
     private static volatile ReaderDAO INSTANCE = null;
     private PreparedStatement psSave;
     private PreparedStatement psUpdate;
     private PreparedStatement psGet;
     private PreparedStatement psGetBySurname;
+    private PreparedStatement psGetByStatus;
     private PreparedStatement psGetAll;
     private PreparedStatement psDelete;
 
@@ -40,6 +42,7 @@ public class ReaderDAOImpl implements ReaderDAO {
             psUpdate = ConnectionManager.getConnection().prepareStatement(updateReaderQuery);
             psGet = ConnectionManager.getConnection().prepareStatement(getReaderQuery);
             psGetBySurname = ConnectionManager.getConnection().prepareStatement(getReaderBySurnameQuery);
+            psGetByStatus = ConnectionManager.getConnection().prepareStatement(getReaderByStatusQuery);
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllReaderQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteReaderQuery);
         } catch (SQLException e) {
@@ -75,10 +78,14 @@ public class ReaderDAOImpl implements ReaderDAO {
 
     @Override
     public Reader save(Reader reader) throws SQLException {
-        psSave.setString(1, reader.getName());
-        psSave.setString(2, reader.getSurname());
+        psSave.setString(1, reader.getSurname());
+        psSave.setString(2, reader.getName());
         psSave.setString(3, reader.getSecondName());
-        psSave.setDate(4, reader.getBirthday());
+        psSave.setString(4, reader.getPassword());
+        psSave.setString(5, reader.getEmail());
+        psSave.setDate(6, reader.getBirthday());
+        psSave.setString(7, reader.getGender());
+        psSave.setString(8, reader.getStatus());
         psSave.executeUpdate();
         ResultSet rs = psSave.getGeneratedKeys();
         if (rs.next()) {
@@ -96,10 +103,14 @@ public class ReaderDAOImpl implements ReaderDAO {
         if (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
-            reader.setName(rs.getString(2));
-            reader.setSurname(rs.getString(3));
+            reader.setSurname(rs.getString(2));
+            reader.setName(rs.getString(3));
             reader.setSecondName(rs.getString(4));
-            reader.setBirthday(rs.getDate(5));
+            reader.setPassword(rs.getString(5));
+            reader.setEmail(rs.getString(6));
+            reader.setBirthday(rs.getDate(7));
+            reader.setGender(rs.getString(8));
+            reader.setStatus(rs.getString(9));
             return reader;
         }
         close(rs);
@@ -109,11 +120,15 @@ public class ReaderDAOImpl implements ReaderDAO {
 
     @Override
     public void update(Reader reader) throws SQLException {
-        psUpdate.setInt(5, reader.getReaderID());
-        psUpdate.setString(1, reader.getName());
-        psUpdate.setString(2, reader.getSurname());
+        psUpdate.setInt(9, reader.getReaderID());
+        psUpdate.setString(1, reader.getSurname());
+        psUpdate.setString(2, reader.getName());
         psUpdate.setString(3, reader.getSecondName());
-        psUpdate.setDate(4, reader.getBirthday());
+        psUpdate.setString(4, reader.getPassword());
+        psUpdate.setString(5, reader.getEmail());
+        psUpdate.setDate(6, reader.getBirthday());
+        psUpdate.setString(7, reader.getGender());
+        psUpdate.setString(8, reader.getStatus());
         psUpdate.executeUpdate();
     }
 
@@ -132,10 +147,38 @@ public class ReaderDAOImpl implements ReaderDAO {
         if (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
-            reader.setName(rs.getString(2));
-            reader.setSurname(rs.getString(3));
+            reader.setSurname(rs.getString(2));
+            reader.setName(rs.getString(3));
             reader.setSecondName(rs.getString(4));
-            reader.setBirthday(rs.getDate(5));
+            reader.setPassword(rs.getString(5));
+            reader.setEmail(rs.getString(6));
+            reader.setBirthday(rs.getDate(7));
+            reader.setGender(rs.getString(8));
+            reader.setStatus(rs.getString(9));
+            list.add(reader);
+        }
+        close(rs);
+
+        return list;
+    }
+
+    @Override
+    public List<Reader> getByStatus(String status) throws SQLException {
+        List<Reader> list = new ArrayList<>();
+        psGetByStatus.setString(1, status);
+        psGetByStatus.execute();
+        ResultSet rs = psGetByStatus.getResultSet();
+        if (rs.next()) {
+            Reader reader = new Reader();
+            reader.setReaderID(rs.getInt(1));
+            reader.setSurname(rs.getString(2));
+            reader.setName(rs.getString(3));
+            reader.setSecondName(rs.getString(4));
+            reader.setPassword(rs.getString(5));
+            reader.setEmail(rs.getString(6));
+            reader.setBirthday(rs.getDate(7));
+            reader.setGender(rs.getString(8));
+            reader.setStatus(rs.getString(9));
             list.add(reader);
         }
         close(rs);
@@ -151,10 +194,14 @@ public class ReaderDAOImpl implements ReaderDAO {
         while (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
-            reader.setName(rs.getString(2));
-            reader.setSurname(rs.getString(3));
+            reader.setSurname(rs.getString(2));
+            reader.setName(rs.getString(3));
             reader.setSecondName(rs.getString(4));
-            reader.setBirthday(rs.getDate(5));
+            reader.setPassword(rs.getString(5));
+            reader.setEmail(rs.getString(6));
+            reader.setBirthday(rs.getDate(7));
+            reader.setGender(rs.getString(8));
+            reader.setStatus(rs.getString(9));
             list.add(reader);
         }
         close(rs);

@@ -21,29 +21,43 @@ public class ReaderDAOImplTest {
         Reader reader = new Reader();
         reader.setName("Иван");
         reader.setSecondName("Иванович");
-        reader.setSurname("Иванов");
+        reader.setSurname("Козлов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
         reader.setBirthday(new Date(calendar.getTimeInMillis()));
-        readerDAO.save(reader);
-        Reader newReader = readerDAO.getBySurname("Иванов").get(0);
-        Assert.assertEquals(reader.getName(), newReader.getName());
-        readerDAO.delete(newReader.getReaderID());
+        reader.setEmail("ffr@ww");
+        reader.setPassword("fvfdcsdv");
+        reader.setGender("женский");
+        reader.setStatus("");
+        reader = readerDAO.save(reader);
+        Reader newReader = readerDAO.getBySurname("Козлов").get(0);
+        Assert.assertEquals(reader.toString(), newReader.toString());
+        readerDAO.delete(reader.getReaderID());
     }
 
 
     @Test
     public void getAndUpdate() throws Exception {
         ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
-        String oldSurname = "Хадькова";
+        Reader reader = new Reader();
+        reader.setName("Иван");
+        reader.setSecondName("Иванович");
+        reader.setSurname("Иванов");
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.set(1976, Calendar.NOVEMBER, 27);
+        reader.setBirthday(new Date(calendar.getTimeInMillis()));
+        reader.setEmail("ffr@ww");
+        reader.setPassword("fvfdcsdv");
+        reader.setGender("женский");
+        reader.setStatus("");
+        readerDAO.save(reader);
         String newSurname = "Иванова";
-        Reader reader = readerDAO.getBySurname(oldSurname).get(0);
+        reader = readerDAO.getBySurname("Иванов").get(0);
         reader.setSurname(newSurname);
         readerDAO.update(reader);
         Reader newReader = readerDAO.get(reader.getReaderID());
-        Assert.assertEquals(newReader.getSurname(), newSurname);
-        newReader.setSurname(oldSurname);
-        readerDAO.update(newReader);
+        Assert.assertTrue(reader.equals(newReader));
+        readerDAO.delete(reader.getReaderID());
     }
 
     @Test
@@ -56,6 +70,10 @@ public class ReaderDAOImplTest {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
         reader.setBirthday(new Date(calendar.getTimeInMillis()));
+        reader.setEmail("ffr@ww");
+        reader.setPassword("fvfdcsdv");
+        reader.setGender("женский");
+        reader.setStatus("");
         readerDAO.save(reader);
         List<Reader> readers = readerDAO.getAll();
         int oldSize = readers.size();
