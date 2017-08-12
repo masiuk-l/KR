@@ -17,74 +17,269 @@
     <schema id="11" parent="1" name="sys"/>
     <table id="12" parent="2" name="authors"/>
     <table id="13" parent="2" name="books"/>
-    <column id="14" parent="12" name="AUTHOR_ID">
+    <table id="14" parent="2" name="books_authors"/>
+    <table id="15" parent="2" name="forms"/>
+    <table id="16" parent="2" name="librarians"/>
+    <table id="17" parent="2" name="readers"/>
+    <column id="18" parent="12" name="AUTHOR_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="12" name="SURNAME">
+    <column id="19" parent="12" name="SURNAME">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="12" name="NAME">
+    <column id="20" parent="12" name="NAME">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="12" name="SECOND_NAME">
+    <column id="21" parent="12" name="SECOND_NAME">
       <Position>4</Position>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="18" parent="12" name="BIRTHDAY">
+    <column id="22" parent="12" name="BIRTHDAY">
       <Position>5</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="12" name="COUNTRY">
+    <column id="23" parent="12" name="COUNTRY">
       <Position>6</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="20" parent="12" name="PRIMARY">
+    <key id="24" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>AUTHOR_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="21" parent="13" name="BOOK_ID">
+    <column id="25" parent="13" name="BOOK_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="22" parent="13" name="NAME">
+    <column id="26" parent="13" name="NAME">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="13" name="ISBN">
+    <column id="27" parent="13" name="ISBN">
       <Position>3</Position>
-      <DataType>varchar(12)|0</DataType>
+      <DataType>varchar(14)|0</DataType>
     </column>
-    <column id="24" parent="13" name="GENRE">
+    <column id="28" parent="13" name="GENRE">
       <Position>4</Position>
-      <DataType>varchar(30)|0</DataType>
+      <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="13" name="YEAR">
+    <column id="29" parent="13" name="YEAR">
       <Position>5</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="13" name="QUANTITY">
+    <column id="30" parent="13" name="QUANTITY">
       <Position>6</Position>
       <DataType>int(3)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="27" parent="13" name="PRIMARY">
+    <key id="31" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>BOOK_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="32" parent="14" name="BOOK_AUTHOR_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="14" name="AUTHOR_ID">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="14" name="BOOK_ID">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="14" name="BOOK_ID">
+      <ColNames>BOOK_ID</ColNames>
+    </index>
+    <index id="36" parent="14" name="AUTHOR_ID">
+      <ColNames>AUTHOR_ID</ColNames>
+    </index>
+    <key id="37" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BOOK_AUTHOR_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="38" parent="14" name="books_authors_ibfk_1">
+      <ColNames>AUTHOR_ID</ColNames>
+      <RefSchemaName>kr</RefSchemaName>
+      <RefTableName>authors</RefTableName>
+      <RefColNames>AUTHOR_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="39" parent="14" name="books_authors_ibfk_2">
+      <ColNames>BOOK_ID</ColNames>
+      <RefSchemaName>kr</RefSchemaName>
+      <RefTableName>books</RefTableName>
+      <RefColNames>BOOK_ID</RefColNames>
+    </foreign-key>
+    <column id="40" parent="15" name="FORM_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="41" parent="15" name="BOOK_ID">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="15" name="READER_ID">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="15" name="LIBRARIAN_ID">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="15" name="RECEIVAL_TYPE">
+      <Position>5</Position>
+      <DataType>char(10)|0</DataType>
+    </column>
+    <column id="45" parent="15" name="RECEIVAL_DATE">
+      <Position>6</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="15" name="RETURN_DATE">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="47" parent="15" name="BOOK_ID">
+      <ColNames>BOOK_ID</ColNames>
+    </index>
+    <index id="48" parent="15" name="LIBRARIAN_ID">
+      <ColNames>LIBRARIAN_ID</ColNames>
+    </index>
+    <index id="49" parent="15" name="READER_ID">
+      <ColNames>READER_ID</ColNames>
+    </index>
+    <key id="50" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FORM_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="51" parent="15" name="forms_ibfk_1">
+      <ColNames>BOOK_ID</ColNames>
+      <RefSchemaName>kr</RefSchemaName>
+      <RefTableName>books</RefTableName>
+      <RefColNames>BOOK_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="52" parent="15" name="forms_ibfk_3">
+      <ColNames>READER_ID</ColNames>
+      <RefSchemaName>kr</RefSchemaName>
+      <RefTableName>readers</RefTableName>
+      <RefColNames>READER_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="53" parent="15" name="forms_ibfk_2">
+      <ColNames>LIBRARIAN_ID</ColNames>
+      <RefSchemaName>kr</RefSchemaName>
+      <RefTableName>librarians</RefTableName>
+      <RefColNames>LIBRARIAN_ID</RefColNames>
+    </foreign-key>
+    <column id="54" parent="16" name="LIBRARIAN_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="55" parent="16" name="SURNAME">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="16" name="NAME">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="16" name="SECOND_NAME">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="16" name="PASSWORD">
+      <Position>5</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="16" name="EMAIL">
+      <Position>6</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="60" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>LIBRARIAN_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="61" parent="17" name="READER_ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="62" parent="17" name="SURNAME">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="17" name="NAME">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="17" name="SECOND_NAME">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="17" name="PASSWORD">
+      <Position>5</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="17" name="EMAIL">
+      <Position>6</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="17" name="BIRTHDAY">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="68" parent="17" name="GENDER">
+      <Position>8</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="17" name="STATUS">
+      <Position>9</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="70" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>READER_ID</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

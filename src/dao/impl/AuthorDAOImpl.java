@@ -19,12 +19,12 @@ import java.util.List;
 public class AuthorDAOImpl implements AuthorDAO {
 
     private static final Logger LOG = Logger.getLogger(AuthorDAOImpl.class);
-    private static final String saveAuthorQuery = "INSERT INTO AUTHORS (NAME, SURNAME, SECOND_NAME, BIRTHDAY, COUNTRY) VALUES (?, ?, ?, ?, ?)";
-    private static final String updateAuthorQuery = "UPDATE AUTHORS SET NAME=?, SURNAME=?, SECOND_NAME=?, BIRTHDAY=? ,COUNTRY=? WHERE READER_ID=?";
+    private static final String saveAuthorQuery = "INSERT INTO AUTHORS (SURNAME, NAME, SECOND_NAME, BIRTHDAY, COUNTRY) VALUES (?, ?, ?, ?, ?)";
+    private static final String updateAuthorQuery = "UPDATE AUTHORS SET SURNAME=?, NAME=?, SECOND_NAME=?, BIRTHDAY=? ,COUNTRY=? WHERE AUTHOR_ID=?";
     private static final String getAuthorQuery = "SELECT * FROM AUTHORS WHERE Author_ID=?";
-    private static final String getAllAuthorQuery = "SELECT * FROM AUTHORS";
+    private static final String getAllAuthorsQuery = "SELECT * FROM AUTHORS";
     private static final String getAuthorBySurnameQuery = "SELECT * FROM AUTHORS WHERE SURNAME=?";
-    private static final String deleteAuthorQuery = "DELETE FROM AUTHORS WHERE READER_ID=?";
+    private static final String deleteAuthorQuery = "DELETE FROM AUTHORS WHERE AUTHOR_ID=?";
     private static volatile AuthorDAO INSTANCE = null;
     private PreparedStatement psSave;
     private PreparedStatement psUpdate;
@@ -39,7 +39,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             psUpdate = ConnectionManager.getConnection().prepareStatement(updateAuthorQuery);
             psGet = ConnectionManager.getConnection().prepareStatement(getAuthorQuery);
             psGetBySurname = ConnectionManager.getConnection().prepareStatement(getAuthorBySurnameQuery);
-            psGetAll = ConnectionManager.getConnection().prepareStatement(getAllAuthorQuery);
+            psGetAll = ConnectionManager.getConnection().prepareStatement(getAllAuthorsQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteAuthorQuery);
         } catch (SQLException e) {
             LOG.error(e);
@@ -74,8 +74,8 @@ public class AuthorDAOImpl implements AuthorDAO {
 
     @Override
     public Author save(Author author) throws SQLException {
-        psSave.setString(1, author.getName());
-        psSave.setString(2, author.getSurname());
+        psSave.setString(1, author.getSurname());
+        psSave.setString(2, author.getName());
         psSave.setString(3, author.getSecondName());
         psSave.setDate(4, author.getBirthday());
         psSave.setString(5, author.getCountry());
@@ -96,8 +96,8 @@ public class AuthorDAOImpl implements AuthorDAO {
         if (rs.next()) {
             Author author = new Author();
             author.setAuthorID(rs.getInt(1));
-            author.setName(rs.getString(2));
-            author.setSurname(rs.getString(3));
+            author.setSurname(rs.getString(2));
+            author.setName(rs.getString(3));
             author.setSecondName(rs.getString(4));
             author.setBirthday(rs.getDate(5));
             author.setCountry(rs.getString(6));
@@ -111,8 +111,8 @@ public class AuthorDAOImpl implements AuthorDAO {
     @Override
     public void update(Author author) throws SQLException {
         psUpdate.setInt(6, author.getAuthorID());
-        psUpdate.setString(1, author.getName());
-        psUpdate.setString(2, author.getSurname());
+        psUpdate.setString(1, author.getSurname());
+        psUpdate.setString(2, author.getName());
         psUpdate.setString(3, author.getSecondName());
         psUpdate.setDate(4, author.getBirthday());
         psUpdate.setString(5, author.getCountry());
@@ -134,8 +134,8 @@ public class AuthorDAOImpl implements AuthorDAO {
         if (rs.next()) {
             Author author = new Author();
             author.setAuthorID(rs.getInt(1));
-            author.setName(rs.getString(2));
-            author.setSurname(rs.getString(3));
+            author.setSurname(rs.getString(2));
+            author.setName(rs.getString(3));
             author.setSecondName(rs.getString(4));
             author.setBirthday(rs.getDate(5));
             author.setCountry(rs.getString(6));
@@ -153,10 +153,9 @@ public class AuthorDAOImpl implements AuthorDAO {
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
             Author author = new Author();
-
             author.setAuthorID(rs.getInt(1));
-            author.setName(rs.getString(2));
-            author.setSurname(rs.getString(3));
+            author.setSurname(rs.getString(2));
+            author.setName(rs.getString(3));
             author.setSecondName(rs.getString(4));
             author.setBirthday(rs.getDate(5));
             author.setCountry(rs.getString(6));

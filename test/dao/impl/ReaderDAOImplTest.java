@@ -1,5 +1,6 @@
+package dao.impl;
+
 import dao.ReaderDAO;
-import dao.impl.ReaderDAOImpl;
 import entities.Reader;
 import org.junit.Assert;
 import org.junit.Test;

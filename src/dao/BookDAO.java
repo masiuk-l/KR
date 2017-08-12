@@ -14,4 +14,8 @@ public interface BookDAO extends DAO<Book> {
 
     List<Book> getByName(String name) throws SQLException;
 
+    List<Book> getByIsbn(String name) throws SQLException;
+
+    List<Book> getByGenre(String name) throws SQLException;
+
 }

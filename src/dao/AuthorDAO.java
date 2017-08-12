@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface AuthorDAO extends DAO<Author> {
 
-
     List<Author> getBySurname(String surname) throws SQLException;
 
-    List<Author> getAll() throws SQLException;
 }

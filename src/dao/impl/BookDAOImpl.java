@@ -19,6 +19,16 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
+    public List<Book> getByIsbn(String name) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Book> getByGenre(String name) throws SQLException {
+        return null;
+    }
+
+    @Override
     public Book save(Book book) throws SQLException {
         return null;
     }

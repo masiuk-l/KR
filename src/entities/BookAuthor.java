@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookAuthor {
+    private int bookAuthorID;
     private int authorID;
     private int bookID;
 }

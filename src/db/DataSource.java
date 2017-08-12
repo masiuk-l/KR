@@ -40,10 +40,6 @@ public class DataSource {
         pooledDatasource.setUser(USER);
         pooledDatasource.setPassword(PASSWORD);
 
-        pooledDatasource.setMinPoolSize(10);
-        pooledDatasource.setAcquireIncrement(5);
-        pooledDatasource.setMaxPoolSize(20);
-        pooledDatasource.setMaxStatements(180);
 
     }
 

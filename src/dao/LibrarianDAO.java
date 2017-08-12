@@ -10,7 +10,5 @@ import java.util.List;
  */
 public interface LibrarianDAO extends DAO<Librarian> {
 
-    List<Librarian> getAll() throws SQLException;
-
     List<Librarian> getBySurame(String Surname) throws SQLException;
 }

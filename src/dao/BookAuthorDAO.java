@@ -12,10 +12,8 @@ import java.util.List;
  */
 public interface BookAuthorDAO extends DAO<BookAuthor> {
 
-    List<BookAuthor> getByAuthor(Author author) throws SQLException;
+    List<BookAuthor> getByAuthorID(Author author) throws SQLException;
 
-    List<BookAuthor> getByBook(Book book) throws SQLException;
-
-    List<BookAuthor> getAll() throws SQLException;
+    List<BookAuthor> getByBookID(Book book) throws SQLException;
 
 }

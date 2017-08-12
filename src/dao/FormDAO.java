@@ -13,8 +13,6 @@ import java.util.List;
  */
 public interface FormDAO extends DAO<Form> {
 
-    List<Form> getAll() throws SQLException;
-
     List<Form> getByReader(Reader reader) throws SQLException;
 
     List<Form> getByLibrarian(Librarian librarian) throws SQLException;
