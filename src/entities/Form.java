@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,11 +13,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Form {
-    int formID;
-    int bookID;
-    int readerID;
-    int librarianID;
-    String receivalType;
-    Date receivalDate;
-    Date returnDate;
+    private int formID;
+    private int bookID;
+    private int readerID;
+    private int librarianID;
+    private String receivalType;
+    private Date receivalDate;
+    private Date returnDate;
 }

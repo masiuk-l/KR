@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-    int bookID;
-    String name;
-    String isbn;
-    String genre;
-    int year;
-    int quantity;
+    private int bookID;
+    private String name;
+    private String isbn;
+    private String genre;
+    private int year;
+    private int quantity;
 }

@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Librarian {
-    int librarianID;
-    String name;
-    String surname;
-    String secondName;
+    private int librarianID;
+    private String name;
+    private String surname;
+    private String secondName;
+    private String password;
+    private String email;
 }

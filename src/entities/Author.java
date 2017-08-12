@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +13,10 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Author {
-    int authorID;
-    String name;
-    String surname;
-    String secondName;
-    Date birthday;
-    String country;
+    private int authorID;
+    private String name;
+    private String surname;
+    private String secondName;
+    private Date birthday;
+    private String country;
 }
