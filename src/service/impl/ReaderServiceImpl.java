@@ -8,6 +8,7 @@ import service.ServiceException;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,44 +20,99 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     @Override
     public Reader save(Reader reader) {
         try {
-            if (reader.getName() != null && reader.getSurname() != null && reader.getSecondName() != null) {
+            if (reader != null) {
                 startTransaction();
                 reader = readerDAO.save(reader);
                 commit();
+                return reader;
+            } else {
+                throw new ServiceException("Reader not defined");
             }
         } catch (SQLException e) {
+            rollback();
             throw new ServiceException("Error creating Reader");
         }
-        return reader;
+
     }
 
     @Override
     public Reader get(Serializable id) {
-        return null;
+        try {
+            Reader reader;
+            startTransaction();
+            reader = readerDAO.get(id);
+            commit();
+            return reader;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error getting Reader");
+        }
     }
 
     @Override
     public void update(Reader reader) {
-
+        try {
+            startTransaction();
+            readerDAO.update(reader);
+            commit();
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error updating Reader");
+        }
     }
 
     @Override
     public int delete(Serializable id) {
-        return 0;
+        try {
+            startTransaction();
+            int rows = readerDAO.delete(id);
+            commit();
+            return rows;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error deleting Reader");
+        }
     }
 
     @Override
-    public Reader getBySurname(String model) {
-        return null;
+    public List<Reader> getBySurname(String surname) {
+        ArrayList<Reader> readers;
+        try {
+            startTransaction();
+            readers = new ArrayList<>(readerDAO.getBySurname(surname));
+            commit();
+            return readers;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error finding Reader");
+        }
+    }
+
+    @Override
+    public List<Reader> getByStatus(String status) {
+        ArrayList<Reader> readers;
+        try {
+            startTransaction();
+            readers = new ArrayList<>(readerDAO.getByStatus(status));
+            commit();
+            return readers;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error finding Reader");
+        }
     }
 
     @Override
     public List<Reader> getAll() {
+        ArrayList<Reader> readers;
         try {
-            return readerDAO.getAll();
+            startTransaction();
+            readers = new ArrayList<>(readerDAO.getAll());
+            commit();
+            return readers;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rollback();
+            throw new ServiceException("Error finding Reader");
         }
-        return null;
     }
 }

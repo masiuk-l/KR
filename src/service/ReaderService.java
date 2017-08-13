@@ -10,15 +10,17 @@ import java.util.List;
  */
 public interface ReaderService {
 
-    Reader save(Reader Reader);
+    Reader save(Reader reader);
 
     Reader get(Serializable id);
 
-    void update(Reader Reader);
+    void update(Reader reader);
 
     int delete(Serializable id);
 
-    Reader getBySurname(String surname);
+    List<Reader> getBySurname(String surname);
+
+    List<Reader> getByStatus(String status);
 
     List<Reader> getAll();
 }
