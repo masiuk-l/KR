@@ -18,7 +18,7 @@ public interface ReaderService {
 
     int delete(Serializable id);
 
-    Reader getReaderBySurname(String surname, String supplier);
+    Reader getBySurname(String surname);
 
     List<Reader> getAll();
 }

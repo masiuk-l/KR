@@ -46,7 +46,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     }
 
     @Override
-    public Reader getReaderBySurname(String model, String supplier) {
+    public Reader getBySurname(String model) {
         return null;
     }
 
