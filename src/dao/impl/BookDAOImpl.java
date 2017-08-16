@@ -3,7 +3,7 @@ package dao.impl;
 import dao.BookDAO;
 import db.ConnectionManager;
 import entities.Book;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 public class BookDAOImpl implements BookDAO {
-    private static final Logger LOG = Logger.getLogger(BookDAOImpl.class);
     private static final String saveBookQuery = "INSERT INTO BOOKS (NAME, ISBN, GENRE, YEAR, QUANTITY) VALUES (?, ?, ?, ?, ?)";
     private static final String updateBookQuery = "UPDATE BOOKS SET NAME=?, ISBN=?, GENRE=?, YEAR=? ,QUANTITY=? WHERE BOOK_ID=?";
     private static final String getBookQuery = "SELECT * FROM BOOKS WHERE BOOK_ID=?";
@@ -44,7 +44,7 @@ public class BookDAOImpl implements BookDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllBooksQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteBookQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -70,7 +70,7 @@ public class BookDAOImpl implements BookDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 

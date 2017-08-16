@@ -5,7 +5,7 @@ import db.ConnectionManager;
 import entities.Author;
 import entities.Book;
 import entities.BookAuthor;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -18,9 +18,10 @@ import java.util.List;
 /**
  * Project KR. Created by masiuk-l on 07.08.2017.
  */
+
+@Log4j
 public class BookAuthorDAOImpl implements BookAuthorDAO {
 
-    private static final Logger LOG = Logger.getLogger(BookAuthorDAOImpl.class);
     private static final String saveBookAuthorQuery = "INSERT INTO BOOKS_AUTHORS (AUTHOR_ID, BOOK_ID) VALUES (?, ?)";
     private static final String updateBookAuthorQuery = "UPDATE BOOKS_AUTHORS SET AUTHOR_ID=?, BOOK_ID=? WHERE BOOK_AUTHOR_ID=?";
     private static final String getBookAuthorQuery = "SELECT * FROM BOOKS_AUTHORS WHERE BOOK_AUTHOR_ID=?";
@@ -47,7 +48,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllBookAuthorsQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteBookAuthorQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -73,7 +74,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 

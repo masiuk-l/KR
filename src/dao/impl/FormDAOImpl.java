@@ -6,7 +6,7 @@ import entities.Book;
 import entities.Form;
 import entities.Librarian;
 import entities.Reader;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -16,8 +16,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 public class FormDAOImpl implements FormDAO {
-    private static final Logger LOG = Logger.getLogger(FormDAOImpl.class);
+
+
     private static final String saveFormQuery = "INSERT INTO FORMS (BOOK_ID, READER_ID, LIBRARIAN_ID, RECEIVAL_TYPE, RECEIVAL_DATE, RETURN_DATE) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String updateFormQuery = "UPDATE FORMS SET BOOK_ID=?, READER_ID=?, LIBRARIAN_ID=?, RECEIVAL_TYPE=?, RECEIVAL_DATE=?, RETURN_DATE=? WHERE FORM_ID=?";
     private static final String getFormQuery = "SELECT * FROM FORMS WHERE FORM_ID=?";
@@ -50,7 +52,7 @@ public class FormDAOImpl implements FormDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllFormQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteFormQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -76,7 +78,7 @@ public class FormDAOImpl implements FormDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 

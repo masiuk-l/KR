@@ -3,7 +3,7 @@ package dao.impl;
 import dao.AuthorDAO;
 import db.ConnectionManager;
 import entities.Author;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -16,9 +16,10 @@ import java.util.List;
 /**
  * Project KR. Created by masiuk-l on 07.08.2017.
  */
+
+@Log4j
 public class AuthorDAOImpl implements AuthorDAO {
 
-    private static final Logger LOG = Logger.getLogger(AuthorDAOImpl.class);
     private static final String saveAuthorQuery = "INSERT INTO AUTHORS (SURNAME, NAME, SECOND_NAME, BIRTHDAY, COUNTRY) VALUES (?, ?, ?, ?, ?)";
     private static final String updateAuthorQuery = "UPDATE AUTHORS SET SURNAME=?, NAME=?, SECOND_NAME=?, BIRTHDAY=? ,COUNTRY=? WHERE AUTHOR_ID=?";
     private static final String getAuthorQuery = "SELECT * FROM AUTHORS WHERE Author_ID=?";
@@ -42,7 +43,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllAuthorsQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteAuthorQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -68,7 +69,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 

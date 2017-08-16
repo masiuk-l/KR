@@ -3,7 +3,7 @@ package dao.impl;
 import dao.LibrarianDAO;
 import db.ConnectionManager;
 import entities.Librarian;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -13,8 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 public class LibrarianDAOImpl implements LibrarianDAO {
-    private static final Logger LOG = Logger.getLogger(LibrarianDAOImpl.class);
+
     private static final String saveLibrarianQuery = "INSERT INTO LIBRARIANS (SURNAME, NAME, SECOND_NAME, PASSWORD, EMAIL) VALUES (?, ?, ?, ?, ?)";
     private static final String updateLibrarianQuery = "UPDATE LIBRARIANS SET SURNAME=?, NAME=?, SECOND_NAME=?, PASSWORD=?, EMAIL=? WHERE LIBRARIAN_ID=?";
     private static final String getLibrarianQuery = "SELECT * FROM LIBRARIANS WHERE LIBRARIAN_ID=?";
@@ -38,7 +39,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllLibrarianQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteLibrarianQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -64,7 +65,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 

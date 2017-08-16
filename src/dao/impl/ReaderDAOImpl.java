@@ -3,7 +3,7 @@ package dao.impl;
 import dao.ReaderDAO;
 import db.ConnectionManager;
 import entities.Reader;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -17,9 +17,8 @@ import java.util.List;
  * Project KR. Created by masiuk-l on 06.08.2017.
  */
 
-
+@Log4j
 public class ReaderDAOImpl implements ReaderDAO {
-    private static final Logger LOG = Logger.getLogger(ReaderDAOImpl.class);
     private static final String saveReaderQuery = "INSERT INTO READERS (SURNAME, NAME, SECOND_NAME, PASSWORD, EMAIL, BIRTHDAY, GENDER, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String updateReaderQuery = "UPDATE READERS SET SURNAME=?, NAME=?, SECOND_NAME=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, GENDER=?, STATUS=? WHERE READER_ID=?";
     private static final String getReaderQuery = "SELECT * FROM READERS WHERE READER_ID=?";
@@ -46,7 +45,7 @@ public class ReaderDAOImpl implements ReaderDAO {
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllReaderQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteReaderQuery);
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
@@ -72,7 +71,7 @@ public class ReaderDAOImpl implements ReaderDAO {
             if (rs != null)
                 rs.close();
         } catch (SQLException e) {
-            LOG.error(e);
+            log.error(e);
         }
     }
 
