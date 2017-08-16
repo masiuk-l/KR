@@ -33,8 +33,9 @@ public class LoginController implements Controller {
             resp.sendRedirect(contextPath + "/frontController?command=readers");
             return;
         } else {
-            String pageUri = (String) req.getSession().getAttribute("pagePath");
-            RequestDispatcher dispatcher = req.getRequestDispatcher(pageUri);
+            resp.setHeader("errorMsg", "Invalid Login or Password");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
+            req.setAttribute("title", "Login form");
             dispatcher.forward(req, resp);
             return;
         }

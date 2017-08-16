@@ -32,7 +32,7 @@
 </head>
 <body>
 <com:header-navigation/>
-<div class="jumbotron">
+<div>
     <div class="container text-center">
         <c:url var="bodyUrl" value="../login.jsp"></c:url>
         <c:if test="${not empty sessionScope.pagePath}">

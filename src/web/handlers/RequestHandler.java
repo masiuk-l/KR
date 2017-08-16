@@ -11,7 +11,7 @@ public class RequestHandler {
     public static CommandType getCommand(HttpServletRequest req) {
         String param = req.getParameter("command");
         if (param == null && "".equals(param)) {
-            param = "products";
+            param = "readers";
         }
 
 
