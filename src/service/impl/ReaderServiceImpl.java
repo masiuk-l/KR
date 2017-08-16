@@ -103,6 +103,22 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     }
 
     @Override
+    public Reader getByLogin(String login) {
+        ArrayList<Reader> readers;
+        try {
+            startTransaction();
+            readers = new ArrayList<>(readerDAO.getByLogin(login));
+            if (readers.size() > 1)
+                throw new ServiceException("Multiple login Error");
+            commit();
+            return readers.get(0);
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error finding Reader");
+        }
+    }
+
+    @Override
     public List<Reader> getAll() {
         ArrayList<Reader> readers;
         try {

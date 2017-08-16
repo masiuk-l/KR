@@ -24,6 +24,7 @@ public class ReaderDAOImpl implements ReaderDAO {
     private static final String getReaderQuery = "SELECT * FROM READERS WHERE READER_ID=?";
     private static final String getAllReaderQuery = "SELECT * FROM READERS";
     private static final String getReaderBySurnameQuery = "SELECT * FROM READERS WHERE SURNAME=?";
+    private static final String getReaderByLoginQuery = "SELECT * FROM READERS WHERE EMAIL=?";
     private static final String getReaderByStatusQuery = "SELECT * FROM READERS WHERE STATUS=?";
     private static final String deleteReaderQuery = "DELETE FROM READERS WHERE READER_ID=?";
     private static volatile ReaderDAO INSTANCE = null;
@@ -31,6 +32,7 @@ public class ReaderDAOImpl implements ReaderDAO {
     private PreparedStatement psUpdate;
     private PreparedStatement psGet;
     private PreparedStatement psGetBySurname;
+    private PreparedStatement psGetByLogin;
     private PreparedStatement psGetByStatus;
     private PreparedStatement psGetAll;
     private PreparedStatement psDelete;
@@ -41,6 +43,7 @@ public class ReaderDAOImpl implements ReaderDAO {
             psUpdate = ConnectionManager.getConnection().prepareStatement(updateReaderQuery);
             psGet = ConnectionManager.getConnection().prepareStatement(getReaderQuery);
             psGetBySurname = ConnectionManager.getConnection().prepareStatement(getReaderBySurnameQuery);
+            psGetByLogin = ConnectionManager.getConnection().prepareStatement(getReaderByLoginQuery);
             psGetByStatus = ConnectionManager.getConnection().prepareStatement(getReaderByStatusQuery);
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllReaderQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteReaderQuery);
@@ -167,6 +170,30 @@ public class ReaderDAOImpl implements ReaderDAO {
         psGetByStatus.setString(1, status);
         psGetByStatus.execute();
         ResultSet rs = psGetByStatus.getResultSet();
+        if (rs.next()) {
+            Reader reader = new Reader();
+            reader.setReaderID(rs.getInt(1));
+            reader.setSurname(rs.getString(2));
+            reader.setName(rs.getString(3));
+            reader.setSecondName(rs.getString(4));
+            reader.setPassword(rs.getString(5));
+            reader.setEmail(rs.getString(6));
+            reader.setBirthday(rs.getDate(7));
+            reader.setGender(rs.getString(8));
+            reader.setStatus(rs.getString(9));
+            list.add(reader);
+        }
+        close(rs);
+
+        return list;
+    }
+
+    @Override
+    public List<Reader> getByLogin(String login) throws SQLException {
+        List<Reader> list = new ArrayList<>();
+        psGetByLogin.setString(1, login);
+        psGetByLogin.execute();
+        ResultSet rs = psGetByLogin.getResultSet();
         if (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));

@@ -22,5 +22,7 @@ public interface ReaderService {
 
     List<Reader> getByStatus(String status);
 
+    Reader getByLogin(String login);
+
     List<Reader> getAll();
 }

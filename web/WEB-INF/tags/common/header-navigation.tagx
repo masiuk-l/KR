@@ -5,54 +5,74 @@
     <nav class="navbar ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar">tt</span>
-                    <span class="icon-bar">tt</span>
-                    <span class="icon-bar">tt</span>
-                    <span class="icon-bar">tt</span>
-                </button>
                 <a class="navbar-brand" href="#">Library</a>
             </div>
-            <c:if test="${empty user or not empty user and user.role eq 'USER'}">
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <c:set var="navName" value="Каталог"/>
-                        <c:choose>
-                            <c:when test="${pageName eq 'Products'}">
-                                <li class="active"><a href="#">${navName}</a></li>
-                            </c:when>
-                            <c:otherwise>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <c:set var="navName" value="Каталог"/>
+                    <c:choose>
+                        <c:when test="${pageName eq 'Products'}">
+                            <li class="active"><a href="#">${navName}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/frontController?command=products">${navName}</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:set var="navName" value="Бронирование книги"></c:set>
+                    <c:choose>
+                        <c:when test="${pageName eq 'Orders'}">
+                            <li class="active"><a href="#">${navName}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/frontController?command=orders">${navName}</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Язык
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Русский</a></li>
+                            <li><a href="#">Беларуская</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </li>
+                    <c:if test="${not empty user}">
+                        <li class="dropdown">
+                            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Здравствуйте, ${user.name}!
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Кабинет</a></li>
+                                <li><a href="#">Мои книги</a></li>
+                                <li class="divider"></li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/frontController?command=products">${navName}</a>
+                                    <a href="${pageContext.request.contextPath}/frontController?command=logout">Выйти</a>
                                 </li>
-                            </c:otherwise>
-                        </c:choose>
+                            </ul>
+                        </li>
+                    </c:if>
+                    <c:if test="${empty user and not (pageName eq 'Login')}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/frontController?command=login">
+                                <span class="glyphicon glyphicon-log-in">Login</span>
+                            </a>
+                        </li>
+                    </c:if>
 
-                        <c:set var="navName">Бла-бла</c:set>
-                        <c:choose>
-                            <c:when test="${pageName eq 'Orders'}">
-                                <li class="active"><a href="#">${navName}</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/frontController?command=orders">${navName}</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <c:if test="${not empty user}">
-                            <li><span class="text">Hi, ${user.name}!</span></li>
-                        </c:if>
-                        <c:if test="${empty user and not (pageName eq 'Login')}">
-                            <li><a href="${pageContext.request.contextPath}/frontController?command=login"><span
-                                    class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                        </c:if>
-
-                    </ul>
-                </div>
-            </c:if>
+                </ul>
+            </div>
         </div>
     </nav>
 

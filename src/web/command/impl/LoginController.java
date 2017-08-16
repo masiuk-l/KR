@@ -16,19 +16,19 @@ public class LoginController implements Controller {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String surname = req.getParameter("surname");//TODO change to login
+        String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if (surname == null || password == null) {
+        if (login == null || password == null) {
             resp.setHeader("errorMsg", "Invalid Login or Password");
             RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
             req.setAttribute("title", "Login form");
             dispatcher.forward(req, resp);
             return;
         }
-        Reader reader = readerService.getBySurname(surname).get(0);
+        Reader reader = readerService.getByLogin(login);
 //        if (reader != null && reader.getPassword().equals(Encoder.encode(password))) {
         if (reader != null && password.equals(reader.getPassword())) {
-            req.getSession().setAttribute("reader", reader);
+            req.getSession().setAttribute("user", reader);
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath + "/frontController?command=readers");
             return;

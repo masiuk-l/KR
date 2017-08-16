@@ -12,6 +12,8 @@ public interface ReaderDAO extends DAO<Reader> {
 
     List<Reader> getBySurname(String surname) throws SQLException;
 
+    List<Reader> getByLogin(String login) throws SQLException;
+
     List<Reader> getByStatus(String status) throws SQLException;
 
 }
