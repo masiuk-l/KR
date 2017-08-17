@@ -1,5 +1,6 @@
 package service;
 
+import VO.BookVO;
 import entities.Book;
 
 import java.io.Serializable;
@@ -21,4 +22,6 @@ public interface BookService {
     List<Book> getByGenre(String genre);
 
     List<Book> getAll();
+
+    BookVO getBookVO(Book book);
 }

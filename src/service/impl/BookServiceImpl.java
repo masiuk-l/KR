@@ -1,8 +1,10 @@
 package service.impl;
 
-import dao.BookDAO;
-import dao.impl.BookDAOImpl;
-import entities.Book;
+import VO.BookVO;
+import VO.transfer.BookTransfer;
+import dao.*;
+import dao.impl.*;
+import entities.*;
 import service.BookService;
 import service.ServiceException;
 
@@ -13,6 +15,10 @@ import java.util.List;
 
 public class BookServiceImpl extends AbstractService implements BookService {
     private BookDAO bookDAO = BookDAOImpl.getInstance();
+    private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
+    private AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
+    private FormDAO formDAO = FormDAOImpl.getInstance();
+    private BookAuthorDAO bookAuthorDAO = BookAuthorDAOImpl.getInstance();
 
     @Override
     public Book save(Book book) {
@@ -110,6 +116,31 @@ public class BookServiceImpl extends AbstractService implements BookService {
         } catch (SQLException e) {
             rollback();
             throw new ServiceException("Error finding Book");
+        }
+    }
+
+    @Override
+    public BookVO getBookVO(Book book) {
+        try {
+            startTransaction();
+            List<BookAuthor> bookAuthors = new ArrayList<>(bookAuthorDAO.getByBookID(book));
+            List<Author> authors = new ArrayList<>();
+            for (BookAuthor bookAuthor : bookAuthors) {
+                Author author = authorDAO.get(bookAuthor.getAuthorID());
+                authors.add(author);
+            }
+            List<Form> forms = formDAO.getByBook(book);
+            List<Reader> readers = new ArrayList<>();
+            for (Form form : forms) {
+                Reader reader = readerDAO.get(form.getReaderID());
+                readers.add(reader);
+            }
+            BookVO bookVO = BookTransfer.toValueObject(book, readers, authors);
+            commit();
+            return bookVO;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error creating bookVO");
         }
     }
 

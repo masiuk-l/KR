@@ -7,7 +7,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Library</a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <c:set var="navName" value="Каталог"/>
                     <c:choose>
@@ -16,7 +16,7 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="${pageContext.request.contextPath}/frontController?command=products">${navName}</a>
+                                <a href="${pageContext.request.contextPath}/frontController?command=catalog">${navName}</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
