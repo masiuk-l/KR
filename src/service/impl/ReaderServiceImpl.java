@@ -39,7 +39,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating Reader");
+            throw new ServiceException("Error creating Reader", e);
         }
 
     }
@@ -54,7 +54,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return reader;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting Reader");
+            throw new ServiceException("Error getting Reader", e);
         }
     }
 
@@ -66,7 +66,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating Reader");
+            throw new ServiceException("Error updating Reader", e);
         }
     }
 
@@ -79,7 +79,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting Reader");
+            throw new ServiceException("Error deleting Reader", e);
         }
     }
 
@@ -93,7 +93,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return readers;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Reader");
+            throw new ServiceException("Error finding Reader", e);
         }
     }
 
@@ -107,7 +107,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return readers;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Reader");
+            throw new ServiceException("Error finding Reader", e);
         }
     }
 
@@ -123,7 +123,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return readers.get(0);
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Reader");
+            throw new ServiceException("Error finding Reader", e);
         }
     }
 
@@ -143,7 +143,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return readerVO;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating ReaderVO");
+            throw new ServiceException("Error creating ReaderVO", e);
         }
     }
 
@@ -157,7 +157,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             return readers;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Reader");
+            throw new ServiceException("Error finding Reader", e);
         }
     }
 }

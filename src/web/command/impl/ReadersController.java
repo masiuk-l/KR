@@ -1,8 +1,8 @@
-package web.controller.impl;
+package web.command.impl;
 
 import service.ReaderService;
 import service.impl.ReaderServiceImpl;
-import web.controller.Controller;
+import web.command.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

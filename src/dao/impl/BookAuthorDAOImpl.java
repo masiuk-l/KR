@@ -100,7 +100,6 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
     @Override
     public List<BookAuthor> getByBookID(Book book) throws SQLException {
         List<BookAuthor> list = new ArrayList<>();
-        psGetByBookID.executeQuery();
         psGetByBookID.setInt(1, book.getBookID());
         psGetByBookID.execute();
         ResultSet rs = psGetByBookID.getResultSet();

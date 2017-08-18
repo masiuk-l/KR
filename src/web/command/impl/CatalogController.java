@@ -1,10 +1,10 @@
-package web.controller.impl;
+package web.command.impl;
 
 import VO.BookVO;
 import entities.Book;
 import service.BookService;
 import service.impl.BookServiceImpl;
-import web.controller.Controller;
+import web.command.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ public class CatalogController implements Controller {
             bookVOS.add(bookVO);
         }
 
-        req.getSession().setAttribute("books", bookVOS);
+        req.getSession().setAttribute("bookVOS", bookVOS);
         req.getRequestDispatcher(MAIN_PAGE).forward(req, resp);
     }
 }

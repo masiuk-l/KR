@@ -33,7 +33,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating Book");
+            throw new ServiceException("Error creating Book", e);
         }
 
     }
@@ -48,7 +48,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return book;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting Book");
+            throw new ServiceException("Error getting Book", e);
         }
     }
 
@@ -60,7 +60,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating Book");
+            throw new ServiceException("Error updating Book", e);
         }
     }
 
@@ -73,7 +73,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting Book");
+            throw new ServiceException("Error deleting Book", e);
         }
     }
 
@@ -87,7 +87,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return books;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Book");
+            throw new ServiceException("Error finding Book", e);
         }
     }
 
@@ -101,7 +101,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return books;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Book");
+            throw new ServiceException("Error finding Book", e);
         }
     }
 
@@ -115,7 +115,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return books;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Book");
+            throw new ServiceException("Error finding Book", e);
         }
     }
 
@@ -140,7 +140,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return bookVO;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating bookVO");
+            throw new ServiceException("Error creating bookVO", e);
         }
     }
 
@@ -154,7 +154,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
             return books;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Book");
+            throw new ServiceException("Error finding Book", e);
         }
     }
 }

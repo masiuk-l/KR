@@ -1,16 +1,16 @@
-package web.controller.enums;
+package web.command.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import web.controller.Controller;
-import web.controller.impl.*;
+import web.command.Controller;
+import web.command.impl.*;
 
 @Getter
 @AllArgsConstructor
 public enum CommandType {
 
     CATALOG("catalog/main.jsp", "Catalog", new CatalogController()),
-    BOOK("catelog/book.jsp", "Book", new BookController()),
+    BOOK("catalog/book.jsp", "Book", new BookController()),
     ERROR("error/error.jsp", "Error", new ErrorController()),
     LOGIN("login.jsp", "Login", new LoginController()),
     LOGOUT("login.jsp", "Logout", new LogoutController()),

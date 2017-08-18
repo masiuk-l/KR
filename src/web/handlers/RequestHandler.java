@@ -1,15 +1,15 @@
 package web.handlers;
 
-import web.controller.enums.CommandType;
+import web.command.enums.CommandType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static web.controller.enums.CommandType.READERS;
+import static web.command.enums.CommandType.READERS;
 
 public class RequestHandler {
     public static CommandType getCommand(HttpServletRequest req) {
-        String param = req.getParameter("controller");
+        String param = req.getParameter("command");
         if (param == null && "".equals(param)) {
             param = "readers";
         }

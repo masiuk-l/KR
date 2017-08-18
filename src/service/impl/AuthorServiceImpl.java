@@ -27,7 +27,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating Author");
+            throw new ServiceException("Error creating Author", e);
         }
 
     }
@@ -42,7 +42,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             return author;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting Author");
+            throw new ServiceException("Error getting Author", e);
         }
     }
 
@@ -54,7 +54,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating Author");
+            throw new ServiceException("Error updating Author", e);
         }
     }
 
@@ -67,7 +67,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting Author");
+            throw new ServiceException("Error deleting Author", e);
         }
     }
 
@@ -81,7 +81,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             return authors;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Author");
+            throw new ServiceException("Error finding Author", e);
         }
     }
 
@@ -95,7 +95,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             return authors;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Author");
+            throw new ServiceException("Error finding Author", e);
         }
     }
 }

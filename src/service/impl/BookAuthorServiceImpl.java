@@ -29,7 +29,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating BookAuthor");
+            throw new ServiceException("Error creating BookAuthor", e);
         }
 
     }
@@ -44,7 +44,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             return bookAuthor;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting BookAuthor");
+            throw new ServiceException("Error getting BookAuthor", e);
         }
     }
 
@@ -56,7 +56,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating BookAuthor");
+            throw new ServiceException("Error updating BookAuthor", e);
         }
     }
 
@@ -69,7 +69,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting BookAuthor");
+            throw new ServiceException("Error deleting BookAuthor", e);
         }
     }
 
@@ -83,7 +83,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             return bookAuthors;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding BookAuthor");
+            throw new ServiceException("Error finding BookAuthor", e);
         }
     }
 
@@ -97,7 +97,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             return bookAuthors;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding BookAuthor");
+            throw new ServiceException("Error finding BookAuthor", e);
         }
     }
 
@@ -111,7 +111,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             return bookAuthors;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding BookAuthor");
+            throw new ServiceException("Error finding BookAuthor", e);
         }
     }
 }

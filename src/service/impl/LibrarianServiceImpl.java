@@ -28,7 +28,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating Librarian");
+            throw new ServiceException("Error creating Librarian", e);
         }
 
     }
@@ -43,7 +43,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             return librarian;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting Librarian");
+            throw new ServiceException("Error getting Librarian", e);
         }
     }
 
@@ -55,7 +55,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating Librarian");
+            throw new ServiceException("Error updating Librarian", e);
         }
     }
 
@@ -68,7 +68,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting Librarian");
+            throw new ServiceException("Error deleting Librarian", e);
         }
     }
 
@@ -82,7 +82,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             return librarians;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Librarian");
+            throw new ServiceException("Error finding Librarian", e);
         }
     }
 
@@ -96,7 +96,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             return librarians;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Librarian");
+            throw new ServiceException("Error finding Librarian", e);
         }
     }
 }

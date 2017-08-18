@@ -41,7 +41,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             }
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating Form");
+            throw new ServiceException("Error creating Form", e);
         }
 
     }
@@ -56,7 +56,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return form;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error getting Form");
+            throw new ServiceException("Error getting Form", e);
         }
     }
 
@@ -68,7 +68,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             commit();
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error updating Form");
+            throw new ServiceException("Error updating Form", e);
         }
     }
 
@@ -81,7 +81,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return rows;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error deleting Form");
+            throw new ServiceException("Error deleting Form", e);
         }
     }
 
@@ -96,7 +96,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return forms;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Form");
+            throw new ServiceException("Error finding Form", e);
         }
     }
 
@@ -110,7 +110,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return forms;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Form");
+            throw new ServiceException("Error finding Form", e);
         }
     }
 
@@ -124,7 +124,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return forms;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Form");
+            throw new ServiceException("Error finding Form", e);
         }
     }
 
@@ -138,7 +138,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return forms;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Form");
+            throw new ServiceException("Error finding Form", e);
         }
     }
 
@@ -155,7 +155,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return formVO;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error creating formVO");
+            throw new ServiceException("Error creating formVO", e);
         }
     }
 
@@ -169,7 +169,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
             return forms;
         } catch (SQLException e) {
             rollback();
-            throw new ServiceException("Error finding Form");
+            throw new ServiceException("Error finding Form", e);
         }
     }
 }
