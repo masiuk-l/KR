@@ -1,6 +1,6 @@
 package web.servlet;
 
-import web.command.enums.CommandType;
+import web.controller.enums.CommandType;
 import web.handlers.RequestHandler;
 
 import javax.servlet.ServletException;

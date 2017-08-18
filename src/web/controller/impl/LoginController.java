@@ -1,9 +1,9 @@
-package web.command.impl;
+package web.controller.impl;
 
 import entities.Reader;
 import service.ReaderService;
 import service.impl.ReaderServiceImpl;
-import web.command.Controller;
+import web.controller.Controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +30,7 @@ public class LoginController implements Controller {
         if (reader != null && password.equals(reader.getPassword())) {
             req.getSession().setAttribute("user", reader);
             String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath + "/frontController?command=readers");
+            resp.sendRedirect(contextPath + "/frontController?controller=readers");
             return;
         } else {
             resp.setHeader("errorMsg", "Invalid Login or Password");

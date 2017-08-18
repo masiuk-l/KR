@@ -11,20 +11,14 @@ import java.util.List;
 public class BookTransfer {
     public static BookVO toValueObject(Book book, List<Reader> readers, List<Author> authors) {
         BookVO bookVO = new BookVO();
-        bookVO.setBookID(book.getBookID());
-        bookVO.setName(book.getName());
-        bookVO.setIsbn(book.getIsbn());
-        bookVO.setGenre(book.getGenre());
-        bookVO.setYear(book.getYear());
-        bookVO.setQuantity(book.getQuantity());
+        bookVO.setBook(book);
         bookVO.setAuthors(new ArrayList<>(authors));
         bookVO.setReaders(new ArrayList<>(readers));
         return bookVO;
     }
 
     public static Book toEntity(BookVO bookVO) {
-        Book book = new Book(bookVO.getBookID(), bookVO.getName(), bookVO.getIsbn(), bookVO.getGenre(),
-                bookVO.getYear(), bookVO.getQuantity());
+        Book book = bookVO.getBook();
         return book;
     }
 }

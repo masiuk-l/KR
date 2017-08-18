@@ -1,7 +1,15 @@
 package service.impl;
 
+import VO.FormVO;
+import VO.transfer.FormTransfer;
+import dao.BookDAO;
 import dao.FormDAO;
+import dao.LibrarianDAO;
+import dao.ReaderDAO;
+import dao.impl.BookDAOImpl;
 import dao.impl.FormDAOImpl;
+import dao.impl.LibrarianDAOImpl;
+import dao.impl.ReaderDAOImpl;
 import entities.Book;
 import entities.Form;
 import entities.Librarian;
@@ -16,6 +24,9 @@ import java.util.List;
 
 public class FormServiceImpl extends AbstractService implements FormService {
     private FormDAO formDAO = FormDAOImpl.getInstance();
+    private BookDAO bookDAO = BookDAOImpl.getInstance();
+    private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
+    private LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
 
     @Override
     public Form save(Form form) {
@@ -128,6 +139,23 @@ public class FormServiceImpl extends AbstractService implements FormService {
         } catch (SQLException e) {
             rollback();
             throw new ServiceException("Error finding Form");
+        }
+    }
+
+    @Override
+    public FormVO getFormVO(Form form) {
+        try {
+            startTransaction();
+            FormVO formVO;
+            Reader reader = readerDAO.get(form.getReaderID());
+            Book book = bookDAO.get(form.getBookID());
+            Librarian librarian = librarianDAO.get(form.getLibrarianID());
+            formVO = FormTransfer.toValueObject(form, book, librarian, reader);
+            commit();
+            return formVO;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error creating formVO");
         }
     }
 

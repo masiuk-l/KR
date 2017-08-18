@@ -1,4 +1,4 @@
-package web.command;
+package web.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -1,8 +1,15 @@
 package service.impl;
 
+import VO.FormVO;
+import VO.ReaderVO;
+import VO.transfer.ReaderTransfer;
+import dao.FormDAO;
 import dao.ReaderDAO;
+import dao.impl.FormDAOImpl;
 import dao.impl.ReaderDAOImpl;
+import entities.Form;
 import entities.Reader;
+import service.FormService;
 import service.ReaderService;
 import service.ServiceException;
 
@@ -16,6 +23,8 @@ import java.util.List;
  */
 public class ReaderServiceImpl extends AbstractService implements ReaderService {
     private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
+    private FormDAO formDAO = FormDAOImpl.getInstance();
+    private FormService formService = new FormServiceImpl();
 
     @Override
     public Reader save(Reader reader) {
@@ -115,6 +124,26 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
         } catch (SQLException e) {
             rollback();
             throw new ServiceException("Error finding Reader");
+        }
+    }
+
+    @Override
+    public ReaderVO getReaderVO(Reader reader) {
+        try {
+            startTransaction();
+            ReaderVO readerVO;
+            List<FormVO> formVOS = new ArrayList<>();
+            List<Form> forms = formDAO.getByReader(reader);
+            for (Form form : forms) {
+                FormVO formVO = formService.getFormVO(form);
+                formVOS.add(formVO);
+            }
+            readerVO = ReaderTransfer.toValueObject(reader, formVOS);
+            commit();
+            return readerVO;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error creating ReaderVO");
         }
     }
 

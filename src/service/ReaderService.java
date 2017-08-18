@@ -1,5 +1,6 @@
 package service;
 
+import VO.ReaderVO;
 import entities.Reader;
 
 import java.io.Serializable;
@@ -23,6 +24,8 @@ public interface ReaderService {
     List<Reader> getByStatus(String status);
 
     Reader getByLogin(String login);
+
+    ReaderVO getReaderVO(Reader reader);
 
     List<Reader> getAll();
 }

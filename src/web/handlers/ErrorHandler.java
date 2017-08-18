@@ -19,8 +19,8 @@ public class ErrorHandler extends HttpServlet {
                 request.getAttribute("javax.servlet.error.status_code");
 
         if (statusCode == 404)
-            response.sendRedirect(request.getContextPath() + "/frontController?command=404");
-        else response.sendRedirect(request.getContextPath() + "/frontController?command=error");
+            response.sendRedirect(request.getContextPath() + "/frontController?controller=404");
+        else response.sendRedirect(request.getContextPath() + "/frontController?controller=error");
 
     }
 }

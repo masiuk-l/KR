@@ -1,5 +1,6 @@
 package service;
 
+import VO.FormVO;
 import entities.Book;
 import entities.Form;
 import entities.Librarian;
@@ -24,6 +25,8 @@ public interface FormService {
     List<Form> getByBook(Book book);
 
     List<Form> getByReceivalType(String receivalType);
+
+    FormVO getFormVO(Form form);
 
     List<Form> getAll();
 }
