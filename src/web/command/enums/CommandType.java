@@ -9,19 +9,21 @@ import web.command.impl.*;
 @AllArgsConstructor
 public enum CommandType {
 
-    CATALOG("catalog/main.jsp", "Catalog", new CatalogController()),
-    BOOK("catalog/book.jsp", "Book", new BookController()),
-    ERROR("error/error.jsp", "Error", new ErrorController()),
-    LOGIN("login.jsp", "Login", new LoginController()),
-    LOGOUT("login.jsp", "Logout", new LogoutController()),
-    NOT_FOUND("error/404.jsp", "404", new ErrorController()),
-    READER("readers/cabinet.jsp", "Cabinet", new ReaderController()),
-    READERS("readers/main.jsp", "Readers", new ReadersController());
+    CATALOG("catalog/main.jsp", "Catalog", "catalog.title", new CatalogController()),
+    BOOK("catalog/book.jsp", "Book", "book.title", new BookController()),
+    ERROR("error/error.jsp", "Error", "error.title", new ErrorController()),
+    LOGIN("login.jsp", "Login", "login.title", new LoginController()),
+    LOGOUT("login.jsp", "Logout", "logout.title", new LogoutController()),
+    MAIN("main/main.jsp", "Library", "library.title", new MainController()),
+    NOT_FOUND("error/404.jsp", "404", "404.title", new ErrorController()),
+    READER("readers/cabinet.jsp", "Cabinet", "cabinet.title", new ReaderController()),
+    READERS("readers/main.jsp", "Readers", "readers.title", new ReadersController());
 
 
 
     private String pagePath;
     private String pageName;
+    private String i18nKey;
     private Controller controller;
 
     public static CommandType getByPageName(String page) {
@@ -30,6 +32,6 @@ public enum CommandType {
                 return type;
             }
         }
-        return READERS;
+        return MAIN;
     }
 }

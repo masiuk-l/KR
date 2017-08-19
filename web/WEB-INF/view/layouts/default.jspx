@@ -28,10 +28,9 @@
 </head>
 <body>
 <com:header-navigation/>
-<div style="height: 56px"></div>
 <div>
     <div class="container text-center">
-        <c:url var="bodyUrl" value="../login.jsp"></c:url>
+        <c:url var="bodyUrl" value="../main/main.jsp"></c:url>
         <c:if test="${not empty sessionScope.pagePath}">
             <c:url var="bodyUrl" value='../${sessionScope.pagePath}'></c:url>
         </c:if>

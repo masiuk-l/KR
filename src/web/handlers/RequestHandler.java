@@ -5,13 +5,13 @@ import web.command.enums.CommandType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static web.command.enums.CommandType.READERS;
+import static web.command.enums.CommandType.MAIN;
 
 public class RequestHandler {
     public static CommandType getCommand(HttpServletRequest req) {
         String param = req.getParameter("command");
         if (param == null && "".equals(param)) {
-            param = "readers";
+            param = "main";
         }
 
 
@@ -25,8 +25,8 @@ public class RequestHandler {
             session.setAttribute("pagePath", type.getPagePath());
         } else {
             session.setAttribute("prevPage", type.getPageName());
-            session.setAttribute("pageName", READERS.getPageName());
-            session.setAttribute("pagePath", READERS.getPagePath());
+            session.setAttribute("pageName", MAIN.getPageName());
+            session.setAttribute("pagePath", MAIN.getPagePath());
         }
 
         return type;

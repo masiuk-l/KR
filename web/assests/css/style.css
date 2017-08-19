@@ -3,9 +3,5 @@
 }
 
 body {
-    background-image: url('../img/white_paperboard.png');
-}
-
-div #space {
-    height: 50px;
+    background-image: url('../img/background.png');
 }
