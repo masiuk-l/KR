@@ -9,15 +9,15 @@ import web.command.impl.*;
 @AllArgsConstructor
 public enum CommandType {
 
-    CATALOG("catalog/main.jsp", "Catalog", "catalog.title", new CatalogController()),
-    BOOK("catalog/book.jsp", "Book", "book.title", new BookController()),
-    ERROR("error/error.jsp", "Error", "error.title", new ErrorController()),
-    LOGIN("login.jsp", "Login", "login.title", new LoginController()),
-    LOGOUT("login.jsp", "Logout", "logout.title", new LogoutController()),
+    CATALOG("catalog/main.jsp", "catalog", "catalog.title", new CatalogController()),
+    BOOK("catalog/book.jsp", "book", "book.title", new BookController()),
+    ERROR("error/error.jsp", "error", "error.title", new ErrorController()),
+    LOGIN("login.jsp", "login", "login.title", new LoginController()),
+    LOGOUT("login.jsp", "logout", "logout.title", new LogoutController()),
     MAIN("main/main.jsp", "main", "library.title", new MainController()),
     NOT_FOUND("error/404.jsp", "404", "404.title", new ErrorController()),
-    READER("readers/cabinet.jsp", "Cabinet", "cabinet.title", new ReaderController()),
-    READERS("readers/main.jsp", "Readers", "readers.title", new ReadersController());
+    READER("readers/cabinet.jsp", "cabinet", "cabinet.title", new ReaderController()),
+    READERS("readers/main.jsp", "readers", "readers.title", new ReadersController());
 
 
 
