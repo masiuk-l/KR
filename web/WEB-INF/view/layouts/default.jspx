@@ -26,7 +26,7 @@
             padding: 25px;
         }
     </style>
-    <title><fmt:message bundle="${i18n}" key="${sessionScope.pageName}.title"/></title>
+    <title><fmt:message bundle="${i18n}" key="${sessionScope.pageName}.title"></fmt:message></title>
     <!--<title><fmt:message bundle="${i18n}" key="${sessionScope.pageName}"/></title>-->
     <u:icon file="icon.png"/>
 </head>

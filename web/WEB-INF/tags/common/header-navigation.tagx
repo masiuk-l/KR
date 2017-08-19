@@ -7,42 +7,48 @@
 
 
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/frontController?command=main"><fmt:message
-                key="menu.name" bundle="${i18n}"></fmt:message></a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/frontController?command=main">
+            <fmt:message key="menu.name" bundle="${i18n}"></fmt:message>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <c:set var="navName" value="Каталог"/>
                 <c:choose>
-                    <c:when test="${pageName eq 'Products'}">
+                    <c:when test="${pageName eq 'catalog'}">
                         <li class="nav-item active">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=catalog">${navName}</a>
+                               href="${pageContext.request.contextPath}/frontController?command=catalog">
+                                <fmt:message key="menu.catalog" bundle="${i18n}"></fmt:message>
+                            </a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=catalog">${navName}</a>
+                               href="${pageContext.request.contextPath}/frontController?command=catalog">
+                                <fmt:message key="menu.catalog" bundle="${i18n}"></fmt:message>
+                            </a>
                         </li>
                     </c:otherwise>
                 </c:choose>
 
-                <c:set var="navName" value="Бронирование книги"></c:set>
+
                 <c:choose>
-                    <c:when test="${pageName eq 'Orders'}">
+                    <c:when test="${pageName eq 'reserve'}">
                         <li class="nav-item active">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=readers">${navName}</a>
+                               href="${pageContext.request.contextPath}/frontController?command=readers"><fmt:message
+                                    key="menu.reserve" bundle="${i18n}"></fmt:message></a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=readers">${navName}</a>
+                               href="${pageContext.request.contextPath}/frontController?command=readers"><fmt:message
+                                    key="menu.reserve" bundle="${i18n}"></fmt:message></a>
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -50,9 +56,8 @@
 
                 <c:url var="path" value="/frontController?command=${sessionScope.pageName}"></c:url>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Язык
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                        <fmt:message key="menu.language" bundle="${i18n}"></fmt:message>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="${path}&amp;locale=ru">Русский</a>
@@ -64,20 +69,28 @@
                     <c:when test="${not empty user}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Здравствуйте, ${user.name}!
+                               data-toggle="dropdown">
+                                <fmt:message key="menu.hello" bundle="${i18n}"></fmt:message>, ${user.name}!
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Кабинет</a>
-                                <a class="dropdown-item" href="#">Мои книги</a>
+                                <a class="dropdown-item" href="#">
+                                    <fmt:message key="menu.cabinet" bundle="${i18n}"></fmt:message>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <fmt:message key="menu.mybooks" bundle="${i18n}"></fmt:message>
+                                </a>
                                 <a class="divider"></a>
-                                <a class="dropdown-item" href="#">Выйти</a>
+                                <a class="dropdown-item" href="#">
+                                    <fmt:message key="menu.logout" bundle="${i18n}"></fmt:message>
+                                </a>
                             </div>
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item navbar-right"><a class="nav-link"
-                                                             href="${pageContext.request.contextPath}/frontController?command=login">Sign In</a>
+                        <li class="nav-item navbar-right">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/frontController?command=login">
+                                <fmt:message key="menu.signin" bundle="${i18n}"></fmt:message>
+                            </a>
                         </li>
                     </c:otherwise>
                 </c:choose>
