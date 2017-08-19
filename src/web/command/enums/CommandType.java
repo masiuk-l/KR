@@ -14,7 +14,7 @@ public enum CommandType {
     ERROR("error/error.jsp", "Error", "error.title", new ErrorController()),
     LOGIN("login.jsp", "Login", "login.title", new LoginController()),
     LOGOUT("login.jsp", "Logout", "logout.title", new LogoutController()),
-    MAIN("main/main.jsp", "Library", "library.title", new MainController()),
+    MAIN("main/main.jsp", "main", "library.title", new MainController()),
     NOT_FOUND("error/404.jsp", "404", "404.title", new ErrorController()),
     READER("readers/cabinet.jsp", "Cabinet", "cabinet.title", new ReaderController()),
     READERS("readers/main.jsp", "Readers", "readers.title", new ReadersController());

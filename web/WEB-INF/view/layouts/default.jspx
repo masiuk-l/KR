@@ -2,9 +2,12 @@
 <html xmlns:jsp="http://java.sun.com/JSP/Page"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:u="urn:jsptagdir:/WEB-INF/tags/utils"
-      xmlns:com="urn:jsptagdir:/WEB-INF/tags/common">
+      xmlns:com="urn:jsptagdir:/WEB-INF/tags/common"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 
 <jsp:directive.page pageEncoding="UTF-8" contentType="text/html; UTF-8"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="messages" var="i18n"/>
 <head>
     <![CDATA[
     <meta charset="utf-8">
@@ -23,7 +26,8 @@
             padding: 25px;
         }
     </style>
-    <title>${title}</title>
+    <title><fmt:message bundle="${i18n}" key="${sessionScope.pageName}.title"/></title>
+    <!--<title><fmt:message bundle="${i18n}" key="${sessionScope.pageName}"/></title>-->
     <u:icon file="icon.png"/>
 </head>
 <body>
