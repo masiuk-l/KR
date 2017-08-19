@@ -100,7 +100,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByName.setString(1, name);
         psGetByName.execute();
         ResultSet rs = psGetByName.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Book book = new Book();
             book.setBookID(rs.getInt(1));
             book.setName(rs.getString(2));
@@ -121,7 +121,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByIsbn.setString(1, isbn);
         psGetByIsbn.execute();
         ResultSet rs = psGetByIsbn.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Book book = new Book();
             book.setBookID(rs.getInt(1));
             book.setName(rs.getString(2));
@@ -142,7 +142,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByGenre.setString(1, genre);
         psGetByGenre.execute();
         ResultSet rs = psGetByGenre.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Book book = new Book();
             book.setBookID(rs.getInt(1));
             book.setName(rs.getString(2));

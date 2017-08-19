@@ -144,7 +144,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByBookID.setInt(1, book.getBookID());
         psGetByBookID.execute();
         ResultSet rs = psGetByBookID.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Form form = new Form();
             form.setFormID(rs.getInt(1));
             form.setBookID(rs.getInt(2));
@@ -166,7 +166,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByReaderID.setInt(1, reader.getReaderID());
         psGetByReaderID.execute();
         ResultSet rs = psGetByReaderID.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Form form = new Form();
             form.setFormID(rs.getInt(1));
             form.setBookID(rs.getInt(2));
@@ -188,7 +188,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByLibrarianID.setInt(1, librarian.getLibrarianID());
         psGetByLibrarianID.execute();
         ResultSet rs = psGetByLibrarianID.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Form form = new Form();
             form.setFormID(rs.getInt(1));
             form.setBookID(rs.getInt(2));
@@ -210,7 +210,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByReceivalType.setString(1, receivalType);
         psGetByReceivalType.execute();
         ResultSet rs = psGetByReceivalType.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Form form = new Form();
             form.setFormID(rs.getInt(1));
             form.setBookID(rs.getInt(2));

@@ -81,11 +81,10 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
     @Override
     public List<BookAuthor> getByAuthorID(Author author) throws SQLException {
         List<BookAuthor> list = new ArrayList<>();
-        psGetByAuthorID.executeQuery();
         psGetByAuthorID.setInt(1, author.getAuthorID());
         psGetByAuthorID.execute();
         ResultSet rs = psGetByAuthorID.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             BookAuthor bookAuthor = new BookAuthor();
             bookAuthor.setBookAuthorID(rs.getInt(1));
             bookAuthor.setAuthorID(rs.getInt(2));
@@ -103,7 +102,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         psGetByBookID.setInt(1, book.getBookID());
         psGetByBookID.execute();
         ResultSet rs = psGetByBookID.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             BookAuthor bookAuthor = new BookAuthor();
             bookAuthor.setBookAuthorID(rs.getInt(1));
             bookAuthor.setAuthorID(rs.getInt(2));
@@ -164,7 +163,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         List<BookAuthor> list = new ArrayList<>();
         psGetAll.executeQuery();
         ResultSet rs = psGetAll.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             BookAuthor bookAuthor = new BookAuthor();
             bookAuthor.setBookAuthorID(rs.getInt(1));
             bookAuthor.setAuthorID(rs.getInt(2));

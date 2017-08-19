@@ -132,7 +132,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Author author = new Author();
             author.setAuthorID(rs.getInt(1));
             author.setSurname(rs.getString(2));

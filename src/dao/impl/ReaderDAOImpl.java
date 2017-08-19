@@ -146,7 +146,7 @@ public class ReaderDAOImpl implements ReaderDAO {
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
             reader.setSurname(rs.getString(2));
@@ -170,7 +170,7 @@ public class ReaderDAOImpl implements ReaderDAO {
         psGetByStatus.setString(1, status);
         psGetByStatus.execute();
         ResultSet rs = psGetByStatus.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
             reader.setSurname(rs.getString(2));
@@ -194,7 +194,7 @@ public class ReaderDAOImpl implements ReaderDAO {
         psGetByLogin.setString(1, login);
         psGetByLogin.execute();
         ResultSet rs = psGetByLogin.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Reader reader = new Reader();
             reader.setReaderID(rs.getInt(1));
             reader.setSurname(rs.getString(2));

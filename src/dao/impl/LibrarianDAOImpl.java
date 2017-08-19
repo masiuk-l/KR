@@ -128,7 +128,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
-        if (rs.next()) {
+        while (rs.next()) {
             Librarian librarian = new Librarian();
             librarian.setLibrarianID(rs.getInt(1));
             librarian.setSurname(rs.getString(2));
