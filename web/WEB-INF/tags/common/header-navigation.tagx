@@ -80,7 +80,9 @@
                                     <fmt:message key="menu.mybooks" bundle="${i18n}"></fmt:message>
                                 </a>
                                 <a class="divider"></a>
-                                <a class="dropdown-item" href="#">
+
+                                <a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/frontController?command=logout">
                                     <fmt:message key="menu.logout" bundle="${i18n}"></fmt:message>
                                 </a>
                             </div>
