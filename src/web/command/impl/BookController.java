@@ -17,10 +17,10 @@ public class BookController implements Controller {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        int bookID = Integer.parseInt(req.getParameter("bookID"));
+        int bookID = Integer.parseInt(req.getParameter("id"));
         Book book = bookService.get(bookID);
         BookVO bookVO = bookService.getBookVO(book);
-        req.getSession().setAttribute("book", bookVO);
+        req.getSession().setAttribute("bookVO", bookVO);
         req.getRequestDispatcher(MAIN_PAGE).forward(req, resp);
     }
 }
