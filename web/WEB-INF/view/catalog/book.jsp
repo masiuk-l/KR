@@ -42,13 +42,19 @@
 
         <c:choose>
             <c:when test="${flag eq \"true\"}">
-                <button class="btn  disabled">Вы уже заказали эту книгу</button>
+                <button class="btn disabled">
+                    <fmt:message bundle="${i18n}" key="book.reserverd"></fmt:message>
+                </button>
             </c:when>
             <c:when test="${bookVO.book.quantity eq 0}">
-                <button class="btn disabled">Нет в наличии</button>
+                <button class="btn disabled">
+                    <fmt:message bundle="${i18n}" key="book.unavailable"></fmt:message>
+                </button>
             </c:when>
             <c:otherwise>
-                <button class="btn btn-primary">Заказать</button>
+                <button class="btn btn-primary">
+                    <fmt:message bundle="${i18n}" key="book.reserve"></fmt:message>
+                </button>
             </c:otherwise>
         </c:choose>
 
