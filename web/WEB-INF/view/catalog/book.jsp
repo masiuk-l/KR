@@ -5,6 +5,10 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages" var="i18n"/>
 
+
+<script>
+    var reserved = '<fmt:message bundle="${i18n}" key="book.reserved"></fmt:message>';
+</script>
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header p-b-0">
@@ -21,9 +25,15 @@
             <li class="list-group-item"><b><fmt:message bundle="${i18n}" key="catalog.genre"></fmt:message>: </b>
                 ${bookVO.book.genre}
             </li>
+
             <li class="list-group-item"><b><fmt:message bundle="${i18n}" key="catalog.year"></fmt:message>: </b>
                 ${bookVO.book.year}
             </li>
+
+            <li class="list-group-item"><b><fmt:message bundle="${i18n}" key="catalog.quantity"></fmt:message>: </b>
+                <span id="quantity">${bookVO.book.quantity}</span>
+            </li>
+
             <li class="list-group-item"><b><fmt:message bundle="${i18n}" key="catalog.isbn"></fmt:message>: </b>
                 ${bookVO.book.isbn}
             </li>
@@ -31,9 +41,9 @@
         </div>
         <!-- логика! -->
         <c:set var="flag" value="false"></c:set>
-        <c:if test="${not empty user}">
+        <c:if test="${not empty sreader}">
             <c:forEach var="reader" items="${bookVO.readers}">
-                <c:if test="${reader.readerID eq user.readerID}">
+                <c:if test="${reader.readerID eq sreader.readerID}">
                     <c:set var="flag" value="true"></c:set>
                 </c:if>
             </c:forEach>
@@ -43,7 +53,7 @@
         <c:choose>
             <c:when test="${flag eq \"true\"}">
                 <button class="btn disabled">
-                    <fmt:message bundle="${i18n}" key="book.reserverd"></fmt:message>
+                    <fmt:message bundle="${i18n}" key="book.reserved"></fmt:message>
                 </button>
             </c:when>
             <c:when test="${bookVO.book.quantity eq 0}">
@@ -52,7 +62,7 @@
                 </button>
             </c:when>
             <c:otherwise>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary reserve-book" id="${bookVO.book.bookID}">
                     <fmt:message bundle="${i18n}" key="book.reserve"></fmt:message>
                 </button>
             </c:otherwise>

@@ -66,11 +66,11 @@
                 </li>
 
                 <c:choose>
-                    <c:when test="${not empty user}">
+                    <c:when test="${not empty sreader}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                                data-toggle="dropdown">
-                                <fmt:message key="menu.hello" bundle="${i18n}"></fmt:message>, ${user.name}!
+                                <fmt:message key="menu.hello" bundle="${i18n}"></fmt:message>, ${sreader.name}!
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">

@@ -28,7 +28,7 @@ public class LoginController implements Controller {
         Reader reader = readerService.getByLogin(login);
 //        if (reader != null && reader.getPassword().equals(Encoder.encode(password))) {
         if (reader != null && password.equals(reader.getPassword())) {
-            req.getSession().setAttribute("user", reader);
+            req.getSession().setAttribute("sreader", reader);
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath + "/frontController?command=main");
             return;

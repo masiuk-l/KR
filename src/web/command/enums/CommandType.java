@@ -13,11 +13,13 @@ public enum CommandType {
     BOOK("catalog/book.jsp", "book", "book.title", new BookController()),
     ERROR("error/error.jsp", "error", "error.title", new ErrorController()),
     LOGIN("login.jsp", "login", "login.title", new LoginController()),
-    LOGOUT("login.jsp", "logout", "logout.title", new LogoutController()),
+    LOGOUT("", "logout", "logout.title", new LogoutController()),
     MAIN("main/main.jsp", "main", "library.title", new MainController()),
     NOT_FOUND("error/404.jsp", "404", "404.title", new ErrorController()),
     READER("readers/cabinet.jsp", "cabinet", "cabinet.title", new ReaderController()),
-    READERS("readers/main.jsp", "readers", "readers.title", new ReadersController());
+    READERS("readers/main.jsp", "readers", "readers.title", new ReadersController()),
+    RESERVE_BOOK_AJAX("", "reserveBook", "", new ReserveBookController()),
+    SIGN_UP("", "signUp", "signUp.title", new SignUpController());//todo проверить reader и sreader
 
 
 
