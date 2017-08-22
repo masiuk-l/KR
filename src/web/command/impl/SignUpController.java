@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class SignUpController implements Controller {
     private ReaderService readerService = new ReaderServiceImpl();
@@ -18,11 +19,16 @@ public class SignUpController implements Controller {
         Reader reader = new Reader();
         reader.setSurname(req.getParameter("surname"));
         reader.setName(req.getParameter("name"));
-        reader.setSecondName(req.getParameter("secondName"));
+        reader.setSecondName(req.getParameter("secondname"));
         reader.setEmail(req.getParameter("email"));
         reader.setPassword(req.getParameter("password"));
-        //reader.setBirthday(new Date());//todo трансформация даты!!!!!!!1
+        LocalDate date = LocalDate.parse(req.getParameter("birthday"));
+        reader.setBirthday(date);
         reader.setGender(req.getParameter("gender").equals("1") ? "male" : "female");
+
         reader = readerService.save(reader);
+
+        String contextPath = req.getContextPath();
+        resp.sendRedirect(contextPath + "/frontController?command=main");
     }
 }

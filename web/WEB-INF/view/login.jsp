@@ -6,6 +6,9 @@
 <fmt:setBundle basename="messages" var="i18n"/>
 
 <!-- Button trigger modal -->
+<c:if test="${not (errorMsg eq '')}">
+    <div class="error"> ${errorMsg}</div>
+</c:if>
 
 <div class="container">
     <hr class="prettyline">
@@ -182,7 +185,7 @@
                                     <label class="control-label"></label>
                                     <div class="controls">
                                         <input type="submit" class="btn btn-success"
-                                               value="<fmt:message bundle="${i18n}" key="login.signin"></fmt:message>"/>
+                                               value="<fmt:message bundle="${i18n}" key="login.signup"></fmt:message>"/>
                                     </div>
                                 </div>
                             </fieldset>

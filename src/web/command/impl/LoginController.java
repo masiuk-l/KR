@@ -19,9 +19,7 @@ public class LoginController implements Controller {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         if (login == null || password == null) {
-            resp.setHeader("errorMsg", "Invalid Login or Password");
             RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
-            req.setAttribute("title", "Login form");
             dispatcher.forward(req, resp);
             return;
         }
@@ -29,13 +27,13 @@ public class LoginController implements Controller {
 //        if (reader != null && reader.getPassword().equals(Encoder.encode(password))) {
         if (reader != null && password.equals(reader.getPassword())) {
             req.getSession().setAttribute("sreader", reader);
+            req.getSession().setAttribute("errorMsg", "");
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath + "/frontController?command=main");
             return;
         } else {
-            resp.setHeader("errorMsg", "Invalid Login or Password");
+            req.getSession().setAttribute("errorMsg", "Invalid Login or Password");
             RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
-            req.setAttribute("title", "Login form");
             dispatcher.forward(req, resp);
             return;
         }

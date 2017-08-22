@@ -19,7 +19,7 @@ public enum CommandType {
     READER("readers/cabinet.jsp", "cabinet", "cabinet.title", new ReaderController()),
     READERS("readers/main.jsp", "readers", "readers.title", new ReadersController()),
     RESERVE_BOOK_AJAX("", "reserveBook", "", new ReserveBookController()),
-    SIGN_UP("", "signUp", "signUp.title", new SignUpController());//todo проверить reader и sreader
+    SIGN_UP("", "signup", "sigup.title", new SignUpController());//todo проверить reader и sreader
 
 
 
