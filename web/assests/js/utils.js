@@ -6,28 +6,25 @@ $(document).ready(function () {
 });
 
 function reserveBook(element) {
+    var jqxhr;
     var bookID = $(element).attr('id');
     console.log(bookID);
     var json = JSON.stringify(bookID);
     console.log(json);
-    var jqxhr = $.ajax({
+    jqxhr = $.ajax({
         type: 'get',
         url: contextUrl + '/frontController?command=reserveBook&bookID=' + bookID,
-        converters: {
-            "text": function (data) {
-                console.log("1");
-                // $('#quantity').text(data);
-                // $('.reserve-book').attr('class', 'btn btn-secondary disabled').text(reserved);
-            },
-            "xml": function () {
-                console.log("1");
+        success: function (response) {
+            var str = "\"Auth required\"";
+
+            if (response.toString() === str) {
                 window.location.href = contextUrl + '/frontController?command=login';
             }
+            else {
+                $('#quantity').text(response);
+                $('.reserve-book').attr('class', 'btn btn-secondary disabled').text(reserved);
+            }
         }
-
-    }).done(function (XMLHttpRequest, data) {
-        //var headers = jqxhr;
-        console.log(headers)
 
     }).fail(function (data) {
         if (console && console.log) {

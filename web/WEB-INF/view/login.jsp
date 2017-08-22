@@ -14,7 +14,6 @@
     <hr class="prettyline">
     <br>
     <div class="text-center">
-        <h1><b><fmt:message bundle="${i18n}" key="login.sorry"></fmt:message></b></h1>
         <h3><fmt:message bundle="${i18n}" key="login.continue"></fmt:message></h3>
         <br>
         <a class="btn btn-primary btn-lg" href="#signin" data-toggle="modal" data-target=".bs-modal-sm">

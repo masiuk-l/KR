@@ -1,5 +1,6 @@
 package web.filter;
 
+import com.google.gson.Gson;
 import web.command.enums.CommandType;
 import web.handlers.RequestHandler;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"/frontController"})
 public class AuthFilter implements Filter {
@@ -23,7 +25,8 @@ public class AuthFilter implements Filter {
         if (CommandType.RESERVE_BOOK_AJAX.equals(type)) {
             String contextPath = request.getContextPath();
             if ((session.getAttribute("sreader") == null)) {
-                response.sendRedirect(contextPath + "/frontController?command=login");//todo не работает!
+                PrintWriter writer = resp.getWriter();
+                writer.print(new Gson().toJson("Auth required"));
                 return;
             }
         }
