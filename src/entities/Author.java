@@ -2,7 +2,8 @@ package entities;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
@@ -17,6 +18,6 @@ public class Author {
     private String name;
     private String surname;
     private String secondName;
-    private Date birthday;
+    private LocalDate birthday;
     private String country;
 }

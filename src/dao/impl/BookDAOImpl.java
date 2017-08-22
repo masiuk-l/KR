@@ -80,15 +80,7 @@ public class BookDAOImpl implements BookDAO {
         psGetAll.execute();
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
-            Book book = new Book();
-            book.setBookID(rs.getInt(1));
-            book.setName(rs.getString(2));
-            book.setIsbn(rs.getString(3));
-            book.setGenre(rs.getString(4));
-            book.setYear(rs.getInt(5));
-            book.setQuantity(rs.getInt(6));
-
-            list.add(book);
+            list.add(populateBook(rs));
         }
         close(rs);
         return list;
@@ -101,14 +93,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByName.execute();
         ResultSet rs = psGetByName.getResultSet();
         while (rs.next()) {
-            Book book = new Book();
-            book.setBookID(rs.getInt(1));
-            book.setName(rs.getString(2));
-            book.setIsbn(rs.getString(3));
-            book.setGenre(rs.getString(4));
-            book.setYear(rs.getInt(5));
-            book.setQuantity(rs.getInt(6));
-            list.add(book);
+            list.add(populateBook(rs));
         }
         close(rs);
 
@@ -122,14 +107,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByIsbn.execute();
         ResultSet rs = psGetByIsbn.getResultSet();
         while (rs.next()) {
-            Book book = new Book();
-            book.setBookID(rs.getInt(1));
-            book.setName(rs.getString(2));
-            book.setIsbn(rs.getString(3));
-            book.setGenre(rs.getString(4));
-            book.setYear(rs.getInt(5));
-            book.setQuantity(rs.getInt(6));
-            list.add(book);
+            list.add(populateBook(rs));
         }
         close(rs);
 
@@ -143,14 +121,7 @@ public class BookDAOImpl implements BookDAO {
         psGetByGenre.execute();
         ResultSet rs = psGetByGenre.getResultSet();
         while (rs.next()) {
-            Book book = new Book();
-            book.setBookID(rs.getInt(1));
-            book.setName(rs.getString(2));
-            book.setIsbn(rs.getString(3));
-            book.setGenre(rs.getString(4));
-            book.setYear(rs.getInt(5));
-            book.setQuantity(rs.getInt(6));
-            list.add(book);
+            list.add(populateBook(rs));
         }
         close(rs);
 
@@ -179,14 +150,7 @@ public class BookDAOImpl implements BookDAO {
         psGet.executeQuery();
         ResultSet rs = psGet.getResultSet();
         if (rs.next()) {
-            Book book = new Book();
-            book.setBookID(rs.getInt(1));
-            book.setName(rs.getString(2));
-            book.setIsbn(rs.getString(3));
-            book.setGenre(rs.getString(4));
-            book.setYear(rs.getInt(5));
-            book.setQuantity(rs.getInt(6));
-            return book;
+            return populateBook(rs);
         }
         close(rs);
 
@@ -209,4 +173,16 @@ public class BookDAOImpl implements BookDAO {
         psDelete.setInt(1, (int) id);
         return psDelete.executeUpdate();
     }
+
+    private Book populateBook(ResultSet rs) throws SQLException {
+        Book book = new Book();
+        book.setBookID(rs.getInt(1));
+        book.setName(rs.getString(2));
+        book.setIsbn(rs.getString(3));
+        book.setGenre(rs.getString(4));
+        book.setYear(rs.getInt(5));
+        book.setQuantity(rs.getInt(6));
+        return book;
+    }
 }
+

@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 @Log4j
-public class AuthorDAOImpl implements AuthorDAO {
+public class AuthorDAOImpl extends AbstractDAO implements AuthorDAO {
 
     private static final String saveAuthorQuery = "INSERT INTO AUTHORS (SURNAME, NAME, SECOND_NAME, BIRTHDAY, COUNTRY) VALUES (?, ?, ?, ?, ?)";
     private static final String updateAuthorQuery = "UPDATE AUTHORS SET SURNAME=?, NAME=?, SECOND_NAME=?, BIRTHDAY=? ,COUNTRY=? WHERE AUTHOR_ID=?";
@@ -78,7 +78,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         psSave.setString(1, author.getSurname());
         psSave.setString(2, author.getName());
         psSave.setString(3, author.getSecondName());
-        psSave.setDate(4, author.getBirthday());
+        psSave.setDate(4, toSQLDate(author.getBirthday()));
         psSave.setString(5, author.getCountry());
         psSave.executeUpdate();
         ResultSet rs = psSave.getGeneratedKeys();
@@ -95,14 +95,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         psGet.executeQuery();
         ResultSet rs = psGet.getResultSet();
         if (rs.next()) {
-            Author author = new Author();
-            author.setAuthorID(rs.getInt(1));
-            author.setSurname(rs.getString(2));
-            author.setName(rs.getString(3));
-            author.setSecondName(rs.getString(4));
-            author.setBirthday(rs.getDate(5));
-            author.setCountry(rs.getString(6));
-            return author;
+            return populateAuthor(rs);
         }
         close(rs);
 
@@ -115,7 +108,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         psUpdate.setString(1, author.getSurname());
         psUpdate.setString(2, author.getName());
         psUpdate.setString(3, author.getSecondName());
-        psUpdate.setDate(4, author.getBirthday());
+        psUpdate.setDate(4, toSQLDate(author.getBirthday()));
         psUpdate.setString(5, author.getCountry());
         psUpdate.executeUpdate();
     }
@@ -133,14 +126,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
         while (rs.next()) {
-            Author author = new Author();
-            author.setAuthorID(rs.getInt(1));
-            author.setSurname(rs.getString(2));
-            author.setName(rs.getString(3));
-            author.setSecondName(rs.getString(4));
-            author.setBirthday(rs.getDate(5));
-            author.setCountry(rs.getString(6));
-            list.add(author);
+            list.add(populateAuthor(rs));
         }
         close(rs);
 
@@ -153,17 +139,20 @@ public class AuthorDAOImpl implements AuthorDAO {
         psGetAll.execute();
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
-            Author author = new Author();
-            author.setAuthorID(rs.getInt(1));
-            author.setSurname(rs.getString(2));
-            author.setName(rs.getString(3));
-            author.setSecondName(rs.getString(4));
-            author.setBirthday(rs.getDate(5));
-            author.setCountry(rs.getString(6));
-
-            list.add(author);
+            list.add(populateAuthor(rs));
         }
         close(rs);
         return list;
+    }
+
+    private Author populateAuthor(ResultSet rs) throws SQLException {
+        Author author = new Author();
+        author.setAuthorID(rs.getInt(1));
+        author.setSurname(rs.getString(2));
+        author.setName(rs.getString(3));
+        author.setSecondName(rs.getString(4));
+        author.setBirthday(toLocalDate(rs.getDate(5)));
+        author.setCountry(rs.getString(6));
+        return author;
     }
 }

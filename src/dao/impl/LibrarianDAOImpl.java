@@ -91,14 +91,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         psGet.executeQuery();
         ResultSet rs = psGet.getResultSet();
         if (rs.next()) {
-            Librarian librarian = new Librarian();
-            librarian.setLibrarianID(rs.getInt(1));
-            librarian.setSurname(rs.getString(2));
-            librarian.setName(rs.getString(3));
-            librarian.setSecondName(rs.getString(4));
-            librarian.setPassword(rs.getString(5));
-            librarian.setEmail(rs.getString(6));
-            return librarian;
+            return populateLibrarian(rs);
         }
         close(rs);
 
@@ -129,20 +122,12 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
         while (rs.next()) {
-            Librarian librarian = new Librarian();
-            librarian.setLibrarianID(rs.getInt(1));
-            librarian.setSurname(rs.getString(2));
-            librarian.setName(rs.getString(3));
-            librarian.setSecondName(rs.getString(4));
-            librarian.setPassword(rs.getString(5));
-            librarian.setEmail(rs.getString(6));
-            list.add(librarian);
+            list.add(populateLibrarian(rs));
         }
         close(rs);
 
         return list;
     }
-
 
     @Override
     public List<Librarian> getAll() throws SQLException {
@@ -150,16 +135,21 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         psGetAll.execute();
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
-            Librarian librarian = new Librarian();
-            librarian.setLibrarianID(rs.getInt(1));
-            librarian.setSurname(rs.getString(2));
-            librarian.setName(rs.getString(3));
-            librarian.setSecondName(rs.getString(4));
-            librarian.setPassword(rs.getString(5));
-            librarian.setEmail(rs.getString(6));
-            list.add(librarian);
+            list.add(populateLibrarian(rs));
         }
         close(rs);
         return list;
+    }
+
+    private Librarian populateLibrarian(ResultSet rs) throws SQLException {
+        Librarian librarian = new Librarian();
+        librarian.setLibrarianID(rs.getInt(1));
+        librarian.setSurname(rs.getString(2));
+        librarian.setName(rs.getString(3));
+        librarian.setSecondName(rs.getString(4));
+        librarian.setPassword(rs.getString(5));
+        librarian.setEmail(rs.getString(6));
+
+        return librarian;
     }
 }

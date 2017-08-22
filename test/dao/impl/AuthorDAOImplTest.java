@@ -5,7 +5,6 @@ import entities.Author;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -22,7 +21,7 @@ public class AuthorDAOImplTest {
         author.setSurname("Козлов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
-        author.setBirthday(new Date(calendar.getTimeInMillis()));
+        //author.setBirthday(new Date(calendar.getTimeInMillis()));
         author.setCountry("Россия");
         author = authorDAO.save(author);
         Author newAuthor = authorDAO.getBySurname("Козлов").get(0);
@@ -54,7 +53,7 @@ public class AuthorDAOImplTest {
         author.setSurname("Иванов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
-        author.setBirthday(new Date(calendar.getTimeInMillis()));
+        //author.setBirthday(new Date(calendar.getTimeInMillis()));
         author.setCountry("Россия");
         authorDAO.save(author);
         List<Author> authors = authorDAO.getAll();

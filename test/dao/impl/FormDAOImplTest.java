@@ -5,7 +5,6 @@ import entities.Form;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -21,9 +20,9 @@ public class FormDAOImplTest {
         form.setLibrarianID(2);
         form.setReceivalType("Формуляр");
         Calendar calendar = new GregorianCalendar();
-        form.setReceivalDate(new Date(calendar.getTimeInMillis()));
+        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
         calendar.add(Calendar.DAY_OF_MONTH, 14);
-        form.setReturnDate(new Date(calendar.getTimeInMillis()));
+        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
         form = formDAO.save(form);
         Form newForm = formDAO.getByReceivalType("Формуляр").get(0);
         Assert.assertEquals(form.toString(), newForm.toString());
@@ -40,9 +39,9 @@ public class FormDAOImplTest {
         form.setLibrarianID(2);
         form.setReceivalType("АБОНЕМЕНТ");
         Calendar calendar = new GregorianCalendar();
-        form.setReceivalDate(new Date(calendar.getTimeInMillis()));
+        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
         calendar.add(Calendar.DAY_OF_MONTH, 14);
-        form.setReturnDate(new Date(calendar.getTimeInMillis()));
+        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
         form = formDAO.save(form);
         form.setReceivalType("Формуляр");
         formDAO.update(form);
@@ -60,9 +59,9 @@ public class FormDAOImplTest {
         form.setLibrarianID(2);
         form.setReceivalType("Формуляр");
         Calendar calendar = new GregorianCalendar();
-        form.setReceivalDate(new Date(calendar.getTimeInMillis()));
+        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
         calendar.add(Calendar.DAY_OF_MONTH, 14);
-        form.setReturnDate(new Date(calendar.getTimeInMillis()));
+        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
         form = formDAO.save(form);
         List<Form> forms = formDAO.getAll();
         int oldSize = forms.size();

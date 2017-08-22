@@ -2,7 +2,7 @@ package entities;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 
 /**
@@ -18,7 +18,7 @@ public class Reader {
     private String name;
     private String surname;
     private String secondName;
-    private Date birthday;
+    private LocalDate birthday;
     private String password;
     private String email;
     private String gender;

@@ -85,11 +85,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         psGetByAuthorID.execute();
         ResultSet rs = psGetByAuthorID.getResultSet();
         while (rs.next()) {
-            BookAuthor bookAuthor = new BookAuthor();
-            bookAuthor.setBookAuthorID(rs.getInt(1));
-            bookAuthor.setAuthorID(rs.getInt(2));
-            bookAuthor.setBookID(rs.getInt(3));
-            list.add(bookAuthor);
+            list.add(populateBookAuthor(rs));
         }
         close(rs);
 
@@ -103,11 +99,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         psGetByBookID.execute();
         ResultSet rs = psGetByBookID.getResultSet();
         while (rs.next()) {
-            BookAuthor bookAuthor = new BookAuthor();
-            bookAuthor.setBookAuthorID(rs.getInt(1));
-            bookAuthor.setAuthorID(rs.getInt(2));
-            bookAuthor.setBookID(rs.getInt(3));
-            list.add(bookAuthor);
+            list.add(populateBookAuthor(rs));
         }
         close(rs);
 
@@ -133,11 +125,7 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         psGet.executeQuery();
         ResultSet rs = psGet.getResultSet();
         if (rs.next()) {
-            BookAuthor bookAuthor = new BookAuthor();
-            bookAuthor.setBookAuthorID(rs.getInt(1));
-            bookAuthor.setAuthorID(rs.getInt(2));
-            bookAuthor.setBookID(rs.getInt(3));
-            return bookAuthor;
+            return populateBookAuthor(rs);
         }
         close(rs);
 
@@ -164,14 +152,18 @@ public class BookAuthorDAOImpl implements BookAuthorDAO {
         psGetAll.executeQuery();
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
-            BookAuthor bookAuthor = new BookAuthor();
-            bookAuthor.setBookAuthorID(rs.getInt(1));
-            bookAuthor.setAuthorID(rs.getInt(2));
-            bookAuthor.setBookID(rs.getInt(3));
-            list.add(bookAuthor);
+            list.add(populateBookAuthor(rs));
         }
         close(rs);
 
         return list;
+    }
+
+    private BookAuthor populateBookAuthor(ResultSet rs) throws SQLException {
+        BookAuthor bookAuthor = new BookAuthor();
+        bookAuthor.setBookAuthorID(rs.getInt(1));
+        bookAuthor.setAuthorID(rs.getInt(2));
+        bookAuthor.setBookID(rs.getInt(3));
+        return bookAuthor;
     }
 }

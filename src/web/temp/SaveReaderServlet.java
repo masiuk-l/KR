@@ -37,7 +37,7 @@ public class SaveReaderServlet extends HttpServlet {
                 e.printStackTrace();
             }
             java.sql.Date sql = new java.sql.Date(parsed.getTime());
-            reader.setBirthday(sql);
+            //reader.setBirthday(sql);
             reader.setEmail(request.getParameter("email"));
             reader.setPassword(request.getParameter("password"));
             reader.setGender(request.getParameter("gender"));

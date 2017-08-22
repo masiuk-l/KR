@@ -2,7 +2,8 @@ package entities;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
@@ -18,6 +19,6 @@ public class Form {
     private int readerID;
     private int librarianID;
     private String receivalType;
-    private Date receivalDate;
-    private Date returnDate;
+    private LocalDate receivalDate;
+    private LocalDate returnDate;
 }

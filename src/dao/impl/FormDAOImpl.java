@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j
-public class FormDAOImpl implements FormDAO {
+public class FormDAOImpl extends AbstractDAO implements FormDAO {
 
 
     private static final String saveFormQuery = "INSERT INTO FORMS (BOOK_ID, READER_ID, LIBRARIAN_ID, RECEIVAL_TYPE, RECEIVAL_DATE, RETURN_DATE) VALUES (?, ?, ?, ?, ?, ?)";
@@ -88,8 +88,8 @@ public class FormDAOImpl implements FormDAO {
         psSave.setInt(2, form.getReaderID());
         psSave.setInt(3, form.getLibrarianID());
         psSave.setString(4, form.getReceivalType());
-        psSave.setDate(5, form.getReceivalDate());
-        psSave.setDate(6, form.getReturnDate());
+        psSave.setDate(5, toSQLDate(form.getReceivalDate()));
+        psSave.setDate(6, toSQLDate(form.getReturnDate()));
         psSave.executeUpdate();
         ResultSet rs = psSave.getGeneratedKeys();
         if (rs.next()) {
@@ -105,15 +105,7 @@ public class FormDAOImpl implements FormDAO {
         psGet.executeQuery();
         ResultSet rs = psGet.getResultSet();
         if (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            return form;
+            return populateForm(rs);
         }
         close(rs);
 
@@ -127,8 +119,8 @@ public class FormDAOImpl implements FormDAO {
         psUpdate.setInt(2, form.getReaderID());
         psUpdate.setInt(3, form.getLibrarianID());
         psUpdate.setString(4, form.getReceivalType());
-        psUpdate.setDate(5, form.getReceivalDate());
-        psUpdate.setDate(6, form.getReturnDate());
+        psUpdate.setDate(5, toSQLDate(form.getReceivalDate()));
+        psUpdate.setDate(6, toSQLDate(form.getReturnDate()));
         psUpdate.executeUpdate();
     }
 
@@ -145,15 +137,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByBookID.execute();
         ResultSet rs = psGetByBookID.getResultSet();
         while (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            list.add(form);
+            list.add(populateForm(rs));
         }
         close(rs);
 
@@ -167,15 +151,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByReaderID.execute();
         ResultSet rs = psGetByReaderID.getResultSet();
         while (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            list.add(form);
+            list.add(populateForm(rs));
         }
         close(rs);
 
@@ -189,15 +165,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByLibrarianID.execute();
         ResultSet rs = psGetByLibrarianID.getResultSet();
         while (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            list.add(form);
+            list.add(populateForm(rs));
         }
         close(rs);
 
@@ -211,15 +179,7 @@ public class FormDAOImpl implements FormDAO {
         psGetByReceivalType.execute();
         ResultSet rs = psGetByReceivalType.getResultSet();
         while (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            list.add(form);
+            list.add(populateForm(rs));
         }
         close(rs);
 
@@ -232,17 +192,22 @@ public class FormDAOImpl implements FormDAO {
         psGetAll.execute();
         ResultSet rs = psGetAll.getResultSet();
         while (rs.next()) {
-            Form form = new Form();
-            form.setFormID(rs.getInt(1));
-            form.setBookID(rs.getInt(2));
-            form.setReaderID(rs.getInt(3));
-            form.setLibrarianID(rs.getInt(4));
-            form.setReceivalType(rs.getString(5));
-            form.setReceivalDate(rs.getDate(6));
-            form.setReturnDate(rs.getDate(7));
-            list.add(form);
+            list.add(populateForm(rs));
         }
         close(rs);
         return list;
+    }
+
+    private Form populateForm(ResultSet rs) throws SQLException {
+        Form form = new Form();
+        form.setFormID(rs.getInt(1));
+        form.setBookID(rs.getInt(2));
+        form.setReaderID(rs.getInt(3));
+        form.setLibrarianID(rs.getInt(4));
+        form.setReceivalType(rs.getString(5));
+        form.setReceivalDate(toLocalDate(rs.getDate(6)));
+        form.setReturnDate(toLocalDate(rs.getDate(7)));
+
+        return form;
     }
 }

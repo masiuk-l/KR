@@ -27,5 +27,7 @@ public class ReserveBookController implements Controller {
         bookService.update(book);
         PrintWriter writer = resp.getWriter();
         writer.print(new Gson().toJson(currentCount));
+
+        //todo добавить создание новой формы
     }
 }

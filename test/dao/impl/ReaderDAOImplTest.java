@@ -5,7 +5,7 @@ import entities.Reader;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ReaderDAOImplTest {
         reader.setSurname("Козлов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
-        reader.setBirthday(new Date(calendar.getTimeInMillis()));
+        //reader.setBirthday(new Date(calendar.getTimeInMillis()));
         reader.setEmail("ffr@ww");
         reader.setPassword("fvfdcsdv");
         reader.setGender("женский");
@@ -45,7 +45,7 @@ public class ReaderDAOImplTest {
         reader.setSurname("Иванов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
-        reader.setBirthday(new Date(calendar.getTimeInMillis()));
+        //reader.setBirthday(new Date(calendar.getTimeInMillis()));
         reader.setEmail("ffr@ww");
         reader.setPassword("fvfdcsdv");
         reader.setGender("женский");
@@ -69,12 +69,16 @@ public class ReaderDAOImplTest {
         reader.setSurname("Иванов");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(1976, Calendar.NOVEMBER, 27);
-        reader.setBirthday(new Date(calendar.getTimeInMillis()));
+        reader.setBirthday(LocalDate.now());
         reader.setEmail("ffr@ww");
         reader.setPassword("fvfdcsdv");
         reader.setGender("женский");
         reader.setStatus("");
         readerDAO.save(reader);
+        //проверка работы c датой
+        reader = readerDAO.getBySurname("Иванов").get(0);
+        System.out.println(reader);
+        //
         List<Reader> readers = readerDAO.getAll();
         int oldSize = readers.size();
         readerDAO.delete(reader.getReaderID());

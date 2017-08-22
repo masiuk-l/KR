@@ -23,7 +23,7 @@ public class AuthFilter implements Filter {
         if (CommandType.RESERVE_BOOK_AJAX.equals(type)) {
             String contextPath = request.getContextPath();
             if ((session.getAttribute("sreader") == null)) {
-                //response.sendRedirect(contextPath + "/frontController?command=login");//todo не работает!
+                response.sendRedirect(contextPath + "/frontController?command=login");//todo не работает!
                 return;
             }
         }
