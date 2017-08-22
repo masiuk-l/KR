@@ -1,5 +1,6 @@
 package service.impl;
 
+import VO.BookVO;
 import VO.FormVO;
 import VO.transfer.FormTransfer;
 import dao.BookDAO;
@@ -14,6 +15,7 @@ import entities.Book;
 import entities.Form;
 import entities.Librarian;
 import entities.Reader;
+import service.BookService;
 import service.FormService;
 import service.ServiceException;
 
@@ -27,6 +29,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
     private BookDAO bookDAO = BookDAOImpl.getInstance();
     private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
     private LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
+    private BookService bookService = new BookServiceImpl();
 
     @Override
     public Form save(Form form) {
@@ -84,7 +87,6 @@ public class FormServiceImpl extends AbstractService implements FormService {
             throw new ServiceException("Error deleting Form", e);
         }
     }
-
 
     @Override
     public List<Form> getByReader(Reader reader) {
@@ -149,8 +151,9 @@ public class FormServiceImpl extends AbstractService implements FormService {
             FormVO formVO;
             Reader reader = readerDAO.get(form.getReaderID());
             Book book = bookDAO.get(form.getBookID());
+            BookVO bookVO = bookService.getBookVO(book);
             Librarian librarian = librarianDAO.get(form.getLibrarianID());
-            formVO = FormTransfer.toValueObject(form, book, librarian, reader);
+            formVO = FormTransfer.toValueObject(form, bookVO, librarian, reader);
             commit();
             return formVO;
         } catch (SQLException e) {

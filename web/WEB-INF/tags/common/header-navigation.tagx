@@ -76,8 +76,9 @@
                                 <a class="dropdown-item" href="#">
                                     <fmt:message key="menu.cabinet" bundle="${i18n}"></fmt:message>
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <fmt:message key="menu.mybooks" bundle="${i18n}"></fmt:message>
+                                <a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/frontController?command=mybooks">
+                                    <fmt:message key="mybooks.title" bundle="${i18n}"></fmt:message>
                                 </a>
                                 <a class="divider"></a>
 

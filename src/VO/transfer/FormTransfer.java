@@ -1,16 +1,16 @@
 package VO.transfer;
 
+import VO.BookVO;
 import VO.FormVO;
-import entities.Book;
 import entities.Form;
 import entities.Librarian;
 import entities.Reader;
 
 public class FormTransfer {
-    public static FormVO toValueObject(Form form, Book book, Librarian librarian, Reader reader) {
+    public static FormVO toValueObject(Form form, BookVO bookVO, Librarian librarian, Reader reader) {
         FormVO formVO = new FormVO();
         formVO.setForm(form);
-        formVO.setBook(book);
+        formVO.setBookVO(bookVO);
         formVO.setLibrarian(librarian);
         formVO.setReader(reader);
         return formVO;
