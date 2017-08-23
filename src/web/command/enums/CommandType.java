@@ -14,6 +14,7 @@ public enum CommandType {
     EDIT_READER("cabinet/editReader.jsp", "editreader", "editreader.title", new EditReaderController()),
     ERROR("error/error.jsp", "error", "error.title", new ErrorController()),
     LOGIN("login.jsp", "login", "login.title", new LoginController()),
+    LOGIN_LIB("login.jsp", "loginlib", "loginlib.title", new LoginLibController()),
     LOGOUT("", "logout", "logout.title", new LogoutController()),
     MAIN("main/main.jsp", "main", "library.title", new MainController()),
     MY_BOOKS("cabinet/myBooks.jsp", "mybooks", "mybooks.title", new MyBooksController()),

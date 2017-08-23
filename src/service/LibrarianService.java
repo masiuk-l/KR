@@ -16,6 +16,8 @@ public interface LibrarianService {
 
     List<Librarian> getBySurname(String surname);
 
+    Librarian getByLogin(String login);
+
     List<Librarian> getAll();
 
 }

@@ -29,7 +29,7 @@
 <!-- Modal -->
 <div class="modal fade bs-modal-sm" id="myModal" tabindex="1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog ">
         <div class="modal-content">
             <br>
             <div class="bs-example bs-example-tabs">
@@ -194,23 +194,23 @@
                     <div role="tabpanel" class="tab-pane fade" id="lib">
                         <form class="form-horizontal" action="frontController?command=loginlib" method="post">
                             <fieldset>
-                                <!-- Sign In Form -->
+                                <!-- Librarians form -->
                                 <!-- email-->
                                 <div class="control-group">
-                                    <label class="control-label" for="login"><fmt:message bundle="${i18n}"
-                                                                                          key="login.email"></fmt:message>:</label>
+                                    <label class="control-label" for="loginlib"><fmt:message bundle="${i18n}"
+                                                                                             key="login.email"></fmt:message>:</label>
                                     <div class="controls">
-                                        <input id="login" name="login" type="text" class="form-control input-medium"
+                                        <input id="loginlib" name="loginlib" class="form-control input-medium"
                                                required="">
                                     </div>
                                 </div>
 
                                 <!--password-->
                                 <div class="control-group">
-                                    <label class="control-label" for="passw"><fmt:message bundle="${i18n}"
-                                                                                          key="login.password"></fmt:message>:</label>
+                                    <label class="control-label" for="passwordlib"><fmt:message bundle="${i18n}"
+                                                                                                key="login.password"></fmt:message>:</label>
                                     <div class="controls">
-                                        <input required="" id="passw" name="password"
+                                        <input required="" id="passwordlib" name="passwordlib"
                                                class="form-control input-medium" type="password" placeholder="********">
                                     </div>
                                 </div>

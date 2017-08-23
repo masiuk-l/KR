@@ -87,6 +87,22 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
     }
 
     @Override
+    public Librarian getByLogin(String login) {
+        ArrayList<Librarian> librarians;
+        try {
+            startTransaction();
+            librarians = new ArrayList<>(librarianDAO.getByLogin(login));
+            if (librarians.size() > 1)
+                throw new ServiceException("Multiple login Error");
+            commit();
+            return librarians.get(0);
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error finding Librarian", e);
+        }
+    }
+
+    @Override
     public List<Librarian> getAll() {
         ArrayList<Librarian> librarians;
         try {

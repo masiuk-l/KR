@@ -21,12 +21,14 @@ public class LibrarianDAOImpl implements LibrarianDAO {
     private static final String getLibrarianQuery = "SELECT * FROM LIBRARIANS WHERE LIBRARIAN_ID=?";
     private static final String getAllLibrarianQuery = "SELECT * FROM LIBRARIANS";
     private static final String getLibrarianBySurnameQuery = "SELECT * FROM LIBRARIANS WHERE SURNAME=?";
+    private static final String getLibrarianByLoginQuery = "SELECT * FROM LIBRARIANS WHERE EMAIL=?";
     private static final String deleteLibrarianQuery = "DELETE FROM LIBRARIANS WHERE LIBRARIAN_ID=?";
     private static volatile LibrarianDAO INSTANCE = null;
     private PreparedStatement psSave;
     private PreparedStatement psUpdate;
     private PreparedStatement psGet;
     private PreparedStatement psGetBySurname;
+    private PreparedStatement psGetByLogin;
     private PreparedStatement psGetAll;
     private PreparedStatement psDelete;
 
@@ -36,6 +38,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
             psUpdate = ConnectionManager.getConnection().prepareStatement(updateLibrarianQuery);
             psGet = ConnectionManager.getConnection().prepareStatement(getLibrarianQuery);
             psGetBySurname = ConnectionManager.getConnection().prepareStatement(getLibrarianBySurnameQuery);
+            psGetByLogin = ConnectionManager.getConnection().prepareStatement(getLibrarianByLoginQuery);
             psGetAll = ConnectionManager.getConnection().prepareStatement(getAllLibrarianQuery);
             psDelete = ConnectionManager.getConnection().prepareStatement(deleteLibrarianQuery);
         } catch (SQLException e) {
@@ -121,6 +124,20 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         psGetBySurname.setString(1, surname);
         psGetBySurname.execute();
         ResultSet rs = psGetBySurname.getResultSet();
+        while (rs.next()) {
+            list.add(populateLibrarian(rs));
+        }
+        close(rs);
+
+        return list;
+    }
+
+    @Override
+    public List<Librarian> getByLogin(String login) throws SQLException {
+        List<Librarian> list = new ArrayList<>();
+        psGetByLogin.setString(1, login);
+        psGetByLogin.execute();
+        ResultSet rs = psGetByLogin.getResultSet();
         while (rs.next()) {
             list.add(populateLibrarian(rs));
         }
