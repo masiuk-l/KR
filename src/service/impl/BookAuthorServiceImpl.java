@@ -14,7 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookAuthorServiceImpl extends AbstractService implements BookAuthorService {
+
+    private static volatile BookAuthorService INSTANCE = null;
+
     private BookAuthorDAO bookAuthorDAO = BookAuthorDAOImpl.getInstance();
+
+    private BookAuthorServiceImpl() {
+    } //todo delete
 
     @Override
     public BookAuthor save(BookAuthor bookAuthor) {
@@ -113,6 +119,20 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
             rollback();
             throw new ServiceException("Error finding BookAuthor", e);
         }
+    }
+
+    public static BookAuthorService getInstance() {
+        BookAuthorService bookAuthorService = INSTANCE;
+        if (bookAuthorService == null) {
+            synchronized (BookAuthorServiceImpl.class) {
+                bookAuthorService = INSTANCE;
+                if (bookAuthorService == null) {
+                    INSTANCE = bookAuthorService = new BookAuthorServiceImpl();
+                }
+            }
+        }
+
+        return bookAuthorService;
     }
 }
 

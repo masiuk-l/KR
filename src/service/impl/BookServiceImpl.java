@@ -14,11 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookServiceImpl extends AbstractService implements BookService {
+    private static volatile BookService INSTANCE = null;
+
     private BookDAO bookDAO = BookDAOImpl.getInstance();
     private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
     private AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
     private FormDAO formDAO = FormDAOImpl.getInstance();
     private BookAuthorDAO bookAuthorDAO = BookAuthorDAOImpl.getInstance();
+
+    private BookServiceImpl() {
+    } //todo delete
 
     @Override
     public Book save(Book book) {
@@ -157,4 +162,19 @@ public class BookServiceImpl extends AbstractService implements BookService {
             throw new ServiceException("Error finding Book", e);
         }
     }
+
+    public static BookService getInstance() {
+        BookService BookService = INSTANCE;
+        if (BookService == null) {
+            synchronized (BookServiceImpl.class) {
+                BookService = INSTANCE;
+                if (BookService == null) {
+                    INSTANCE = BookService = new BookServiceImpl();
+                }
+            }
+        }
+
+        return BookService;
+    }
+
 }

@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarianServiceImpl extends AbstractService implements LibrarianService {
+    private static volatile LibrarianService INSTANCE = null;
+
     private LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
+
+    private LibrarianServiceImpl() {
+    } //todo delete
 
     @Override
     public Librarian save(Librarian librarian) {
@@ -114,5 +119,20 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
             rollback();
             throw new ServiceException("Error finding Librarian", e);
         }
+    }
+
+
+    public static LibrarianService getInstance() {
+        LibrarianService librarianService = INSTANCE;
+        if (librarianService == null) {
+            synchronized (LibrarianServiceImpl.class) {
+                librarianService = INSTANCE;
+                if (librarianService == null) {
+                    INSTANCE = librarianService = new LibrarianServiceImpl();
+                }
+            }
+        }
+
+        return librarianService;
     }
 }

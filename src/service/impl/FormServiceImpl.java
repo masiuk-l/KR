@@ -25,11 +25,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FormServiceImpl extends AbstractService implements FormService {
+    private static volatile FormService INSTANCE = null;
+
     private FormDAO formDAO = FormDAOImpl.getInstance();
     private BookDAO bookDAO = BookDAOImpl.getInstance();
     private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
     private LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
-    private BookService bookService = new BookServiceImpl();
+    private BookService bookService = BookServiceImpl.getInstance();
+
+    private FormServiceImpl() {
+    }//todo delete
 
     @Override
     public Form save(Form form) {
@@ -174,5 +179,20 @@ public class FormServiceImpl extends AbstractService implements FormService {
             rollback();
             throw new ServiceException("Error finding Form", e);
         }
+    }
+
+
+    public static FormService getInstance() {
+        FormService formService = INSTANCE;
+        if (formService == null) {
+            synchronized (FormServiceImpl.class) {
+                formService = INSTANCE;
+                if (formService == null) {
+                    INSTANCE = formService = new FormServiceImpl();
+                }
+            }
+        }
+
+        return formService;
     }
 }

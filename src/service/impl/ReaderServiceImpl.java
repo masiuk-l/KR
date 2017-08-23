@@ -22,9 +22,15 @@ import java.util.List;
  * Project KR. Created by masiuk-l on 06.08.2017.
  */
 public class ReaderServiceImpl extends AbstractService implements ReaderService {
+
+    private static volatile ReaderService INSTANCE = null;
+
     private ReaderDAO readerDAO = ReaderDAOImpl.getInstance();
     private FormDAO formDAO = FormDAOImpl.getInstance();
-    private FormService formService = new FormServiceImpl();
+    private FormService formService = FormServiceImpl.getInstance();
+
+    private ReaderServiceImpl() {
+    } //todo delete
 
     @Override
     public Reader save(Reader reader) {
@@ -173,5 +179,20 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             rollback();
             throw new ServiceException("Error finding Reader", e);
         }
+    }
+
+
+    public static ReaderService getInstance() {
+        ReaderService readerService = INSTANCE;
+        if (readerService == null) {
+            synchronized (ReaderServiceImpl.class) {
+                readerService = INSTANCE;
+                if (readerService == null) {
+                    INSTANCE = readerService = new ReaderServiceImpl();
+                }
+            }
+        }
+
+        return readerService;
     }
 }

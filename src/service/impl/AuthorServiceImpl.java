@@ -11,8 +11,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class AuthorServiceImpl extends AbstractService implements AuthorService {
+    private static volatile AuthorService INSTANCE = null;
     private AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
+
+    private AuthorServiceImpl() {
+    } //todo delete
 
     @Override
     public Author save(Author author) {
@@ -97,5 +102,19 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
             rollback();
             throw new ServiceException("Error finding Author", e);
         }
+    }
+
+    public static AuthorService getInstance() {
+        AuthorService authorService = INSTANCE;
+        if (authorService == null) {
+            synchronized (AuthorServiceImpl.class) {
+                authorService = INSTANCE;
+                if (authorService == null) {
+                    INSTANCE = authorService = new AuthorServiceImpl();
+                }
+            }
+        }
+
+        return authorService;
     }
 }
