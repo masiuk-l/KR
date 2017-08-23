@@ -27,14 +27,13 @@ public class EditReaderController implements Controller {
             newReader.setSurname(req.getParameter("surname"));
             newReader.setName(req.getParameter("name"));
             newReader.setSecondName(req.getParameter("secondname"));
-            newReader.setEmail(req.getParameter("email"));
-            newReader.setPassword(req.getParameter("password"));
+            newReader.setEmail(req.getParameter("em"));
+            newReader.setPassword(req.getParameter("pass"));
             LocalDate date = LocalDate.parse(req.getParameter("birthday"));
             newReader.setBirthday(date);
-            System.out.println(req.getParameter("gender"));
             newReader.setGender(req.getParameter("gender").equals("1") ? "male" : "female");
-            System.out.println(newReader.getGender());
             readerService.update(sessionReader, newReader);
+            req.getSession().setAttribute("sreader", readerService.get(sessionReader.getReaderID()));
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath + "/frontController?command=main");
             return;

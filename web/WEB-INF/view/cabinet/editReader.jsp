@@ -19,20 +19,20 @@
                             <!-- Sign Up Form -->
                             <!-- email-->
                             <div class="control-group">
-                                <label class="control-label" for="email"><fmt:message bundle="${i18n}"
-                                                                                      key="login.email"></fmt:message>:</label>
+                                <label class="control-label" for="em"><fmt:message bundle="${i18n}"
+                                                                                   key="login.email"></fmt:message>:</label>
                                 <div class="controls">
-                                    <input id="email" name="email" class="form-control input-large"
+                                    <input id="em" name="em" class="form-control input-large"
                                            placeholder="${sreader.email}">
                                 </div>
                             </div>
 
                             <!--password-->
                             <div class="control-group">
-                                <label class="control-label" for="password"><fmt:message bundle="${i18n}"
-                                                                                         key="login.password"></fmt:message>:</label>
+                                <label class="control-label" for="pass"><fmt:message bundle="${i18n}"
+                                                                                     key="login.password"></fmt:message>:</label>
                                 <div class="controls">
-                                    <input id="password" name="password" class="form-control input-large"
+                                    <input id="pass" name="pass" class="form-control input-large"
                                            type="password" placeholder="********">
                                 </div>
                             </div>
@@ -87,10 +87,20 @@
                                                                                        key="login.gender"></fmt:message>:</label>
                                 <div class="controls">
                                     <select class="form-control input-large" name="gender" id="gender">
-                                        <option value="1"><fmt:message bundle="${i18n}"
-                                                                       key="login.gender.male"></fmt:message></option>
-                                        <option value="2"><fmt:message bundle="${i18n}"
-                                                                       key="login.gender.female"></fmt:message></option>
+                                        <c:choose>
+                                            <c:when test="${sreader.gender eq 'male'}">
+                                                <option value="1" selected><fmt:message bundle="${i18n}"
+                                                                                        key="login.gender.male"></fmt:message></option>
+                                                <option value="2"><fmt:message bundle="${i18n}"
+                                                                               key="login.gender.female"></fmt:message></option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="1"><fmt:message bundle="${i18n}"
+                                                                               key="login.gender.male"></fmt:message></option>
+                                                <option value="2" selected><fmt:message bundle="${i18n}"
+                                                                                        key="login.gender.female"></fmt:message></option>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </select>
                                 </div>
                             </div>
@@ -100,7 +110,9 @@
                                 <label class="control-label"></label>
                                 <div class="controls">
                                     <input type="submit" class="btn btn-success"
-                                           value="<fmt:message bundle="${i18n}" key="login.signup"></fmt:message>"/>
+                                           value="<fmt:message bundle="${i18n}" key="cabinet.edit"></fmt:message>"/>
+                                    <input type="submit" class="btn btn-secondary"
+                                           value="<fmt:message bundle="${i18n}" key="login.close"></fmt:message>"/>
                                 </div>
                             </div>
                         </fieldset>
