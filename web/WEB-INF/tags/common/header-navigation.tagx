@@ -73,8 +73,9 @@
                                 <fmt:message key="menu.hello" bundle="${i18n}"></fmt:message>, ${sreader.name}!
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">
-                                    <fmt:message key="menu.cabinet" bundle="${i18n}"></fmt:message>
+                                <a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/frontController?command=editreader">
+                                    <fmt:message key="menu.edit" bundle="${i18n}"></fmt:message>
                                 </a>
                                 <a class="dropdown-item"
                                    href="${pageContext.request.contextPath}/frontController?command=mybooks">

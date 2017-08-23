@@ -63,7 +63,7 @@
                                                                                         key="login.email"></fmt:message>:</label>
                                     <div class="controls">
                                         <input id="log" name="login" type="text" class="form-control input-medium"
-                                               placeholder="JoeSixpack" required="">
+                                               required="">
                                     </div>
                                 </div>
 

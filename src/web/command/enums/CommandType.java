@@ -11,6 +11,7 @@ public enum CommandType {
 
     CATALOG("catalog/main.jsp", "catalog", "catalog.title", new CatalogController()),
     BOOK("catalog/book.jsp", "book", "book.title", new BookController()),
+    EDIT_READER("cabinet/editReader.jsp", "editreader", "editreader.title", new EditReaderController()),
     ERROR("error/error.jsp", "error", "error.title", new ErrorController()),
     LOGIN("login.jsp", "login", "login.title", new LoginController()),
     LOGOUT("", "logout", "logout.title", new LogoutController()),

@@ -71,6 +71,20 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     }
 
     @Override
+    public void update(Reader oldReader, Reader newReader) {
+        Reader reader = new Reader();
+        reader.setReaderID(oldReader.getReaderID());
+        reader.setSurname((newReader.getSurname().length() == 0) ? oldReader.getSurname() : newReader.getSurname());
+        reader.setName((newReader.getName().length() == 0) ? oldReader.getName() : newReader.getName());
+        reader.setSecondName((newReader.getSecondName().length() == 0) ? oldReader.getSecondName() : newReader.getSecondName());
+        reader.setEmail((newReader.getEmail().length() == 0) ? oldReader.getEmail() : newReader.getEmail());
+        reader.setPassword((newReader.getPassword().length() == 0) ? oldReader.getPassword() : newReader.getPassword());
+        reader.setBirthday(newReader.getBirthday());
+        reader.setGender(newReader.getGender());
+        update(reader);
+    }
+
+    @Override
     public int delete(Serializable id) {
         try {
             startTransaction();

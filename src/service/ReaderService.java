@@ -28,4 +28,6 @@ public interface ReaderService {
     ReaderVO getReaderVO(Reader reader);
 
     List<Reader> getAll();
+
+    void update(Reader oldReader, Reader newReader);
 }

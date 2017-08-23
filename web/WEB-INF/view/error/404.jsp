@@ -11,5 +11,5 @@
             <small><fmt:message bundle="${i18n}" key="error.page_not_found"></fmt:message></small>
         </h1>
     </div>
-    <img src="assests/img/404.png" class="rounded center-block">
+    <img src="assests/img/404.png" class="rounded w-25">
 </div>
