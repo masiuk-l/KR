@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReadersController implements Controller {
-    private ReaderService readerService = new ReaderServiceImpl();
+    private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

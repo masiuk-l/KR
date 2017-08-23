@@ -2,9 +2,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<jsp:useBean id="now" class="java.util.Date" scope="page"/>
+
+<fmt:formatDate value='${now}' pattern='yyyy-MM-dd' var="searchFormated"/>
+<c:set var="strDate" value="${searchFormated}"/>
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages" var="i18n"/>
+
+<script>
+    var ban = '<fmt:message bundle="${i18n}" key="reader.ban"></fmt:message>';
+    var unban = '<fmt:message bundle="${i18n}" key="reader.unban"></fmt:message>';
+</script>
+
 <div class="container">
     <div class="card-columns">
 
@@ -35,15 +45,39 @@
                         <b><fmt:message bundle="${i18n}" key="login.birthday"></fmt:message>: </b>
                             ${readerVO.reader.birthday}</li>
                         <%--<li class="list-group-item">V</li>--%>
+                    <li class="list-group-item">
+                        <b><fmt:message bundle="${i18n}" key="reader.books"></fmt:message>: </b>
+                        <ul class=" list-group list-unstyled">
+                            <c:forEach var="formVO" items="${readerVO.formVOS}">
+                                <li class="">
+                                    <c:choose>
+                                        <c:when test="${formVO.form.returnDate gt strDate}">
+                                            <i class="fa fa-check-circle-o"></i> ${formVO.bookVO.book.name}
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="fa fa-times-circle-o"></i> ${formVO.bookVO.book.name}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="card-body">
-                    <a href="${pageContext.request.contextPath}/frontController?command=reader&id=${readerVO.reader.readerID}"
-                       class="btn btn-primary">
-                        <fmt:message bundle="${i18n}" key="admin.show.reader"></fmt:message>
-                    </a>
+                    <c:choose>
+                        <c:when test="${readerVO.reader.status eq 'BANNED'}">
+                            <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
+                                <fmt:message bundle="${i18n}" key="reader.unban"></fmt:message>
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
+                                <fmt:message bundle="${i18n}" key="reader.ban"></fmt:message>
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
-
         </c:forEach>
     </div>
 </div>

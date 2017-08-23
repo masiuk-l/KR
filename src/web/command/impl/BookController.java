@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class BookController implements Controller {
 
-    private BookService bookService = new BookServiceImpl();
+    private BookService bookService = BookServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

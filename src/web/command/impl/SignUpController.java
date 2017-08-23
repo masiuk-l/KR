@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class SignUpController implements Controller {
-    private ReaderService readerService = new ReaderServiceImpl();
+    private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

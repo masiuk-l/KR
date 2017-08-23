@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MyBooksController implements Controller {
-    private BookService bookService = new BookServiceImpl();
-    private FormService formService = new FormServiceImpl();
+    private BookService bookService = BookServiceImpl.getInstance();
+    private FormService formService = FormServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

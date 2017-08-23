@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReturnBookController implements Controller {
-    private BookService bookService = new BookServiceImpl();
-    private FormService formService = new FormServiceImpl();
+    private BookService bookService = BookServiceImpl.getInstance();
+    private FormService formService = FormServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

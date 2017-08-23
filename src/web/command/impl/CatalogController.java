@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CatalogController implements Controller {
-    private BookService bookService = new BookServiceImpl();
+    private BookService bookService = BookServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

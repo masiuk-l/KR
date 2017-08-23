@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginLibController implements Controller {
-    LibrarianService librarianService = new LibrarianServiceImpl();
+    LibrarianService librarianService = LibrarianServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

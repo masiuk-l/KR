@@ -6,6 +6,9 @@ $(document).ready(function () {
     $('.return-book').click(function () {
         returnBook($(this));
     });
+    $('.ban-reader').click(function () {
+        banReader($(this));
+    });
 });
 
 function reserveBook(element) {
@@ -48,3 +51,27 @@ function returnBook(element) {
     });
 
 }
+
+function banReader(element) {//todo объединить
+    var readerID = $(element).attr('id');
+    $.ajax({
+        type: 'get',
+        url: contextUrl + '/frontController?command=banReader&readerID=' + readerID,
+        success: function (response) {
+            if ($('.ban-reader#' + readerID).text() === ban) {
+                console.log($('.ban-reader#' + readerID).text());
+                $('.ban-reader#' + readerID).text(unban);
+            } else {
+                console.log($('.ban-reader#' + readerID).text());
+                $('.ban-reader#' + readerID).text(ban);
+            }
+
+        }
+
+    }).fail(function (data) {
+        if (console && console.log) {
+            console.log("Error data:", data);
+        }
+    });
+}
+
