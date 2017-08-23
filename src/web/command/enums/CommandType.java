@@ -20,7 +20,7 @@ public enum CommandType {
     MY_BOOKS("cabinet/myBooks.jsp", "mybooks", "mybooks.title", new MyBooksController()),
     NOT_FOUND("error/404.jsp", "404", "404.title", new ErrorController()),
     READER("readers/cabinet.jsp", "cabinet", "cabinet.title", new ReaderController()),
-    READERS("readers/main.jsp", "readers", "readers.title", new ReadersController()),
+    READERS("admin/readers.jsp", "readers", "readers.title", new ReadersController()),
     RESERVE_BOOK_AJAX("", "reserveBook", "", new ReserveBookController()),
     RETURN_BOOK_AJAX("", "returnBook", "", new ReturnBookController()),
     SIGN_UP("", "signup", "sigup.title", new SignUpController());

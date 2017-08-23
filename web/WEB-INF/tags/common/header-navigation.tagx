@@ -106,8 +106,8 @@
                                     <fmt:message key="admin.add.author" bundle="${i18n}"></fmt:message>
                                 </a>
                                 <a class="dropdown-item"
-                                   href="${pageContext.request.contextPath}/frontController?command=banreader">
-                                    <fmt:message key="admin.ban.reader" bundle="${i18n}"></fmt:message>
+                                   href="${pageContext.request.contextPath}/frontController?command=readers">
+                                    <fmt:message key="readers.title" bundle="${i18n}"></fmt:message>
                                 </a>
                                 <a class="dropdown-item"
                                    href="${pageContext.request.contextPath}/frontController?command=logout">
