@@ -37,18 +37,18 @@
 
 
                 <c:choose>
-                    <c:when test="${pageName eq 'reserve'}">
+                    <c:when test="${pageName eq 'about'}">
                         <li class="nav-item active">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=readers"><fmt:message
-                                    key="menu.reserve" bundle="${i18n}"></fmt:message></a>
+                               href="${pageContext.request.contextPath}/frontController?command=about"><fmt:message
+                                    key="about.title" bundle="${i18n}"></fmt:message></a>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/frontController?command=readers"><fmt:message
-                                    key="menu.reserve" bundle="${i18n}"></fmt:message></a>
+                               href="${pageContext.request.contextPath}/frontController?command=about"><fmt:message
+                                    key="about.title" bundle="${i18n}"></fmt:message></a>
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -101,10 +101,10 @@
                                    href="${pageContext.request.contextPath}/frontController?command=addbook">
                                     <fmt:message key="admin.add.book" bundle="${i18n}"></fmt:message>
                                 </a>
-                                <a class="dropdown-item"
-                                   href="${pageContext.request.contextPath}/frontController?command=addauthor">
-                                    <fmt:message key="admin.add.author" bundle="${i18n}"></fmt:message>
-                                </a>
+                                <!--<a class="dropdown-item"-->
+                                <!--href="${pageContext.request.contextPath}/frontController?command=addauthor">-->
+                                <!--<fmt:message key="admin.add.author" bundle="${i18n}"></fmt:message>-->
+                                <!--</a>-->
                                 <a class="dropdown-item"
                                    href="${pageContext.request.contextPath}/frontController?command=readers">
                                     <fmt:message key="readers.title" bundle="${i18n}"></fmt:message>
@@ -124,11 +124,10 @@
                         </li>
                     </c:otherwise>
                 </c:choose>
-
-
                 <!--<form class="form-inline mt-2 mt-md-0">-->
-                <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"></input>-->
-                <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                <!--<input class="form-control mr-sm-2" type="text" placeholder="Search"-->
+                <!--aria-label="Search"></input>-->
+                <!--<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>-->
                 <!--</form>-->
             </ul>
 
