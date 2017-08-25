@@ -26,7 +26,7 @@ public enum CommandType {
     READERS("admin/readers.jsp", "readers", "readers.title", new ReadersController()),
     RESERVE_BOOK_AJAX("", "reserveBook", "", new ReserveBookController()),
     RETURN_BOOK_AJAX("", "returnBook", "", new ReturnBookController()),
-    SIGN_UP("", "signup", "sigup.title", new SignUpController());
+    SIGN_UP("login.jsp", "signup", "sigup.title", new SignUpController());
 
 
 

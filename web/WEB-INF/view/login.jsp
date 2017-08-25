@@ -6,8 +6,13 @@
 <fmt:setBundle basename="messages" var="i18n"/>
 
 <!-- Button trigger modal -->
-<c:if test="${not (errorMsg eq '')}">
-    <div class="error"> ${errorMsg}</div>
+<c:if test="${not empty errorMsg and not (errorMsg eq '')}">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="fa fa-times-circle-o"></i>
+        </button>
+            ${errorMsg}
+    </div>
 </c:if>
 
 <div class="container">
