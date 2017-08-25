@@ -17,8 +17,9 @@
                             <!-- Add Book Form -->
                             <!-- name-->
                             <div class="control-group">
-                                <label class="control-label" for="name"><fmt:message bundle="${i18n}"
-                                                                                     key="book.name"></fmt:message>:</label>
+                                <label class="control-label" for="name">
+                                    <fmt:message bundle="${i18n}" key="book.name"/>:
+                                </label>
                                 <div class="controls">
                                     <input id="name" name="name" class="form-control input-large">
                                 </div>
@@ -26,8 +27,9 @@
 
                             <!--author(s)-->
                             <div class="control-group">
-                                <label class="control-label" for="author"><fmt:message bundle="${i18n}"
-                                                                                       key="catalog.author"></fmt:message>:</label>
+                                <label class="control-label" for="author">
+                                    <fmt:message bundle="${i18n}" key="catalog.author"/>:
+                                </label>
                                 <div class="controls">
                                     <select multiple class="form-control input-large" name="author" id="author"
                                             required="">
@@ -46,8 +48,9 @@
                             <br>
                             <!--isbn-->
                             <div class="control-group">
-                                <label class="control-label" for="isbn"><fmt:message bundle="${i18n}"
-                                                                                     key="catalog.isbn"></fmt:message>:</label>
+                                <label class="control-label" for="isbn">
+                                    <fmt:message bundle="${i18n}" key="catalog.isbn"/>:
+                                </label>
                                 <div class="controls">
                                     <input id="isbn" class="form-control input-large" name="isbn">
                                 </div>
@@ -55,8 +58,9 @@
 
                             <!--genre-->
                             <div class="control-group">
-                                <label class="control-label" for="genre"><fmt:message bundle="${i18n}"
-                                                                                      key="catalog.genre"></fmt:message>:</label>
+                                <label class="control-label" for="genre">
+                                    <fmt:message bundle="${i18n}" key="catalog.genre"/>:
+                                </label>
                                 <div class="controls">
                                     <input id="genre" class="form-control input-large" name="genre">
                                 </div>
@@ -64,8 +68,9 @@
 
                             <!--year-->
                             <div class="control-group">
-                                <label class="control-label" for="year"><fmt:message bundle="${i18n}"
-                                                                                     key="catalog.year"></fmt:message>:</label>
+                                <label class="control-label" for="year">
+                                    <fmt:message bundle="${i18n}" key="catalog.year"/>:
+                                </label>
                                 <div class="controls">
                                     <input id="year" class="form-control input-large" name="year">
                                 </div>
@@ -73,8 +78,8 @@
 
                             <!--quantity-->
                             <div class="control-group">
-                                <label class="control-label" for="year">
-                                    <fmt:message bundle="${i18n}" key="catalog.quantity"></fmt:message>:
+                                <label class="control-label" for="quantity">
+                                    <fmt:message bundle="${i18n}" key="catalog.quantity"/>:
                                 </label>
                                 <div class="controls">
                                     <input type="number" value="1" id="quantity" class="form-control input-large"
@@ -117,24 +122,27 @@
                                 <!-- Add Author Form -->
                                 <!-- surname-->
                                 <div class="control-group">
-                                    <label class="control-label" for="surname"><fmt:message bundle="${i18n}"
-                                                                                            key="login.surname"></fmt:message>:</label>
+                                    <label class="control-label" for="surname">
+                                        <fmt:message bundle="${i18n}" key="login.surname"/>:
+                                    </label>
                                     <div class="controls">
                                         <input id="surname" name="surname" class="form-control input-medium">
                                     </div>
                                 </div>
                                 <!-- name-->
                                 <div class="control-group">
-                                    <label class="control-label" for="authorName"><fmt:message bundle="${i18n}"
-                                                                                               key="login.name"></fmt:message>:</label>
+                                    <label class="control-label" for="authorName">
+                                        <fmt:message bundle="${i18n}" key="login.name"/>:
+                                    </label>
                                     <div class="controls">
                                         <input id="authorName" name="name" class="form-control input-medium">
                                     </div>
                                 </div>
                                 <!-- secondname-->
                                 <div class="control-group">
-                                    <label class="control-label" for="secondname"><fmt:message bundle="${i18n}"
-                                                                                               key="login.surname"></fmt:message>:</label>
+                                    <label class="control-label" for="secondname">
+                                        <fmt:message bundle="${i18n}" key="login.surname"/>:
+                                    </label>
                                     <div class="controls">
                                         <input id="secondname" name="secondname" class="form-control input-medium">
                                     </div>
@@ -142,8 +150,9 @@
 
                                 <!-- birthday -->
                                 <div class="control-group">
-                                    <label class="control-label" for="birthday"><fmt:message bundle="${i18n}"
-                                                                                             key="login.birthday"></fmt:message>:</label>
+                                    <label class="control-label" for="birthday">
+                                        <fmt:message bundle="${i18n}" key="login.birthday"/>:
+                                    </label>
                                     <div class="controls">
                                         <input id="birthday" class="form-control input-large" name="birthday"
                                                type="Date" required="" value="2015-05-09">
@@ -152,8 +161,9 @@
 
                                 <!-- country-->
                                 <div class="control-group">
-                                    <label class="control-label" for="country"><fmt:message bundle="${i18n}"
-                                                                                            key="author.country"></fmt:message>:</label>
+                                    <label class="control-label" for="country">
+                                        <fmt:message bundle="${i18n}" key="author.country"/>:
+                                    </label>
                                     <div class="controls">
                                         <input id="country" name="country" class="form-control input-medium">
                                     </div>
@@ -181,8 +191,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message bundle="${i18n}"
-                                                                                                key="login.close"></fmt:message></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <fmt:message bundle="${i18n}" key="login.close"/>
+                </button>
             </div>
         </div>
     </div>

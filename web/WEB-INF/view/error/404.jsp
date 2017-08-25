@@ -8,7 +8,7 @@
 <div class="container text-center">
     <div class="page-header center-block">
         <h1>404
-            <small><fmt:message bundle="${i18n}" key="error.page_not_found"></fmt:message></small>
+            <small><fmt:message bundle="${i18n}" key="error.page_not_found"/></small>
         </h1>
     </div>
     <img src="assests/img/404.png" class="rounded w-25">

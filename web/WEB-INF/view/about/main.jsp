@@ -24,7 +24,7 @@
 <div class="container text-center">
     <div class="page-header center-block">
         <h1>
-            <small><fmt:message bundle="${i18n}" key="error.page_under_construction"></fmt:message></small>
+            <small><fmt:message bundle="${i18n}" key="error.page_under_construction"/></small>
         </h1>
     </div>
     <img src="assests/img/build.gif" class="rounded w-50">

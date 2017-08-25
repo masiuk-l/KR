@@ -17,36 +17,29 @@
 
 <div class="container">
     <div class="card-columns">
-
         <c:forEach var="readerVO" items="${readerVOS}">
-            <%--<div class="col-lg-4 col-md-6 mb-4">--%>
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">${readerVO.reader.surname} ${readerVO.reader.name} ${readerVO.reader.secondName}</h4>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <b><fmt:message bundle="${i18n}" key="login.gender"></fmt:message>: </b>
+                        <b><fmt:message bundle="${i18n}" key="login.gender"/>: </b>
                         <c:choose>
                             <c:when test="${readerVO.reader.gender eq 'male'}">
-                                <fmt:message bundle="${i18n}" key="login.gender.male"></fmt:message>
+                                <fmt:message bundle="${i18n}" key="login.gender.male"/>
                             </c:when>
                             <c:otherwise>
-                                <fmt:message bundle="${i18n}" key="login.gender.female"></fmt:message>
+                                <fmt:message bundle="${i18n}" key="login.gender.female"/>
                             </c:otherwise>
                         </c:choose>
-
-                            <%--<c:forEach var="author" items="${bookVO.authors}" varStatus="status">--%>
-                            <%--${author.name} ${author.surname}--%>
-                            <%--<c:if test="${not status.last}">,</c:if>--%>
-                            <%--</c:forEach>--%>
                     </li>
                     <li class="list-group-item">
-                        <b><fmt:message bundle="${i18n}" key="login.birthday"></fmt:message>: </b>
-                            ${readerVO.reader.birthday}</li>
-                        <%--<li class="list-group-item">V</li>--%>
+                        <b><fmt:message bundle="${i18n}" key="login.birthday"/>: </b>
+                            ${readerVO.reader.birthday}
+                    </li>
                     <li class="list-group-item">
-                        <b><fmt:message bundle="${i18n}" key="reader.books"></fmt:message>: </b>
+                        <b><fmt:message bundle="${i18n}" key="reader.books"/>: </b>
                         <ul class=" list-group list-unstyled">
                             <c:forEach var="formVO" items="${readerVO.formVOS}">
                                 <li class="">
@@ -67,12 +60,12 @@
                     <c:choose>
                         <c:when test="${readerVO.reader.status eq 'BANNED'}">
                             <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
-                                <fmt:message bundle="${i18n}" key="reader.unban"></fmt:message>
+                                <fmt:message bundle="${i18n}" key="reader.unban"/>
                             </button>
                         </c:when>
                         <c:otherwise>
                             <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
-                                <fmt:message bundle="${i18n}" key="reader.ban"></fmt:message>
+                                <fmt:message bundle="${i18n}" key="reader.ban"/>
                             </button>
                         </c:otherwise>
                     </c:choose>
