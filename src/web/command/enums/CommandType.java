@@ -10,6 +10,7 @@ import web.command.impl.*;
 public enum CommandType {
 
     ADD_BOOK("admin/addBook.jsp", "addbook", "addbook.title", new AddBookController()),
+    ADD_AUTHOR("", "addauthor", "addautor.title", new AddAuthorController()),
     CATALOG("catalog/main.jsp", "catalog", "catalog.title", new CatalogController()),
     BAN_READER_AJAX("", "banReader", "", new BanReaderController()),
     BOOK("catalog/book.jsp", "book", "book.title", new BookController()),

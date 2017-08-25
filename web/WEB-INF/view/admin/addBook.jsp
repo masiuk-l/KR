@@ -177,14 +177,6 @@
                                                value="<fmt:message bundle='${i18n}' key='author.add'/>"/>
                                     </div>
                                 </div>
-                                <%--<!-- cancel -->--%>
-                                <%--<div class="control-group">--%>
-                                <%--<label class="control-label"></label>--%>
-                                <%--<div class="controls">--%>
-                                <%--<a href="${pageContext.request.contextPath}/frontController?command=main" class="btn btn-success"--%>
-                                <%--value="<fmt:message bundle="${i18n}" key="login.close"></fmt:message>"></a>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
                             </fieldset>
                         </form>
                     </div>
