@@ -27,14 +27,14 @@
 
 
 <!-- Modal -->
-<div class="modal fade bs-modal-sm" id="myModal" tabindex="1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
             <br>
             <div class="bs-example bs-example-tabs">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link active" href="#signin" role="tab" data-toggle="tab"><fmt:message
                                 bundle="${i18n}" key="login.signin"></fmt:message></a>
                     </li>

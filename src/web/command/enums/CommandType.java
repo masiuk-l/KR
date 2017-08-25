@@ -9,6 +9,7 @@ import web.command.impl.*;
 @AllArgsConstructor
 public enum CommandType {
 
+    ADD_BOOK("admin/addBook.jsp", "addbook", "addbook.title", new AddBookController()),
     CATALOG("catalog/main.jsp", "catalog", "catalog.title", new CatalogController()),
     BAN_READER_AJAX("", "banReader", "", new BanReaderController()),
     BOOK("catalog/book.jsp", "book", "book.title", new BookController()),

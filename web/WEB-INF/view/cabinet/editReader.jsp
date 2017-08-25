@@ -13,10 +13,11 @@
             <div id="myTabContent" class="tab-content">
 
                 <div role="tabpanel" class="tab-pane fade in active show" id="signup">
-                    <p><b>Редактирование профиля</b></p>
+                    <p><b><fmt:message bundle="${i18n}"
+                                       key="menu.edit"></fmt:message></b></p>
                     <form class="form-horizontal" action="frontController?command=editreader" method="post">
                         <fieldset>
-                            <!-- Sign Up Form -->
+                            <!-- edit reader Form -->
                             <!-- email-->
                             <div class="control-group">
                                 <label class="control-label" for="em"><fmt:message bundle="${i18n}"

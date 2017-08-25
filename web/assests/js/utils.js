@@ -58,11 +58,12 @@ function banReader(element) {//todo объединить
         type: 'get',
         url: contextUrl + '/frontController?command=banReader&readerID=' + readerID,
         success: function (response) {
-            if ($('.ban-reader#' + readerID).text() === ban) {
-                console.log($('.ban-reader#' + readerID).text());
+            var str = $.trim($('.ban-reader#' + readerID).text());
+            if (str === ban) {
+                console.log(str + ban);
                 $('.ban-reader#' + readerID).text(unban);
             } else {
-                console.log($('.ban-reader#' + readerID).text());
+                console.log(str + unban);
                 $('.ban-reader#' + readerID).text(ban);
             }
 
