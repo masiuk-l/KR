@@ -11,28 +11,36 @@
         <div class="modal-body">
             <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active show" id="addbook">
-                    <p><b>Добавление книги</b></p>
-                    <form class="form-horizontal" action="frontController?command=addbook" method="post">
+                    <p><b><fmt:message bundle="${i18n}" key="admin.add.book"/></b></p>
+                    <form class="form-horizontal" action="frontController?command=addbook" method="post"
+                          data-toggle="validator">
                         <fieldset>
                             <!-- Add Book Form -->
                             <!-- name-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="name">
                                     <fmt:message bundle="${i18n}" key="book.name"/>:
                                 </label>
                                 <div class="controls">
-                                    <input id="name" name="name" class="form-control input-large">
+                                    <input id="name" name="name" class="form-control input-large"
+                                           data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                           data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                           required pattern="^.{1,29}$">
                                 </div>
+                                <small class=" form-text text-muted help-block with-errors">
+                                    <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                </small>
                             </div>
 
                             <!--author(s)-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="author">
                                     <fmt:message bundle="${i18n}" key="catalog.author"/>:
                                 </label>
                                 <div class="controls">
                                     <select multiple class="form-control input-large" name="author" id="author"
-                                            required="">
+                                            required
+                                            data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>>
                                         <c:forEach var="author" items="${authors}">
                                             <option value="${author.authorID}">${author.surname} ${author.name}</option>
                                         </c:forEach>
@@ -43,53 +51,77 @@
                                         <fmt:message bundle="${i18n}" key="author.add"/>
                                     </a>
                                 </small>
+
                             </div>
 
                             <br>
                             <!--isbn-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="isbn">
                                     <fmt:message bundle="${i18n}" key="catalog.isbn"/>:
                                 </label>
                                 <div class="controls">
-                                    <input id="isbn" class="form-control input-large" name="isbn">
+                                    <input id="isbn" class="form-control input-large" name="isbn"
+                                           data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                           data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                           required pattern="^[0-9\\-]{1,12}$">
                                 </div>
+                                <small class=" form-text text-muted help-block with-errors">
+                                    <fmt:message bundle='${i18n}' key='data.less-12'/>
+                                </small>
                             </div>
 
+
                             <!--genre-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="genre">
                                     <fmt:message bundle="${i18n}" key="catalog.genre"/>:
                                 </label>
                                 <div class="controls">
-                                    <input id="genre" class="form-control input-large" name="genre">
+                                    <input id="genre" class="form-control input-large" name="genre"
+                                           data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                           data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                           required pattern="^.{1,30}$">
                                 </div>
+                                <small class=" form-text text-muted help-block with-errors">
+
+                                </small>
                             </div>
 
                             <!--year-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="year">
                                     <fmt:message bundle="${i18n}" key="catalog.year"/>:
                                 </label>
                                 <div class="controls">
-                                    <input id="year" class="form-control input-large" name="year">
+                                    <input id="year" class="form-control input-large" name="year"
+                                           data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                           data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                           required pattern="^[0-9]{4}$">
                                 </div>
+                                <small class=" form-text text-muted help-block with-errors">
+                                </small>
                             </div>
 
                             <!--quantity-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label" for="quantity">
                                     <fmt:message bundle="${i18n}" key="catalog.quantity"/>:
                                 </label>
                                 <div class="controls">
-                                    <input type="number" value="1" id="quantity" class="form-control input-large"
-                                           name="quantity">
+                                    <input type="number" value="1" min="1" max="999" id="quantity"
+                                           class="form-control input-large" name="quantity"
+                                           data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                           data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                           required>
                                 </div>
+                                <small class=" form-text text-muted help-block with-errors">
+                                </small>
                             </div>
 
 
                             <!--button-->
-                            <div class="control-group">
+                            <div class="form-group">
                                 <label class="control-label"></label>
                                 <div class="controls">
                                     <input type="submit" class="btn btn-success"
@@ -117,60 +149,89 @@
                 <div id="TabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active show" id="addauthor">
                         <p><b>Добавление книги</b></p>
-                        <form class="form-horizontal" action="frontController?command=addauthor" method="post">
+                        <form class="form-horizontal" action="frontController?command=addauthor" method="post"
+                              data-toggle="validator">
                             <fieldset>
                                 <!-- Add Author Form -->
                                 <!-- surname-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="surname">
                                         <fmt:message bundle="${i18n}" key="login.surname"/>:
                                     </label>
                                     <div class="controls">
-                                        <input id="surname" name="surname" class="form-control input-medium">
+                                        <input id="surname" class="form-control input-large" name="surname"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ]([a-яё]){0,29}$">
                                     </div>
-                                </div>
-                                <!-- name-->
-                                <div class="control-group">
-                                    <label class="control-label" for="authorName">
-                                        <fmt:message bundle="${i18n}" key="login.name"/>:
-                                    </label>
-                                    <div class="controls">
-                                        <input id="authorName" name="name" class="form-control input-medium">
-                                    </div>
-                                </div>
-                                <!-- secondname-->
-                                <div class="control-group">
-                                    <label class="control-label" for="secondname">
-                                        <fmt:message bundle="${i18n}" key="login.surname"/>:
-                                    </label>
-                                    <div class="controls">
-                                        <input id="secondname" name="secondname" class="form-control input-medium">
-                                    </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
                                 </div>
 
+                                <!-- name-->
+                                <div class="form-group">
+                                    <label class="control-label" for="authorname"><fmt:message bundle="${i18n}"
+                                                                                               key="login.name"/>:</label>
+                                    <div class="controls">
+                                        <input id="authorname" class="form-control input-large" name="name"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ][a-яё]{0,29}$">
+                                    </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
+                                </div>
+
+                                <!-- second name-->
+                                <div class="form-group">
+                                    <label class="control-label" for="secondname"><fmt:message bundle="${i18n}"
+                                                                                               key="login.secondname"/>:</label>
+                                    <div class="controls">
+                                        <input id="secondname" class="form-control input-large" name="secondname"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ][a-яё]{0,29}$">
+                                    </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
+                                </div>
+
+
                                 <!-- birthday -->
-                                <div class="control-group">
-                                    <label class="control-label" for="birthday">
-                                        <fmt:message bundle="${i18n}" key="login.birthday"/>:
-                                    </label>
+                                <div class="form-group">
+                                    <label class="control-label" for="birthday"><fmt:message bundle="${i18n}"
+                                                                                             key="login.birthday"/>:</label>
                                     <div class="controls">
                                         <input id="birthday" class="form-control input-large" name="birthday"
-                                               type="Date" required="" value="2015-05-09">
+                                               type="Date" max="2000-01-01" value="1999-05-09"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                    </small>
                                 </div>
 
                                 <!-- country-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="country">
                                         <fmt:message bundle="${i18n}" key="author.country"/>:
                                     </label>
                                     <div class="controls">
-                                        <input id="country" name="country" class="form-control input-medium">
+                                        <input id="country" name="country" class="form-control input-medium"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ][a-яё]{0,29}$">
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
                                 </div>
 
                                 <!-- submit -->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
                                         <input type="submit" class="btn btn-success"

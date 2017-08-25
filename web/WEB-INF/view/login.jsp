@@ -242,10 +242,11 @@
                             <fieldset>
                                 <!-- Librarians form -->
                                 <div class="form-group">
-                                    <label class="control-label" for="logi"><fmt:message bundle="${i18n}"
-                                                                                         key="login.email"/>:</label>
+                                    <label class="control-label" for="loginlib"><fmt:message bundle="${i18n}"
+                                                                                             key="login.email"/>:</label>
                                     <div class="controls">
-                                        <input id="logi" name="login" type="email" class="form-control input-medium"
+                                        <input id="loginlib" name="loginlib" type="email"
+                                               class="form-control input-medium"
                                                data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
                                                data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
                                                required>
@@ -255,10 +256,10 @@
 
                                 <!--password-->
                                 <div class="form-group">
-                                    <label class="control-label" for="passw"><fmt:message bundle="${i18n}"
-                                                                                          key="login.password"/>:</label>
+                                    <label class="control-label" for="passwordlib"><fmt:message bundle="${i18n}"
+                                                                                                key="login.password"/>:</label>
                                     <div class="controls">
-                                        <input id="passw" name="password"
+                                        <input id="passwordlib" name="passwordlib"
                                                class="form-control input-medium" type="password" placeholder="********"
                                                data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
                                                required>
