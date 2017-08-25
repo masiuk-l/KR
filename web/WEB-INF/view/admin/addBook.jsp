@@ -6,13 +6,11 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages" var="i18n"/>
 
-<div class="modal-dialog modal-sm">
+<div class="modal-dialog ">
     <div class="modal-content">
-        <br>
         <div class="modal-body">
             <div id="myTabContent" class="tab-content">
-
-                <div role="tabpanel" class="tab-pane fade in active show" id="signup">
+                <div role="tabpanel" class="tab-pane fade in active show" id="addbook">
                     <p><b>Добавление книги</b></p>
                     <form class="form-horizontal" action="frontController?command=addbook" method="post">
                         <fieldset>
@@ -38,6 +36,11 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                                <small class="form-text text-muted">
+                                    <a href="#addauthor" data-toggle="modal" data-target=".bs-modal-sm">
+                                        <fmt:message bundle="${i18n}" key="author.add"/>
+                                    </a>
+                                </small>
                             </div>
 
                             <br>
@@ -85,12 +88,101 @@
                                 <label class="control-label"></label>
                                 <div class="controls">
                                     <input type="submit" class="btn btn-success"
-                                           value="<fmt:message bundle="${i18n}" key="addbook.title"></fmt:message>"/>
+                                           value="<fmt:message bundle="${i18n}" key="addbook.title"/>"/>
+                                    <a href="${pageContext.request.contextPath}/frontController?command=main"
+                                       class="btn btn-secondary">
+                                        <fmt:message bundle="${i18n}" key="login.close"/>
+                                    </a>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bs-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="TabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active show" id="addauthor">
+                        <p><b>Добавление книги</b></p>
+                        <form class="form-horizontal" action="frontController?command=addauthor" method="post">
+                            <fieldset>
+                                <!-- Add Author Form -->
+                                <!-- surname-->
+                                <div class="control-group">
+                                    <label class="control-label" for="surname"><fmt:message bundle="${i18n}"
+                                                                                            key="login.surname"></fmt:message>:</label>
+                                    <div class="controls">
+                                        <input id="surname" name="surname" class="form-control input-medium">
+                                    </div>
+                                </div>
+                                <!-- name-->
+                                <div class="control-group">
+                                    <label class="control-label" for="authorName"><fmt:message bundle="${i18n}"
+                                                                                               key="login.name"></fmt:message>:</label>
+                                    <div class="controls">
+                                        <input id="authorName" name="name" class="form-control input-medium">
+                                    </div>
+                                </div>
+                                <!-- secondname-->
+                                <div class="control-group">
+                                    <label class="control-label" for="secondname"><fmt:message bundle="${i18n}"
+                                                                                               key="login.surname"></fmt:message>:</label>
+                                    <div class="controls">
+                                        <input id="secondname" name="secondname" class="form-control input-medium">
+                                    </div>
+                                </div>
+
+                                <!-- birthday -->
+                                <div class="control-group">
+                                    <label class="control-label" for="birthday"><fmt:message bundle="${i18n}"
+                                                                                             key="login.birthday"></fmt:message>:</label>
+                                    <div class="controls">
+                                        <input id="birthday" class="form-control input-large" name="birthday"
+                                               type="Date" required="" value="2015-05-09">
+                                    </div>
+                                </div>
+
+                                <!-- country-->
+                                <div class="control-group">
+                                    <label class="control-label" for="country"><fmt:message bundle="${i18n}"
+                                                                                            key="author.country"></fmt:message>:</label>
+                                    <div class="controls">
+                                        <input id="country" name="country" class="form-control input-medium">
+                                    </div>
+                                </div>
+
+                                <!-- submit -->
+                                <div class="control-group">
+                                    <label class="control-label"></label>
+                                    <div class="controls">
+                                        <input type="submit" class="btn btn-success"
+                                               value="<fmt:message bundle='${i18n}' key='author.add'/>"/>
+                                    </div>
+                                </div>
+                                <%--<!-- cancel -->--%>
+                                <%--<div class="control-group">--%>
+                                <%--<label class="control-label"></label>--%>
+                                <%--<div class="controls">--%>
+                                <%--<a href="${pageContext.request.contextPath}/frontController?command=main" class="btn btn-success"--%>
+                                <%--value="<fmt:message bundle="${i18n}" key="login.close"></fmt:message>"></a>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message bundle="${i18n}"
+                                                                                                key="login.close"></fmt:message></button>
             </div>
         </div>
     </div>
