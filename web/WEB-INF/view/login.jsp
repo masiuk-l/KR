@@ -14,11 +14,10 @@
     <hr class="prettyline">
     <br>
     <div class="text-center">
-        <h3><fmt:message bundle="${i18n}" key="login.continue"></fmt:message></h3>
+        <h3><fmt:message bundle="${i18n}" key="login.continue"/></h3>
         <br>
         <a class="btn btn-primary btn-lg" href="#signin" data-toggle="modal" data-target=".bs-modal-sm">
-            <fmt:message bundle="${i18n}" key="login.signin"></fmt:message>/<fmt:message bundle="${i18n}"
-                                                                                         key="login.signup"></fmt:message>
+            <fmt:message bundle="${i18n}" key="login.signin"/>/<fmt:message bundle="${i18n}" key="login.signup"/>
         </a>
     </div>
     <br>
@@ -36,15 +35,15 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" href="#signin" role="tab" data-toggle="tab"><fmt:message
-                                bundle="${i18n}" key="login.signin"></fmt:message></a>
+                                bundle="${i18n}" key="login.signin"/></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#signup" role="tab" data-toggle="tab"><fmt:message bundle="${i18n}"
-                                                                                                     key="login.signup"></fmt:message></a>
+                                                                                                     key="login.signup"/></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#lib" role="tab" data-toggle="tab"><fmt:message bundle="${i18n}"
-                                                                                                  key="login.librarians"></fmt:message></a>
+                                                                                                  key="login.librarians"/></a>
                     </li>
                 </ul>
             </div>
@@ -54,35 +53,43 @@
                 <div id="myTabContent" class="tab-content">
 
                     <div role="tabpanel" class="tab-pane fade in active show" id="signin">
-                        <form class="form-horizontal" action="frontController?command=login" method="post">
+                        <form class="form-horizontal" action="frontController?command=login" method="post"
+                              data-toggle="validator">
                             <fieldset>
                                 <!-- Sign In Form -->
                                 <!-- email-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="log"><fmt:message bundle="${i18n}"
-                                                                                        key="login.email"></fmt:message>:</label>
+                                                                                        key="login.email"/>:</label>
                                     <div class="controls">
-                                        <input id="log" name="login" type="text" class="form-control input-medium"
-                                               required="">
+                                        <input id="log" name="login" type="email" class="form-control input-medium"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
+                                        <small class=" form-text text-muted help-block with-errors"></small>
                                     </div>
                                 </div>
 
                                 <!--password-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="pass"><fmt:message bundle="${i18n}"
-                                                                                         key="login.password"></fmt:message>:</label>
+                                                                                         key="login.password"/>:</label>
                                     <div class="controls">
-                                        <input required="" id="pass" name="password"
-                                               class="form-control input-medium" type="password" placeholder="********">
+                                        <input id="pass" name="password"
+                                               class="form-control input-medium" type="password" placeholder="********"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
+                                        <small class=" form-text text-muted help-block with-errors">
+                                        </small>
                                     </div>
                                 </div>
 
                                 <!-- submit -->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
                                         <input type="submit" class="btn btn-success"
-                                               value="<fmt:message bundle="${i18n}" key="login.signin"></fmt:message>"/>
+                                               value="<fmt:message bundle="${i18n}" key="login.signin"/>"/>
                                     </div>
                                 </div>
                             </fieldset>
@@ -91,100 +98,139 @@
 
 
                     <div role="tabpanel" class="tab-pane fade" id="signup">
-                        <form class="form-horizontal" action="frontController?command=signup" method="post">
+                        <form class="form-horizontal" action="frontController?command=signup" method="post"
+                              data-toggle="validator" role="form">
                             <fieldset>
                                 <!-- Sign Up Form -->
                                 <!-- email-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="email"><fmt:message bundle="${i18n}"
-                                                                                          key="login.email"></fmt:message>:</label>
+                                                                                          key="login.email"/>:</label>
                                     <div class="controls">
-                                        <input id="email" name="email" class="form-control input-large"
-                                               placeholder="JohnDoe@example.com" required="">
+                                        <input type="email" id="email" name="email" class="form-control input-large"
+                                               placeholder="JohnDoe@example.com"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
+                                        <small class=" form-text text-muted help-block with-errors"></small>
                                     </div>
                                 </div>
 
                                 <!--password-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="password"><fmt:message bundle="${i18n}"
-                                                                                             key="login.password"></fmt:message>:</label>
+                                                                                             key="login.password"/>:</label>
                                     <div class="controls">
                                         <input id="password" name="password" class="form-control input-large"
-                                               type="password" placeholder="********" required="">
+                                               type="password" placeholder="********"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern=".{6,30}">
+                                        <small class=" form-text text-muted help-block with-errors"><fmt:message
+                                                bundle='${i18n}' key='data.6-30'/>
+                                        </small>
                                     </div>
                                 </div>
 
                                 <!-- password2-->
-                                <div class="control-group">
+                                <div class="form-group has-danger">
                                     <label class="control-label" for="reenterpassword"><fmt:message bundle="${i18n}"
-                                                                                                    key="login.repassword"></fmt:message>:</label>
+                                                                                                    key="login.repassword"/>:</label>
                                     <div class="controls">
                                         <input id="reenterpassword" class="form-control input-large"
+                                               data-match="#password"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               data-match-error="<fmt:message bundle='${i18n}' key='data.no-match'/>"
                                                name="reenterpassword" type="password" placeholder="********"
-                                               required="">
+                                               required pattern=".{6,30}">
+                                        <small class=" form-text text-muted help-block with-errors"></small>
                                     </div>
+
                                 </div>
 
                                 <br>
                                 <!-- surname-->
-                                <div class="control-group">
-                                    <label class="control-label" for="surname"><fmt:message bundle="${i18n}"
-                                                                                            key="login.surname"></fmt:message>:</label>
+                                <div class="form-group">
+                                    <label class="control-label" for="surname">
+                                        <fmt:message bundle="${i18n}" key="login.surname"/>:
+                                    </label>
                                     <div class="controls">
-                                        <input id="surname" class="form-control input-large" name="surname" required="">
+                                        <input id="surname" class="form-control input-large" name="surname"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ]([a-яё]){0,29}$">
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
                                 </div>
 
                                 <!-- name-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="name"><fmt:message bundle="${i18n}"
-                                                                                         key="login.name"></fmt:message>:</label>
+                                                                                         key="login.name"/>:</label>
                                     <div class="controls">
-                                        <input id="name" class="form-control input-large" name="name" required="">
+                                        <input id="name" class="form-control input-large" name="name"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ][a-яё]{0,29}$">
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
                                 </div>
 
                                 <!-- second name-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="secondname"><fmt:message bundle="${i18n}"
-                                                                                               key="login.secondname"></fmt:message>:</label>
+                                                                                               key="login.secondname"/>:</label>
                                     <div class="controls">
                                         <input id="secondname" class="form-control input-large" name="secondname"
-                                               required="">
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required pattern="^[А-ЯЁ][a-яё]{0,29}$">
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                        <fmt:message bundle='${i18n}' key='data.less-30'/>
+                                    </small>
                                 </div>
 
                                 <br>
                                 <!-- birthday-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="birthday"><fmt:message bundle="${i18n}"
-                                                                                             key="login.birthday"></fmt:message>:</label>
+                                                                                             key="login.birthday"/>:</label>
                                     <div class="controls">
                                         <input id="birthday" class="form-control input-large" name="birthday"
-                                               type="Date" required="" value="2015-05-09">
+                                               type="Date" max="2000-01-01" value="1999-05-09"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
                                     </div>
+                                    <small class=" form-text text-muted help-block with-errors">
+                                    </small>
                                 </div>
 
                                 <!-- gender-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label" for="gender"><fmt:message bundle="${i18n}"
-                                                                                           key="login.gender"></fmt:message>:</label>
+                                                                                           key="login.gender"/>:</label>
                                     <div class="controls">
                                         <select class="form-control input-large" name="gender" id="gender" required>
                                             <option value="1"><fmt:message bundle="${i18n}"
-                                                                           key="login.gender.male"></fmt:message></option>
+                                                                           key="login.gender.male"/></option>
                                             <option value="2"><fmt:message bundle="${i18n}"
-                                                                           key="login.gender.female"></fmt:message></option>
+                                                                           key="login.gender.female"/></option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <!--button-->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
                                         <input type="submit" class="btn btn-success"
-                                               value="<fmt:message bundle="${i18n}" key="login.signup"></fmt:message>"/>
+                                               value="<fmt:message bundle="${i18n}" key="login.signup"/>"/>
                                     </div>
                                 </div>
                             </fieldset>
@@ -195,44 +241,49 @@
                         <form class="form-horizontal" action="frontController?command=loginlib" method="post">
                             <fieldset>
                                 <!-- Librarians form -->
-                                <!-- email-->
-                                <div class="control-group">
-                                    <label class="control-label" for="loginlib"><fmt:message bundle="${i18n}"
-                                                                                             key="login.email"></fmt:message>:</label>
+                                <div class="form-group">
+                                    <label class="control-label" for="logi"><fmt:message bundle="${i18n}"
+                                                                                         key="login.email"/>:</label>
                                     <div class="controls">
-                                        <input id="loginlib" name="loginlib" class="form-control input-medium"
-                                               required="">
+                                        <input id="logi" name="login" type="email" class="form-control input-medium"
+                                               data-pattern-error="<fmt:message bundle='${i18n}' key='data.non-valid'/>"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
+                                        <small class=" form-text text-muted help-block with-errors"></small>
                                     </div>
                                 </div>
 
                                 <!--password-->
-                                <div class="control-group">
-                                    <label class="control-label" for="passwordlib"><fmt:message bundle="${i18n}"
-                                                                                                key="login.password"></fmt:message>:</label>
+                                <div class="form-group">
+                                    <label class="control-label" for="passw"><fmt:message bundle="${i18n}"
+                                                                                          key="login.password"/>:</label>
                                     <div class="controls">
-                                        <input required="" id="passwordlib" name="passwordlib"
-                                               class="form-control input-medium" type="password" placeholder="********">
+                                        <input id="passw" name="password"
+                                               class="form-control input-medium" type="password" placeholder="********"
+                                               data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>"
+                                               required>
+                                        <small class=" form-text text-muted help-block with-errors"><fmt:message
+                                                bundle='${i18n}' key='data.6-30'/>
+                                        </small>
                                     </div>
                                 </div>
 
                                 <!-- submit -->
-                                <div class="control-group">
+                                <div class="form-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
                                         <input type="submit" class="btn btn-success"
-                                               value="<fmt:message bundle="${i18n}" key="login.signin"></fmt:message>"/>
+                                               value="<fmt:message bundle="${i18n}" key="login.signin"/>"/>
                                     </div>
                                 </div>
                             </fieldset>
                         </form>
                     </div>
                 </div>
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message bundle="${i18n}"
-                                                                                                key="login.close"></fmt:message></button>
+                                                                                                key="login.close"/></button>
             </div>
         </div>
     </div>

@@ -31,12 +31,29 @@
                         <b><fmt:message bundle="${i18n}" key="catalog.year"/>: </b>
                             ${bookVO.book.year}</li>
                 </ul>
-                <div class="card-body">
-                    <a href="${pageContext.request.contextPath}/frontController?command=book&id=${bookVO.book.bookID}"
-                       class="btn btn-primary">
-                        <fmt:message bundle="${i18n}" key="catalog.reserve"/>
-                    </a>
-                </div>
+                <c:choose>
+                    <c:when test="${not empty slibrarian}">
+                        <div class="card-body">
+                            <a href="${pageContext.request.contextPath}/frontController?command=editbook&id=${bookVO.book.bookID}"
+                               class="btn btn-primary">
+                                <fmt:message bundle="${i18n}" key="cabinet.edit"/>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/frontController?command=deletebook&id=${bookVO.book.bookID}"
+                               class="btn btn-primary">
+                                <fmt:message bundle="${i18n}" key="book.delete"/>
+                            </a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="card-body">
+                            <a href="${pageContext.request.contextPath}/frontController?command=book&id=${bookVO.book.bookID}"
+                               class="btn btn-primary">
+                                <fmt:message bundle="${i18n}" key="catalog.reserve"/>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </c:forEach>
     </div>
