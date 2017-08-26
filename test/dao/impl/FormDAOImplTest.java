@@ -3,26 +3,31 @@ package dao.impl;
 import dao.FormDAO;
 import entities.Form;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class FormDAOImplTest {
+    private FormDAO formDAO;
+    private Form form;
 
-    @Test
-    public void saveAndGetByReceivalType() throws Exception {
-        FormDAO formDAO = FormDAOImpl.getInstance();
-        Form form = new Form();
+    @Before
+    public void createForm() {
+        formDAO = FormDAOImpl.getInstance();
+        form = new Form();
         form.setBookID(5);
         form.setReaderID(3);
         form.setLibrarianID(2);
         form.setReceivalType("Формуляр");
-        Calendar calendar = new GregorianCalendar();
-        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
-        calendar.add(Calendar.DAY_OF_MONTH, 14);
-        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
+        form.setReceivalDate(LocalDate.now());
+        form.setReturnDate(LocalDate.now().plus(14, ChronoUnit.DAYS));
+    }
+
+    @Test
+    public void saveAndGetByReceivalType() throws Exception {
         form = formDAO.save(form);
         Form newForm = formDAO.getByReceivalType("Формуляр").get(0);
         Assert.assertEquals(form.toString(), newForm.toString());
@@ -32,18 +37,8 @@ public class FormDAOImplTest {
 
     @Test
     public void getAndUpdate() throws Exception {
-        FormDAO formDAO = FormDAOImpl.getInstance();
-        Form form = new Form();
-        form.setBookID(5);
-        form.setReaderID(3);
-        form.setLibrarianID(2);
-        form.setReceivalType("АБОНЕМЕНТ");
-        Calendar calendar = new GregorianCalendar();
-        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
-        calendar.add(Calendar.DAY_OF_MONTH, 14);
-        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
         form = formDAO.save(form);
-        form.setReceivalType("Формуляр");
+        form.setReceivalType("Формулярpp");
         formDAO.update(form);
         Form newForm = formDAO.get(form.getFormID());
         Assert.assertEquals(form.toString(), newForm.toString());
@@ -52,16 +47,6 @@ public class FormDAOImplTest {
 
     @Test
     public void getAllAndDelete() throws Exception {
-        FormDAO formDAO = FormDAOImpl.getInstance();
-        Form form = new Form();
-        form.setBookID(5);
-        form.setReaderID(3);
-        form.setLibrarianID(2);
-        form.setReceivalType("Формуляр");
-        Calendar calendar = new GregorianCalendar();
-        //form.setReceivalDate(new Date(calendar.getTimeInMillis()));
-        calendar.add(Calendar.DAY_OF_MONTH, 14);
-        //form.setReturnDate(new Date(calendar.getTimeInMillis()));
         form = formDAO.save(form);
         List<Form> forms = formDAO.getAll();
         int oldSize = forms.size();

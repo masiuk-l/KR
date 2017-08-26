@@ -45,12 +45,25 @@
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <div class="card-body">
-                            <a href="${pageContext.request.contextPath}/frontController?command=book&id=${bookVO.book.bookID}"
-                               class="btn btn-primary">
-                                <fmt:message bundle="${i18n}" key="catalog.reserve"/>
-                            </a>
-                        </div>
+                        <c:choose>
+                            <c:when test="${(not empty sreader) and (sreader.status eq 'BANNED')}">
+                                <div class="card-body">
+                                    <a href="#"
+                                       class="btn btn-secondary">
+                                        <fmt:message bundle="${i18n}" key="reader.banned"/>
+                                    </a>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="card-body">
+                                    <a href="${pageContext.request.contextPath}/frontController?command=book&id=${bookVO.book.bookID}"
+                                       class="btn btn-primary">
+                                        <fmt:message bundle="${i18n}" key="catalog.reserve"/>
+                                    </a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
                     </c:otherwise>
                 </c:choose>
 

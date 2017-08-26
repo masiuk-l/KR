@@ -61,12 +61,12 @@
                 <div class="card-body">
                     <c:choose>
                         <c:when test="${readerVO.reader.status eq 'BANNED'}">
-                            <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
+                            <button id="${readerVO.reader.readerID}" class="btn btn-success ban-reader">
                                 <fmt:message bundle="${i18n}" key="reader.unban"/>
                             </button>
                         </c:when>
                         <c:otherwise>
-                            <button id="${readerVO.reader.readerID}" class="btn btn-primary ban-reader">
+                            <button id="${readerVO.reader.readerID}" class="btn btn-danger ban-reader">
                                 <fmt:message bundle="${i18n}" key="reader.ban"/>
                             </button>
                         </c:otherwise>

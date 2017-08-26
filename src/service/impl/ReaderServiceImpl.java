@@ -12,6 +12,7 @@ import entities.Reader;
 import service.FormService;
 import service.ReaderService;
 import service.ServiceException;
+import web.auth.Encoder;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -84,7 +85,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
         reader.setName((newReader.getName().length() == 0) ? oldReader.getName() : newReader.getName());
         reader.setSecondName((newReader.getSecondName().length() == 0) ? oldReader.getSecondName() : newReader.getSecondName());
         reader.setEmail((newReader.getEmail().length() == 0) ? oldReader.getEmail() : newReader.getEmail());
-        reader.setPassword((newReader.getPassword().length() == 0) ? oldReader.getPassword() : newReader.getPassword());
+        reader.setPassword((newReader.getPassword().length() == 0) ? oldReader.getPassword() : Encoder.encode(newReader.getPassword()));
         reader.setBirthday(newReader.getBirthday());
         reader.setGender(newReader.getGender());
         update(reader);

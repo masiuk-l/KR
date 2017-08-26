@@ -4,6 +4,7 @@ import dao.ReaderDAO;
 import db.ConnectionManager;
 import entities.Reader;
 import lombok.extern.log4j.Log4j;
+import web.auth.Encoder;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -83,7 +84,7 @@ public class ReaderDAOImpl extends AbstractDAO implements ReaderDAO {
         psSave.setString(1, reader.getSurname());
         psSave.setString(2, reader.getName());
         psSave.setString(3, reader.getSecondName());
-        psSave.setString(4, reader.getPassword());
+        psSave.setString(4, Encoder.encode(reader.getPassword()));
         psSave.setString(5, reader.getEmail());
         psSave.setDate(6, toSQLDate(reader.getBirthday()));
         psSave.setString(7, reader.getGender());

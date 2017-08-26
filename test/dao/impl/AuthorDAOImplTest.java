@@ -3,26 +3,29 @@ package dao.impl;
 import dao.AuthorDAO;
 import entities.Author;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AuthorDAOImplTest {
+    private AuthorDAO authorDAO;
+    private Author author;
 
-
-    @Test
-    public void saveAndGetBySurname() throws Exception {
-        AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
-        Author author = new Author();
+    @Before
+    public void createAuthor() {
+        authorDAO = AuthorDAOImpl.getInstance();
+        author = new Author();
         author.setName("Иван");
         author.setSecondName("Иванович");
         author.setSurname("Козлов");
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.set(1976, Calendar.NOVEMBER, 27);
-        //author.setBirthday(new Date(calendar.getTimeInMillis()));
+        author.setBirthday(LocalDate.of(1996, 12, 1));
         author.setCountry("Россия");
+    }
+
+    @Test
+    public void saveAndGetBySurname() throws Exception {
         author = authorDAO.save(author);
         Author newAuthor = authorDAO.getBySurname("Козлов").get(0);
         Assert.assertEquals(author.toString(), newAuthor.toString());
@@ -32,29 +35,21 @@ public class AuthorDAOImplTest {
 
     @Test
     public void getAndUpdate() throws Exception {
-        AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
-        Author author = authorDAO.get(1);
+
+        author = authorDAO.get(1);
         String oldSurname = author.getSurname();
         String newSurname = "Иванова";
         author.setSurname(newSurname);
         authorDAO.update(author);
         Author newAuthor = authorDAO.get(author.getAuthorID());
-        Assert.assertTrue(author.equals(newAuthor));
+        Assert.assertEquals(author.getSurname(), newAuthor.getSurname());
         newAuthor.setSurname(oldSurname);
         authorDAO.update(newAuthor);
     }
 
     @Test
     public void getAllAndDelete() throws Exception {
-        AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
-        Author author = new Author();
-        author.setName("Иван");
-        author.setSecondName("Иванович");
-        author.setSurname("Иванов");
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.set(1976, Calendar.NOVEMBER, 27);
-        //author.setBirthday(new Date(calendar.getTimeInMillis()));
-        author.setCountry("Россия");
+
         authorDAO.save(author);
         List<Author> authors = authorDAO.getAll();
         int oldSize = authors.size();

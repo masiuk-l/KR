@@ -3,36 +3,38 @@ package dao.impl;
 import dao.LibrarianDAO;
 import entities.Librarian;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 public class LibrarianDAOImplTest {
-    @Test
-    public void saveAndGetBySurname() throws Exception {
-        LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
-        Librarian librarian = new Librarian();
+    private LibrarianDAO librarianDAO;
+    private Librarian librarian;
+
+    @Before
+    public void createLibrarian() {
+        librarianDAO = LibrarianDAOImpl.getInstance();
+        librarian = new Librarian();
         librarian.setName("Иван");
         librarian.setSecondName("Иванович");
         librarian.setSurname("Иванов");
         librarian.setEmail("ffr@ww");
         librarian.setPassword("fvfdcsdv");
+    }
+
+    @Test
+    public void saveAndGetBySurname() throws Exception {
         librarian = librarianDAO.save(librarian);
         Librarian newLibrarian = librarianDAO.getBySurname("Иванов").get(0);
-        Assert.assertTrue(librarian.equals(newLibrarian));
+        librarian.setPassword(librarian.getPassword());
+        Assert.assertEquals(librarian.toString(), newLibrarian.toString());
         librarianDAO.delete(newLibrarian.getLibrarianID());
     }
 
 
     @Test
     public void getAndUpdate() throws Exception {
-        LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
-        Librarian librarian = new Librarian();
-        librarian.setName("Иван");
-        librarian.setSecondName("Иванович");
-        librarian.setSurname("Иванов");
-        librarian.setEmail("ffr@ww");
-        librarian.setPassword("fvfdcsdv");
         librarianDAO.save(librarian);
         String newSurname = "Иванова";
         librarian = librarianDAO.getBySurname("Иванов").get(0);
@@ -45,13 +47,7 @@ public class LibrarianDAOImplTest {
 
     @Test
     public void getAllAndDelete() throws Exception {
-        LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
-        Librarian librarian = new Librarian();
-        librarian.setName("Иван");
-        librarian.setSecondName("Иванович");
-        librarian.setSurname("Иванов");
-        librarian.setEmail("ffr@ww");
-        librarian.setPassword("fvfdcsdv");
+
         librarianDAO.save(librarian);
         List<Librarian> librarians = librarianDAO.getAll();
         int oldSize = librarians.size();
