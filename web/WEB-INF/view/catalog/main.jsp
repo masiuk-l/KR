@@ -39,7 +39,7 @@
                                 <fmt:message bundle="${i18n}" key="cabinet.edit"/>
                             </a>
                             <a href="${pageContext.request.contextPath}/frontController?command=deletebook&id=${bookVO.book.bookID}"
-                               class="btn btn-primary">
+                               class="btn btn-danger">
                                 <fmt:message bundle="${i18n}" key="book.delete"/>
                             </a>
                         </div>

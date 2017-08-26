@@ -13,6 +13,8 @@ public interface BookService {
 
     void update(Book book);
 
+    void update(Book oldBook, Book newBook);
+
     int delete(Serializable id);
 
     List<Book> getByName(String name);

@@ -25,6 +25,20 @@ public class BookServiceImpl extends AbstractService implements BookService {
     private BookServiceImpl() {
     } //todo delete
 
+    public static BookService getInstance() {
+        BookService BookService = INSTANCE;
+        if (BookService == null) {
+            synchronized (BookServiceImpl.class) {
+                BookService = INSTANCE;
+                if (BookService == null) {
+                    INSTANCE = BookService = new BookServiceImpl();
+                }
+            }
+        }
+
+        return BookService;
+    }
+
     @Override
     public Book save(Book book) {
         try {
@@ -67,6 +81,18 @@ public class BookServiceImpl extends AbstractService implements BookService {
             rollback();
             throw new ServiceException("Error updating Book", e);
         }
+    }
+
+    @Override
+    public void update(Book oldBook, Book newBook) {
+        Book book = new Book();
+        book.setBookID(oldBook.getBookID());
+        book.setName((newBook.getName().length() == 0) ? oldBook.getName() : newBook.getName());
+        book.setIsbn((newBook.getIsbn().length() == 0) ? oldBook.getIsbn() : newBook.getIsbn());
+        book.setGenre((newBook.getGenre().length() == 0) ? oldBook.getGenre() : newBook.getGenre());
+        book.setYear((newBook.getYear() == 0) ? oldBook.getYear() : newBook.getYear());
+        book.setQuantity(newBook.getQuantity());
+        update(book);
     }
 
     @Override
@@ -167,20 +193,6 @@ public class BookServiceImpl extends AbstractService implements BookService {
             rollback();
             throw new ServiceException("Error finding Book", e);
         }
-    }
-
-    public static BookService getInstance() {
-        BookService BookService = INSTANCE;
-        if (BookService == null) {
-            synchronized (BookServiceImpl.class) {
-                BookService = INSTANCE;
-                if (BookService == null) {
-                    INSTANCE = BookService = new BookServiceImpl();
-                }
-            }
-        }
-
-        return BookService;
     }
 
 }

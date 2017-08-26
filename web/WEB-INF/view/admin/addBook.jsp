@@ -49,7 +49,7 @@
                                 <div class="controls">
                                     <select multiple class="form-control input-large" name="author" id="author"
                                             required
-                                            data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>>
+                                            data-required-error="<fmt:message bundle='${i18n}' key='data.required'/>">
                                         <c:forEach var="author" items="${authors}">
                                             <option value="${author.authorID}">${author.surname} ${author.name}</option>
                                         </c:forEach>

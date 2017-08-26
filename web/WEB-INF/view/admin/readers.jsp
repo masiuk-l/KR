@@ -45,10 +45,12 @@
                                 <li class="">
                                     <c:choose>
                                         <c:when test="${formVO.form.returnDate gt strDate}">
-                                            <i class="fa fa-check-circle-o"></i> ${formVO.bookVO.book.name}
+                                            <span class="text-success"><i
+                                                    class="fa fa-check-circle-o"></i> ${formVO.bookVO.book.name}</span>
                                         </c:when>
                                         <c:otherwise>
-                                            <i class="fa fa-times-circle-o"></i> ${formVO.bookVO.book.name}
+                                            <span class="text-danger"><i
+                                                    class="fa fa-times-circle-o"></i> ${formVO.bookVO.book.name}</span>
                                         </c:otherwise>
                                     </c:choose>
                                 </li>

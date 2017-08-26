@@ -1,4 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="messages" var="i18n"/>
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -7,14 +13,28 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book1.jpg" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-1"><fmt:message bundle="${i18n}" key="menu.name"/></h1>
+                <h3 class="display-3"><fmt:message bundle="${i18n}" key="menu.welcome"/></h3>
+            </div>
+            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book1d.jpg"
+                 alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book2.jpg"
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-1"><fmt:message bundle="${i18n}" key="menu.name"/></h1>
+                <h3 class="display-3"><fmt:message bundle="${i18n}" key="menu.welcome"/></h3>
+            </div>
+            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book2d.jpg"
                  alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book3.jpg" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-1"><fmt:message bundle="${i18n}" key="menu.name"/></h1>
+                <h3 class="display-3"><fmt:message bundle="${i18n}" key="menu.welcome"/></h3>
+            </div>
+            <img class="d-block w-100" src="${pageContext.request.contextPath}/assests/img/book3d.jpg"
+                 alt="Third slide">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
