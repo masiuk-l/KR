@@ -30,7 +30,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
     private FormService formService = FormServiceImpl.getInstance();
 
     private ReaderServiceImpl() {
-    } //todo delete
+    }
 
     @Override
     public Reader save(Reader reader) {

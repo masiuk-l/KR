@@ -34,7 +34,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
     private BookService bookService = BookServiceImpl.getInstance();
 
     private FormServiceImpl() {
-    }//todo delete
+    }
 
     @Override
     public Form save(Form form) {

@@ -17,7 +17,7 @@ public class AuthorServiceImpl extends AbstractService implements AuthorService 
     private AuthorDAO authorDAO = AuthorDAOImpl.getInstance();
 
     private AuthorServiceImpl() {
-    } //todo delete
+    }
 
     @Override
     public Author save(Author author) {

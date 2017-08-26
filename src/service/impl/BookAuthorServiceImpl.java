@@ -20,7 +20,7 @@ public class BookAuthorServiceImpl extends AbstractService implements BookAuthor
     private BookAuthorDAO bookAuthorDAO = BookAuthorDAOImpl.getInstance();
 
     private BookAuthorServiceImpl() {
-    } //todo delete
+    }
 
     @Override
     public BookAuthor save(BookAuthor bookAuthor) {

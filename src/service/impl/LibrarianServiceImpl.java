@@ -18,7 +18,7 @@ public class LibrarianServiceImpl extends AbstractService implements LibrarianSe
     private LibrarianDAO librarianDAO = LibrarianDAOImpl.getInstance();
 
     private LibrarianServiceImpl() {
-    } //todo delete
+    }
 
     @Override
     public Librarian save(Librarian librarian) {

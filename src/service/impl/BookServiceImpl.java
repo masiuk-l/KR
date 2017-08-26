@@ -23,7 +23,7 @@ public class BookServiceImpl extends AbstractService implements BookService {
     private BookAuthorDAO bookAuthorDAO = BookAuthorDAOImpl.getInstance();
 
     private BookServiceImpl() {
-    } //todo delete
+    }
 
     public static BookService getInstance() {
         BookService BookService = INSTANCE;
