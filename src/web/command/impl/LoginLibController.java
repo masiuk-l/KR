@@ -3,6 +3,7 @@ package web.command.impl;
 import entities.Librarian;
 import service.LibrarianService;
 import service.impl.LibrarianServiceImpl;
+import web.auth.Encoder;
 import web.command.Controller;
 
 import javax.servlet.RequestDispatcher;
@@ -24,8 +25,8 @@ public class LoginLibController implements Controller {
             return;
         }
         Librarian librarian = librarianService.getByLogin(login);
-//        if (librarian != null && librarian.getPassword().equals(Encoder.encode(password))) {
-        if (librarian != null && password.equals(librarian.getPassword())) {
+        if (librarian != null && librarian.getPassword().equals(Encoder.encode(password))) {
+            //if (librarian != null && password.equals(librarian.getPassword())) {
             req.getSession().setAttribute("slibrarian", librarian);
             req.getSession().setAttribute("errorMsg", "");
             String contextPath = req.getContextPath();

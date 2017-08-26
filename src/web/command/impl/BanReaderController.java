@@ -21,9 +21,9 @@ public class BanReaderController implements Controller {
         } else {
             reader.setStatus("BANNED");
         }
-        System.out.println("Status of " + reader.getName() + ": " + reader.getStatus());
+        //System.out.println("Status of " + reader.getName() + ": " + reader.getStatus());
         readerService.update(reader);
         Reader newReader = readerService.get(reader.getReaderID());
-        System.out.println("Status2" + newReader.getName() + ": " + newReader.getStatus());
+        //System.out.println("Status2" + newReader.getName() + ": " + newReader.getStatus());
     }
 }

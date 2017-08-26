@@ -3,6 +3,7 @@ package web.command.impl;
 import entities.Reader;
 import service.ReaderService;
 import service.impl.ReaderServiceImpl;
+import web.auth.Encoder;
 import web.command.Controller;
 
 import javax.servlet.RequestDispatcher;
@@ -24,8 +25,8 @@ public class LoginController implements Controller {
             return;
         }
         Reader reader = readerService.getByLogin(login);
-//        if (reader != null && reader.getPassword().equals(Encoder.encode(password))) {
-        if (reader != null && password.equals(reader.getPassword())) {
+        if (reader != null && reader.getPassword().equals(Encoder.encode(password))) {
+            //if (reader != null && password.equals(reader.getPassword())) {
             req.getSession().setAttribute("sreader", reader);
             req.getSession().setAttribute("errorMsg", "");
             String contextPath = req.getContextPath();
