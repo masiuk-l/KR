@@ -24,31 +24,26 @@ public class SignUpController implements Controller {
         if (req.getParameter("surname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
             reader.setSurname(req.getParameter("surname"));
         } else {
-            System.out.println(1);
             validData = false;
         }
         if (req.getParameter("name").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
             reader.setName(req.getParameter("name"));
         } else {
-            System.out.println(2);
             validData = false;
         }
         if (req.getParameter("secondname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
             reader.setSecondName(req.getParameter("secondname"));
         } else {
-            System.out.println(3);
             validData = false;
         }
         if (req.getParameter("email").matches("^([a-z0-9_\\.-]+\\@[\\da-z\\.-]+\\.[a-z\\.]{2,6})$")) {
             reader.setEmail(req.getParameter("email"));
         } else {
-            System.out.println(4);
             validData = false;
         }
         if (req.getParameter("password").matches(".{6,30}")) {
             reader.setPassword(req.getParameter("password"));
         } else {
-            System.out.println(5);
             validData = false;
         }
         LocalDate birthday;
@@ -57,7 +52,6 @@ public class SignUpController implements Controller {
             if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {
                 reader.setBirthday(birthday);
             } else {
-                System.out.println(5);
                 validData = false;
             }
         } catch (DateTimeParseException e) {

@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class AddBookController implements Controller {
     private AuthorService authorService = AuthorServiceImpl.getInstance();
@@ -29,21 +30,64 @@ public class AddBookController implements Controller {
             dispatcher.forward(req, resp);
         } else {
             Book book = new Book();
-            book.setName(req.getParameter("name"));
-            book.setIsbn(req.getParameter("isbn"));
-            book.setGenre(req.getParameter("genre"));
-            book.setYear(Integer.parseInt(req.getParameter("year")));
-            book.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-            book = bookService.save(book);
-            String[] authorIDs = req.getParameterValues("author");
-            for (String authorID : authorIDs) {
-                BookAuthor bookAuthor = new BookAuthor();
-                bookAuthor.setBookID(book.getBookID());
-                bookAuthor.setAuthorID(Integer.parseInt(authorID));
-                bookAuthorService.save(bookAuthor);
+            boolean validData = true;
+            if (req.getParameter("name").matches("^.{1,29}$")) {
+                book.setName(req.getParameter("name"));
+            } else {
+                validData = false;
             }
-            String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath + "/frontController?command=catalog");
+            if (req.getParameter("isbn").matches("^[0-9\\\\-]{1,12}$")) {
+                book.setIsbn(req.getParameter("isbn"));
+            } else {
+                validData = false;
+            }
+            if (req.getParameter("genre").matches("^.{1,30}$")) {
+                book.setGenre(req.getParameter("genre"));
+            } else {
+                validData = false;
+            }
+            int year;
+            try {
+                year = Integer.parseInt(req.getParameter("year"));
+                if (year <= LocalDate.now().getYear() && year > 0) {
+                    book.setYear(year);
+                } else {
+                    validData = false;
+                }
+            } catch (NumberFormatException e) {
+                validData = false;
+            }
+            int quantity;
+            try {
+                quantity = Integer.parseInt(req.getParameter("quantity"));
+                if (quantity <= 999 && quantity > 0) {
+                    book.setQuantity(quantity);
+                } else {
+                    validData = false;
+                }
+            } catch (NumberFormatException e) {
+                validData = false;
+            }
+
+            if (validData) {
+                bookService.save(book);
+                String[] authorIDs = req.getParameterValues("author");//todo допилить??
+                for (String authorID : authorIDs) {
+                    BookAuthor bookAuthor = new BookAuthor();
+                    bookAuthor.setBookID(book.getBookID());
+                    bookAuthor.setAuthorID(Integer.parseInt(authorID));
+                    bookAuthorService.save(bookAuthor);
+                }
+                req.getSession().setAttribute("errorMsg", "");
+                String contextPath = req.getContextPath();
+                resp.sendRedirect(contextPath + "/frontController?command=catalog");
+                return;
+            } else {
+                req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
+                RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
+                dispatcher.forward(req, resp);
+                return;
+            }
         }
     }
 }

@@ -6,6 +6,15 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages" var="i18n"/>
 
+<c:if test="${not empty errorMsg and not (errorMsg eq '')}">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="fa fa-times-circle-o"></i>
+        </button>
+            ${errorMsg}
+    </div>
+</c:if>
+
 <div class="modal-dialog ">
     <div class="modal-content">
         <div class="modal-body">

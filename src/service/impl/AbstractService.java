@@ -12,11 +12,11 @@ import java.sql.SQLException;
 public abstract class AbstractService {
 
     public void startTransaction() throws SQLException {
-        ConnectionManager.getConnection().setAutoCommit(false);
+        getConnection().setAutoCommit(false);
     }
 
     public void commit() throws SQLException {
-        ConnectionManager.getConnection().commit();
+        getConnection().commit();
     }
 
     public Connection getConnection() {

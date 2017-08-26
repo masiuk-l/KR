@@ -73,6 +73,12 @@ public class BookServiceImpl extends AbstractService implements BookService {
     public int delete(Serializable id) {
         try {
             startTransaction();
+            Book book = bookDAO.get(id);
+            List<BookAuthor> bookAuthors = new ArrayList<>(bookAuthorDAO.getByBookID(book));
+            for (BookAuthor bookAuthor : bookAuthors) {
+                bookAuthorDAO.delete(bookAuthor.getBookAuthorID());
+            }
+
             int rows = bookDAO.delete(id);
             commit();
             return rows;

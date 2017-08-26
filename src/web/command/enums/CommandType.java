@@ -14,6 +14,8 @@ public enum CommandType {
     CATALOG("catalog/main.jsp", "catalog", "catalog.title", new CatalogController()),
     BAN_READER_AJAX("", "banReader", "", new BanReaderController()),
     BOOK("catalog/book.jsp", "book", "book.title", new BookController()),
+    EDIT_BOOK("catalog/editbook.jsp", "editBook", "editBook.title", new EditBookController()),
+    DELETE_BOOK("catalog/book.jsp", "deleteBook", "deleteBook.title", new DeleteBookController()),
     EDIT_READER("cabinet/editReader.jsp", "editreader", "editreader.title", new EditReaderController()),
     ERROR("error/error.jsp", "error", "error.title", new ErrorController()),
     LOGIN("login.jsp", "login", "login.title", new LoginController()),

@@ -5,11 +5,14 @@ import service.AuthorService;
 import service.impl.AuthorServiceImpl;
 import web.command.Controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 public class AddAuthorController implements Controller {
     private AuthorService authorService = AuthorServiceImpl.getInstance();
@@ -18,14 +21,57 @@ public class AddAuthorController implements Controller {
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         Author author = new Author();
-        author.setSurname(req.getParameter("surname"));
-        author.setName(req.getParameter("name"));
-        author.setSecondName(req.getParameter("secondname"));
-        LocalDate date = LocalDate.parse(req.getParameter("birthday"));
-        author.setBirthday(date);
-        author.setCountry(req.getParameter("country"));
-        authorService.save(author);
-        String contextPath = req.getContextPath();
-        resp.sendRedirect(contextPath + "/frontController?command=addBook");
+        boolean validData = true;
+        if (req.getParameter("surname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
+            author.setSurname(req.getParameter("surname"));
+        } else {
+            validData = false;
+        }
+        if (req.getParameter("surname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
+            author.setSurname(req.getParameter("surname"));
+        } else {
+            validData = false;
+        }
+        if (req.getParameter("name").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
+            author.setName(req.getParameter("name"));
+        } else {
+            validData = false;
+        }
+        if (req.getParameter("secondname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
+            author.setSecondName(req.getParameter("secondname"));
+        } else {
+            validData = false;
+        }
+        LocalDate birthday;
+        try {
+            birthday = LocalDate.parse(req.getParameter("birthday"));
+            if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {
+                author.setBirthday(birthday);
+            } else {
+                validData = false;
+            }
+        } catch (DateTimeParseException e) {
+            validData = false;
+        }
+
+        if (req.getParameter("country").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
+            author.setCountry(req.getParameter("country"));
+        } else {
+            validData = false;
+        }
+
+        if (validData) {
+            authorService.save(author);
+            req.getSession().setAttribute("errorMsg", "");
+            String contextPath = req.getContextPath();
+            resp.sendRedirect(contextPath + "/frontController?command=addBook");
+            return;
+        } else {
+            req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
+            dispatcher.forward(req, resp);
+            return;
+        }
+
     }
 }
