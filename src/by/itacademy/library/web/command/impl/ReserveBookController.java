@@ -38,8 +38,8 @@ public class ReserveBookController implements Controller {
         Form form = new Form();
         form.setBookID(book.getBookID());
         form.setReaderID(((Reader) req.getSession().getAttribute("sreader")).getReaderID());
-        form.setLibrarianID(1);//todo ??
-        form.setReceivalType("Абонемент");//todo ??
+        form.setLibrarianID(1);
+        form.setReceivalType("Абонемент");
         form.setReceivalDate(LocalDate.now());
         form.setReturnDate(LocalDate.now().plus(14, ChronoUnit.DAYS));
         formService.save(form);

@@ -18,9 +18,9 @@ public interface LibrarianService extends Service<Librarian> {
     /**
      *
      * @param login login
-     * @return List of librarians matching the input
+     * @return Librarian matching the input
      */
-    List<Librarian> getByLogin(String login);
+    Librarian getByLogin(String login);
 
 
 }

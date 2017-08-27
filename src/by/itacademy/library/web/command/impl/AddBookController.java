@@ -33,7 +33,7 @@ public class AddBookController implements Controller {
             dispatcher.forward(req, resp);
         } else {
             Book book = new Book();
-            boolean validData = true;
+            boolean validData = true; //flag to indicate whether all input data is valid
             if (req.getParameter("name").matches("^.{1,29}$")) {
                 book.setName(req.getParameter("name"));
             } else {
@@ -74,7 +74,7 @@ public class AddBookController implements Controller {
 
             if (validData) {
                 bookService.save(book);
-                String[] authorIDs = req.getParameterValues("author");//todo допилить??
+                String[] authorIDs = req.getParameterValues("author");
                 for (String authorID : authorIDs) {
                     BookAuthor bookAuthor = new BookAuthor();
                     bookAuthor.setBookID(book.getBookID());
@@ -85,7 +85,7 @@ public class AddBookController implements Controller {
                 String contextPath = req.getContextPath();
                 resp.sendRedirect(contextPath + "/frontController?command=catalog");
                 return;
-            } else {
+            } else { //forward user to the same page with error message
                 req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
                 RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
                 dispatcher.forward(req, resp);

@@ -40,7 +40,7 @@ public class EditBookController implements Controller {
             int bookID = Integer.parseInt(req.getParameter("id"));
             Book oldBook = bookService.get(bookID);
             Book newBook = new Book();
-            boolean validData = true;
+            boolean validData = true;//flag to indicate whether all input data is valid
             if (req.getParameter("name").matches("^.{1,29}$") || req.getParameter("name").length() == 0) {
                 newBook.setName(req.getParameter("name"));
             } else {
@@ -101,7 +101,7 @@ public class EditBookController implements Controller {
                 String contextPath = req.getContextPath();
                 resp.sendRedirect(contextPath + "/frontController?command=catalog");
                 return;
-            } else {
+            } else { //forward user to the same page with error message
                 req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
                 RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
                 dispatcher.forward(req, resp);

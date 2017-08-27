@@ -18,9 +18,9 @@ public interface ReaderService extends Service<Reader> {
     /**
      *
      * @param login login
-     * @return List of readers matching the input
+     * @return Reader matching the input
      */
-    List<Reader> getByLogin(String login);
+    Reader getByLogin(String login);
 
     /**
      * @param status status

@@ -29,7 +29,7 @@ public class EditReaderController implements Controller {
         } else {
             Reader sessionReader = (Reader) req.getSession().getAttribute("sreader");
             Reader newReader = new Reader();
-            boolean validData = true;
+            boolean validData = true;//flag to indicate whether all input data is valid
             if (req.getParameter("surname").matches("^[А-ЯЁ]([a-яё]){0,29}$") || req.getParameter("surname").length() == 0) {
                 newReader.setSurname(req.getParameter("surname"));
             } else {
@@ -62,7 +62,7 @@ public class EditReaderController implements Controller {
             LocalDate birthday;
             try {
                 birthday = LocalDate.parse(req.getParameter("birthday"));
-                if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {
+                if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {//check whether the author is over 18
                     newReader.setBirthday(birthday);
                 } else {
                     validData = false;
@@ -83,7 +83,7 @@ public class EditReaderController implements Controller {
                 String contextPath = req.getContextPath();
                 resp.sendRedirect(contextPath + "/frontController?command=main");
                 return;
-            } else {
+            } else { //forward user to the same page with error message
                 req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
                 RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
                 dispatcher.forward(req, resp);

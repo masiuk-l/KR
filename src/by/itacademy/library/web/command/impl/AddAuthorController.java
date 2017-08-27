@@ -24,7 +24,7 @@ public class AddAuthorController implements Controller {
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         Author author = new Author();
-        boolean validData = true;
+        boolean validData = true;//flag to indicate whether all input data is valid
         if (req.getParameter("surname").matches("^[А-ЯЁ]([a-яё]){0,29}$")) {
             author.setSurname(req.getParameter("surname"));
         } else {
@@ -48,7 +48,7 @@ public class AddAuthorController implements Controller {
         LocalDate birthday;
         try {
             birthday = LocalDate.parse(req.getParameter("birthday"));
-            if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {
+            if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {//check whether the author is over 18
                 author.setBirthday(birthday);
             } else {
                 validData = false;
@@ -69,7 +69,7 @@ public class AddAuthorController implements Controller {
             String contextPath = req.getContextPath();
             resp.sendRedirect(contextPath + "/frontController?command=addBook");
             return;
-        } else {
+        } else { //forward user to the same page with error message
             req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
             RequestDispatcher dispatcher = req.getRequestDispatcher(MAIN_PAGE);
             dispatcher.forward(req, resp);
