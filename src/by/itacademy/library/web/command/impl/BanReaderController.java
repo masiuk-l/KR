@@ -14,7 +14,7 @@ import java.io.IOException;
  * Project KR. Created by masiuk-l on 24.08.2017.
  */
 public class BanReaderController implements Controller {
-    private ReaderService readerService = ReaderServiceImpl.getInstance();//todo unban
+    private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

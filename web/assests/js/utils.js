@@ -59,7 +59,7 @@ function returnBook(element) {
 
 }
 
-function banReader(element) {//todo объединить
+function banReader(element) {
     var readerID = $(element).attr('id');
     $.ajax({
         type: 'get',
