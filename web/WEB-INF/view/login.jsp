@@ -11,7 +11,15 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <i class="fa fa-times-circle-o"></i>
         </button>
-            ${errorMsg}
+        <c:choose>
+            <c:when test="${errorMsg eq 'Invalid Login or Password'}">
+                <fmt:message bundle="${i18n}" key="data.lp"/>
+            </c:when>
+            <c:otherwise>
+                <fmt:message bundle="${i18n}" key="data.invalid-rerty"/>
+            </c:otherwise>
+        </c:choose>
+
     </div>
 </c:if>
 

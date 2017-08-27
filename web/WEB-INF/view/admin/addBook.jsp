@@ -11,7 +11,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <i class="fa fa-times-circle-o"></i>
         </button>
-            ${errorMsg}
+        <fmt:message bundle="${i18n}" key="data.invalid-rerty"/>
     </div>
 </c:if>
 
