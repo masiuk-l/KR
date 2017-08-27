@@ -88,6 +88,7 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
         reader.setPassword((newReader.getPassword().length() == 0) ? oldReader.getPassword() : Encoder.encode(newReader.getPassword()));
         reader.setBirthday(newReader.getBirthday());
         reader.setGender(newReader.getGender());
+        reader.setStatus(oldReader.getStatus());
         update(reader);
     }
 

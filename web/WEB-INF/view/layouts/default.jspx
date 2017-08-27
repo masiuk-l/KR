@@ -37,7 +37,7 @@
 </head>
 <body>
 <com:header-navigation/>
-
+<br/>
 <div class="container">
     <c:url var="bodyUrl" value="../main/main.jsp"/>
     <c:if test="${not empty sessionScope.pagePath}">

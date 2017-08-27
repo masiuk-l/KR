@@ -101,10 +101,6 @@
                                    href="${pageContext.request.contextPath}/frontController?command=addbook">
                                     <fmt:message key="admin.add.book" bundle="${i18n}"></fmt:message>
                                 </a>
-                                <!--<a class="dropdown-item"-->
-                                <!--href="${pageContext.request.contextPath}/frontController?command=addauthor">-->
-                                <!--<fmt:message key="admin.add.author" bundle="${i18n}"></fmt:message>-->
-                                <!--</a>-->
                                 <a class="dropdown-item"
                                    href="${pageContext.request.contextPath}/frontController?command=readers">
                                     <fmt:message key="readers.title" bundle="${i18n}"></fmt:message>

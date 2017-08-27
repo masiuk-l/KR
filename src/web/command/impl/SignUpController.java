@@ -62,6 +62,7 @@ public class SignUpController implements Controller {
         else if (req.getParameter("gender").equals("2"))
             reader.setGender("female");
         else validData = false;
+        reader.setStatus("ACTIVE");
 
         if (validData) {
             readerService.save(reader);
