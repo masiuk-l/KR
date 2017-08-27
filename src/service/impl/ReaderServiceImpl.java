@@ -142,6 +142,8 @@ public class ReaderServiceImpl extends AbstractService implements ReaderService 
             if (readers.size() > 1)
                 throw new ServiceException("Multiple login Error");
             commit();
+            if (readers.isEmpty())
+                return null;
             return readers.get(0);
         } catch (SQLException e) {
             rollback();

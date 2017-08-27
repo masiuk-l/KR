@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 public class EditReaderController implements Controller {
-    private ReaderService newReaderService = ReaderServiceImpl.getInstance();
+    private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -43,6 +43,10 @@ public class EditReaderController implements Controller {
                 validData = false;
             }
             if (req.getParameter("em").matches("^([a-z0-9_\\.-]+\\@[\\da-z\\.-]+\\.[a-z\\.]{2,6})$") || req.getParameter("em").length() == 0) {
+                Reader emreader = readerService.getByLogin(req.getParameter("em"));
+                if (emreader != null && emreader.getReaderID() != sessionReader.getReaderID()) {
+                    validData = false;
+                }
                 newReader.setEmail(req.getParameter("em"));
             } else {
                 validData = false;
@@ -70,9 +74,9 @@ public class EditReaderController implements Controller {
             else validData = false;
 
             if (validData) {
-                newReaderService.update(sessionReader, newReader);
+                readerService.update(sessionReader, newReader);
                 req.getSession().setAttribute("errorMsg", "");
-                req.getSession().setAttribute("sreader", newReaderService.get(sessionReader.getReaderID()));
+                req.getSession().setAttribute("sreader", readerService.get(sessionReader.getReaderID()));
                 String contextPath = req.getContextPath();
                 resp.sendRedirect(contextPath + "/frontController?command=main");
                 return;

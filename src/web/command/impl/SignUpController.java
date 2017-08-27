@@ -37,6 +37,10 @@ public class SignUpController implements Controller {
             validData = false;
         }
         if (req.getParameter("email").matches("^([a-z0-9_\\.-]+\\@[\\da-z\\.-]+\\.[a-z\\.]{2,6})$")) {
+            Reader emreader = readerService.getByLogin(req.getParameter("email"));
+            if (emreader != null) {
+                validData = false;
+            }
             reader.setEmail(req.getParameter("email"));
         } else {
             validData = false;
