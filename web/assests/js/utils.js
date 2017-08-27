@@ -41,7 +41,14 @@ function returnBook(element) {
         type: 'get',
         url: contextUrl + '/frontController?command=returnBook&bookID=' + bookID,
         success: function (response) {
-            $('.return-book#' + bookID).attr('class', 'btn btn-secondary disabled').text(returned);
+            var str = "\"Auth required\"";
+
+            if (response.toString() === str) {
+                window.location.href = contextUrl + '/frontController?command=login';
+            }
+            else {
+                $('.return-book#' + bookID).attr('class', 'btn btn-secondary disabled').text(returned);
+            }
         }
 
     }).fail(function (data) {
