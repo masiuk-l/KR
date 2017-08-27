@@ -129,6 +129,25 @@ public class BookServiceImpl extends AbstractService implements BookService {
     }
 
     @Override
+    public List<Book> searchByName(String name) {
+        String searchKey = name.toLowerCase();
+        ArrayList<Book> books = new ArrayList<>();
+        try {
+            startTransaction();
+            ArrayList<Book> allBooks = new ArrayList<>(bookDAO.getAll());
+            for (Book aBook : allBooks) {
+                if (aBook.getName().toLowerCase().contains(searchKey) || aBook.getGenre().toLowerCase().contains(searchKey))
+                    books.add(aBook);
+            }
+            commit();
+            return books;
+        } catch (SQLException e) {
+            rollback();
+            throw new ServiceException("Error finding Book", e);
+        }
+    }
+
+    @Override
     public List<Book> getByIsbn(String isbn) {
         ArrayList<Book> books;
         try {

@@ -19,6 +19,8 @@ public interface BookService {
 
     List<Book> getByName(String name);
 
+    List<Book> searchByName(String name);
+
     List<Book> getByIsbn(String isbn);
 
     List<Book> getByGenre(String genre);

@@ -23,7 +23,7 @@ public class CatalogController implements Controller {
             BookVO bookVO = bookService.getBookVO(book);
             bookVOS.add(bookVO);
         }
-
+        req.getSession().setAttribute("Msg", "");
         req.getSession().setAttribute("bookVOS", bookVOS);
         req.getRequestDispatcher(MAIN_PAGE).forward(req, resp);
     }

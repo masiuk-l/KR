@@ -6,6 +6,22 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages" var="i18n"/>
 <div class="container">
+    <c:if test="${not empty Msg and not (Msg eq '')}">
+        <c:choose>
+            <c:when test="${Msg eq 'Invalid input'}">
+                <div class="text-center">
+                    <h1 class="display-3"><fmt:message bundle="${i18n}" key="data.sorry"/></h1>
+                    <h1 class="display-4"><fmt:message bundle="${i18n}" key="data.non-valid"/></h1>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="text-center">
+                    <h1 class="display-3"><fmt:message bundle="${i18n}" key="data.sorry"/></h1>
+                    <h1 class="display-4"><fmt:message bundle="${i18n}" key="data.no-such-books"/></h1>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
     <div class="card-columns">
 
         <c:forEach var="bookVO" items="${bookVOS}">
