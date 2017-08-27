@@ -19,6 +19,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
+ *
+ * Implementation of FormAuthorDAO interface
  */
 
 @Log4j

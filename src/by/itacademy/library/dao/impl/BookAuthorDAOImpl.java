@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 07.08.2017.
+ *
+ * Implementation of BookAuthorDAO interface
  */
 
 @Log4j

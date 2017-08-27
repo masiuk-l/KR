@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 /**
  * Project KR. Created by masiuk-l on 16.08.2017.
+ *
+ * Redirects unauthorized requests to login page
  */
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"/frontController"})
 public class AuthFilter implements Filter {

@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 15.08.2017.
+ *
+ * Implementation of BookAuthorService
  */
 public class BookAuthorServiceImpl extends AbstractService implements BookAuthorService {
 

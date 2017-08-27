@@ -26,6 +26,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 15.08.2017.
+ *
+ * Implementation of FormService
  */
 public class FormServiceImpl extends AbstractService implements FormService {
     private static volatile FormService INSTANCE = null;

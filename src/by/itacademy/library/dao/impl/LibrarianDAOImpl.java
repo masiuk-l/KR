@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
+ *
+ * Implementation of LibrarianDAO interface
  */
 @Log4j
 public class LibrarianDAOImpl implements LibrarianDAO {

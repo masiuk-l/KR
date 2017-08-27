@@ -9,6 +9,8 @@ import java.io.IOException;
 
 /**
  * Project KR. Created by masiuk-l on 16.08.2017.
+ *
+ * Handles errors
  */
 @WebServlet(name = "ErrorHandler", urlPatterns = "/errorHandler")
 public class ErrorHandler extends HttpServlet {

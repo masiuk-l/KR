@@ -7,6 +7,8 @@ import java.io.IOException;
 
 /**
  * Project KR. Created by masiuk-l on 16.08.2017.
+ *
+ * Changes response encoding to utf-8
  */
 @WebFilter(filterName = "encodingFilter", urlPatterns = "/*", initParams = {@WebInitParam(name = "encoding", value = "UTF-8")})
 public class EncodingFilter implements Filter {

@@ -3,31 +3,42 @@ package by.itacademy.library.service;
 import by.itacademy.library.VO.ReaderVO;
 import by.itacademy.library.entities.Reader;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 06.08.2017.
  */
-public interface ReaderService {
-
-    Reader save(Reader reader);
-
-    Reader get(Serializable id);
-
-    void update(Reader reader);
-
-    int delete(Serializable id);
-
+public interface ReaderService extends Service<Reader> {
+    /**
+     * @param surname surname
+     * @return List of readers matching the input
+     */
     List<Reader> getBySurname(String surname);
 
+    /**
+     *
+     * @param login login
+     * @return List of readers matching the input
+     */
+    List<Reader> getByLogin(String login);
+
+    /**
+     * @param status status
+     * @return List of readers matching the input
+     */
     List<Reader> getByStatus(String status);
 
-    Reader getByLogin(String login);
-
+    /**
+     *
+     * @param reader reader
+     * @return Value object of the reader
+     */
     ReaderVO getReaderVO(Reader reader);
 
-    List<Reader> getAll();
-
+    /**
+     *
+     * @param oldReader initial reader
+     * @param newReader updated info
+     */
     void update(Reader oldReader, Reader newReader);
 }

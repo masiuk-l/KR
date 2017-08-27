@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 17.08.2017.
+ *
+ * Static methods to transform Reader to ReaderVO and vice versa
  */
 public class ReaderTransfer {
     public static ReaderVO toValueObject(Reader reader, List<FormVO> formVOS) {

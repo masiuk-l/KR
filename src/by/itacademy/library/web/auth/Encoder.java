@@ -10,6 +10,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Encoder {
 
+    /**
+     * @param pwd password input
+     * @return encoded password
+     */
     public static String encode(String pwd) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

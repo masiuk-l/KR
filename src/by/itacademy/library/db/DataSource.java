@@ -36,6 +36,9 @@ public class DataSource {
         }
     }
 
+    /**
+     * private constructor - configures pooledDatasource
+     */
     private DataSource() throws IOException, SQLException, PropertyVetoException {
         pooledDatasource = new ComboPooledDataSource();
         pooledDatasource.setDriverClass(DRIVER);
@@ -50,10 +53,8 @@ public class DataSource {
     }
 
     /**
-     * @return
-     * @throws IOException
-     * @throws SQLException
-     * @throws PropertyVetoException
+     *
+     * @return an instance of DataSource
      */
     public static synchronized DataSource getInstance() throws IOException, SQLException, PropertyVetoException {
         if (datasource == null) {
@@ -64,6 +65,10 @@ public class DataSource {
         }
     }
 
+    /**
+     * @return a new connection from pooledDatasource
+     * @throws SQLException
+     */
     public Connection getConnection() throws SQLException {
         return pooledDatasource.getConnection();
     }

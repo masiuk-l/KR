@@ -8,6 +8,8 @@ import by.itacademy.library.entities.Reader;
 
 /**
  * Project KR. Created by masiuk-l on 17.08.2017.
+ *
+ * Static methods to transform Form to FormVO and vice versa
  */
 public class FormTransfer {
     public static FormVO toValueObject(Form form, BookVO bookVO, Librarian librarian, Reader reader) {

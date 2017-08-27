@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 15.08.2017.
+ *
+ * Implementation of AuthorService
  */
 public class AuthorServiceImpl extends AbstractService implements AuthorService {
     private static volatile AuthorService INSTANCE = null;

@@ -11,6 +11,10 @@ import static by.itacademy.library.web.command.enums.CommandType.MAIN;
  * Project KR. Created by masiuk-l on 15.08.2017.
  */
 public class RequestHandler {
+    /**
+     * @param req HttpServletRequest
+     * @return CommandType of the request
+     */
     public static CommandType getCommand(HttpServletRequest req) {
         String param = req.getParameter("command");
         if (param == null && "".equals(param)) {

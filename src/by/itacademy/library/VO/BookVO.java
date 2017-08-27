@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 17.08.2017.
+ *
+ * Value object of Book entity
  */
 @Data
 @AllArgsConstructor

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Project KR. Created by masiuk-l on 16.08.2017.
+ *
  */
 @WebFilter(urlPatterns = {"/frontController"})
 public class LocaleFilter implements Filter {

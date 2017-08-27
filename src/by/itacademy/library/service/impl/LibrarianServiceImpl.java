@@ -14,6 +14,8 @@ import java.util.List;
 
 /**
  * Project KR. Created by masiuk-l on 15.08.2017.
+ *
+ * Implementation of LibrarianService
  */
 public class LibrarianServiceImpl extends AbstractService implements LibrarianService {
     private static volatile LibrarianService INSTANCE = null;

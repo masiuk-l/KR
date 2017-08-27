@@ -7,6 +7,8 @@ import lombok.Getter;
 
 /**
  * Project KR. Created by masiuk-l on 12.08.2017.
+ *
+ * contains available commands
  */
 @Getter
 @AllArgsConstructor
@@ -40,6 +42,10 @@ public enum CommandType {
     private String pageName;
     private Controller controller;
 
+    /**
+     * @param page page name
+     * @return matching command type or MAIN by default
+     */
     public static CommandType getByPageName(String page) {
         for (CommandType type : CommandType.values()) {
             if (type.pageName.equalsIgnoreCase(page)) {
